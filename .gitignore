@@ -22,3 +22,6 @@ local.properties
 *.dex
 # Java class files
 *.class
+# Gradle files
+.gradle/
+build/
