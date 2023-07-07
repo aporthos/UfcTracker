@@ -1,4 +1,4 @@
-package com.portes.ufctracker.ui.theme
+package com.portes.ufctracker.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

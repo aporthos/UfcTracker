@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Ufc tracker</string>
+    <string name="home_event">Events</string>
+    <string name="home_current_bet">Mi apuesta</string>
 </resources>

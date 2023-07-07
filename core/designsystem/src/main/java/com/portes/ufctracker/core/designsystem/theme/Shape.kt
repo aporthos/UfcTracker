@@ -1,4 +1,4 @@
-package com.portes.ufctracker.ui.theme
+package com.portes.ufctracker.core.designsystem.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

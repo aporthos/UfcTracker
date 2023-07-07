@@ -1,25 +1,20 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = AppConfig.namespace
+    namespace = "com.portes.ufctracker.feature.events"
     compileSdk = AppConfig.compileSdk
 
     defaultConfig {
-        applicationId = AppConfig.applicationId
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -38,6 +33,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
@@ -45,36 +41,27 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.0"
     }
-
-    packagingOptions {
-        resources {
-            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-        }
-    }
 }
 
 dependencies {
 
     implementation("androidx.core:core-ktx:${Versions.AndroidX.core}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecyle}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecyleViewmodel}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.AndroidX.coroutines}")
 
-    implementation("androidx.activity:activity-compose:${Versions.Compose.activity}")
+    implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
+    implementation("androidx.hilt:hilt-navigation-compose:${Versions.Google.Hilt.navigationCompose}")
+    kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
+
     implementation("androidx.compose.ui:ui:${Versions.Compose.ui}")
     implementation("androidx.compose.ui:ui-tooling-preview:${Versions.Compose.uiPreview}")
     implementation("androidx.compose.material:material:${Versions.Compose.material}")
-    implementation("androidx.navigation:navigation-compose:${Versions.Compose.navigation}")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:${Versions.Compose.runtimeCompose}")
+    implementation("io.coil-kt:coil-compose:${Versions.Compose.coil}")
 
-    implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
-
-    implementation( project(":core:data"))
-    implementation( project(":core:domain"))
-    implementation( project(":core:common"))
-    implementation( project(":core:designsystem"))
-
-    implementation( project(":feature:events"))
-}
-
-kapt {
-    correctErrorTypes = true
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:model"))
+    implementation(project(":core:common"))
 }
