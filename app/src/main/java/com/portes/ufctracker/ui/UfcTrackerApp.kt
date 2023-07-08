@@ -28,7 +28,6 @@ fun UfcTrackerApp() {
             }) { innerPaddingModifier ->
             UfcTrackerNavGraph(
                 modifier = Modifier.padding(innerPaddingModifier),
-                startDestination = UfcTrackerHomeSections.EVENTS.route,
                 navController = appState.navController,
                 upPress = appState::upPress
             )

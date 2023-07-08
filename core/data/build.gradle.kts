@@ -16,6 +16,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("boolean", "READ_LOCAL", "true")
     }
 
     buildTypes {
@@ -43,6 +44,9 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
 
     implementation("com.squareup.retrofit2:retrofit:${Versions.Squareup.Retrofit.retrofit}")
+
+    implementation("com.squareup.moshi:moshi:${Versions.Squareup.Moshi.moshi}")
+    implementation("com.jakewharton.timber:timber:${Versions.Other.timber}")
 
     implementation(project(":core:common"))
     implementation(project(":core:model"))

@@ -1,5 +1,9 @@
 package com.portes.ufctracker.core.data.di
 
+import com.portes.ufctracker.core.data.datasources.EventsLocalDataSource
+import com.portes.ufctracker.core.data.datasources.EventsLocalDataSourceImpl
+import com.portes.ufctracker.core.data.datasources.EventsRemoteDataSource
+import com.portes.ufctracker.core.data.datasources.EventsRemoteDataSourceImpl
 import com.portes.ufctracker.core.data.repositories.EventsRepository
 import com.portes.ufctracker.core.data.repositories.EventsRepositoryImpl
 import com.portes.ufctracker.core.data.services.Services
@@ -22,6 +26,16 @@ object DataModule {
         fun bindsEventsRepository(
             eventsRepository: EventsRepositoryImpl,
         ): EventsRepository
+
+        @Binds
+        fun bindsEventsLocalDataSource(
+            eventsLocalDataSource: EventsLocalDataSourceImpl,
+        ): EventsLocalDataSource
+
+        @Binds
+        fun bindsEventsRemoteDataSource(
+            eventsRemoteDataSource: EventsRemoteDataSourceImpl,
+        ): EventsRemoteDataSource
     }
 
     @Singleton

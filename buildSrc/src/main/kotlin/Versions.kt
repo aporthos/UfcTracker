@@ -14,6 +14,7 @@ object Versions {
         const val runtimeCompose = "2.6.1"
         const val navigation = "2.6.0"
         const val coil = "2.4.0"
+        const val lottie = "6.0.1"
     }
 
     object Firestore {
@@ -48,5 +49,9 @@ object Versions {
             const val compiler = "2.44.2"
             const val navigationCompose = "1.0.0"
         }
+    }
+
+    object Other {
+        const val timber = "5.0.1"
     }
 }

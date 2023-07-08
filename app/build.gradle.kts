@@ -67,6 +67,8 @@ dependencies {
     implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
 
+    implementation("com.jakewharton.timber:timber:${Versions.Other.timber}")
+
     implementation( project(":core:data"))
     implementation( project(":core:domain"))
     implementation( project(":core:common"))

@@ -1,0 +1,853 @@
+{
+  "EventId": 298,
+  "LeagueId": 1,
+  "Name": "UFC 290: Volkanovski vs. Rodriguez",
+  "ShortName": "UFC 290",
+  "Season": 2023,
+  "Day": "2023-07-08T00:00:00",
+  "DateTime": "2023-07-08T18:00:00",
+  "Status": "Scheduled",
+  "Active": true,
+  "Fights": [
+    {
+      "FightId": 3629,
+      "Order": 1,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000615,
+          "FirstName": "Yair",
+          "LastName": "Rodriguez",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 77,
+          "Active": true
+        },
+        {
+          "FighterId": 140000347,
+          "FirstName": "Alexander",
+          "LastName": "Volkanovski",
+          "PreFightWins": 2,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -101,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3685,
+      "Order": 2,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000258,
+          "FirstName": "Alexandre",
+          "LastName": "Pantoja",
+          "PreFightWins": 2,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 45,
+          "Active": true
+        },
+        {
+          "FighterId": 140000613,
+          "FirstName": "Brandon",
+          "LastName": "Moreno",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -54,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3717,
+      "Order": 3,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000630,
+          "FirstName": "Robert",
+          "LastName": "Whittaker",
+          "PreFightWins": 2,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -98,
+          "Active": true
+        },
+        {
+          "FighterId": 140001047,
+          "FirstName": "Dricus",
+          "LastName": "Du Plessis",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 74,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3716,
+      "Order": 4,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000487,
+          "FirstName": "Dan",
+          "LastName": "Hooker",
+          "PreFightWins": 1,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 60,
+          "Active": true
+        },
+        {
+          "FighterId": 140000056,
+          "FirstName": "Jalin",
+          "LastName": "Turner",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -74,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8425,
+      "Order": 5,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140005015,
+          "FirstName": "Val",
+          "LastName": "Woodburn",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 294,
+          "Active": true
+        },
+        {
+          "FighterId": 140001492,
+          "FirstName": "Bo",
+          "LastName": "Nickal",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -639,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3628,
+      "Order": 6,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000142,
+          "FirstName": "Robbie",
+          "LastName": "Lawler",
+          "PreFightWins": 2,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 50,
+          "Active": true
+        },
+        {
+          "FighterId": 140000169,
+          "FirstName": "Niko",
+          "LastName": "Price",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -62,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3759,
+      "Order": 7,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140000215,
+          "FirstName": "Deiveson",
+          "LastName": "Figueiredo",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        },
+        {
+          "FighterId": 140000959,
+          "FirstName": "Manel",
+          "LastName": "Kape",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8418,
+      "Order": 7,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001386,
+          "FirstName": "Tatsuro",
+          "LastName": "Taira",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -259,
+          "Active": true
+        },
+        {
+          "FighterId": 140001518,
+          "FirstName": "Edgar",
+          "LastName": "Chairez",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 165,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8427,
+      "Order": 7,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001190,
+          "FirstName": "Jack",
+          "LastName": "Della Maddalena",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -267,
+          "Active": false
+        },
+        {
+          "FighterId": 140005012,
+          "FirstName": "Josiah",
+          "LastName": "Harrell",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 165,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 3627,
+      "Order": 8,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001539,
+          "FirstName": "Denise",
+          "LastName": "Gomes",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 78,
+          "Active": true
+        },
+        {
+          "FighterId": 140001472,
+          "FirstName": "Yazmin",
+          "LastName": "Jauregui",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -102,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3784,
+      "Order": 9,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000009,
+          "FirstName": "Alonzo",
+          "LastName": "Menifield",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 30,
+          "Active": true
+        },
+        {
+          "FighterId": 140000066,
+          "FirstName": "Jimmy",
+          "LastName": "Crute",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -36,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3783,
+      "Order": 10,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000700,
+          "FirstName": "Marcin",
+          "LastName": "Prachnio",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 52,
+          "Active": true
+        },
+        {
+          "FighterId": 140001586,
+          "FirstName": "Vitor",
+          "LastName": "Petrino",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -63,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3785,
+      "Order": 11,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001255,
+          "FirstName": "Christian",
+          "LastName": "Rodriguez",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        },
+        {
+          "FighterId": 140001540,
+          "FirstName": "Cameron",
+          "LastName": "Saaiman",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8365,
+      "Order": 11,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001540,
+          "FirstName": "Cameron",
+          "LastName": "Saaiman",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -152,
+          "Active": true
+        },
+        {
+          "FighterId": 140005011,
+          "FirstName": "Terrence",
+          "LastName": "Mitchell",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 108,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3729,
+      "Order": 12,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001505,
+          "FirstName": "Shannon",
+          "LastName": "Ross",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 32,
+          "Active": true
+        },
+        {
+          "FighterId": 140001542,
+          "FirstName": "Jesus",
+          "LastName": "Aguilar",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -38,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3786,
+      "Order": 13,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000489,
+          "FirstName": "Kamuela",
+          "LastName": "Kirk",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 33,
+          "Active": true
+        },
+        {
+          "FighterId": 140001458,
+          "FirstName": "Esteban",
+          "LastName": "Ribovics",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -39,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3734,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140000882,
+          "FirstName": "Sean",
+          "LastName": "Brady",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -31,
+          "Active": false
+        },
+        {
+          "FighterId": 140001190,
+          "FirstName": "Jack",
+          "LastName": "Della Maddalena",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 26,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 3760,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001198,
+          "FirstName": "Tresean",
+          "LastName": "Gore",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 196,
+          "Active": false
+        },
+        {
+          "FighterId": 140001492,
+          "FirstName": "Bo",
+          "LastName": "Nickal",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -340,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8419,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001190,
+          "FirstName": "Jack",
+          "LastName": "Della Maddalena",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 26,
+          "Active": false
+        },
+        {
+          "FighterId": 140005012,
+          "FirstName": "Josiah",
+          "LastName": "Harrell",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -31,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8422,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001190,
+          "FirstName": "Jack",
+          "LastName": "Della Maddalena",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -251,
+          "Active": false
+        },
+        {
+          "FighterId": 140005012,
+          "FirstName": "Josiah",
+          "LastName": "Harrell",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 157,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8426,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 0,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001190,
+          "FirstName": "Jack",
+          "LastName": "Della Maddalena",
+          "PreFightWins": 1,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -266,
+          "Active": false
+        },
+        {
+          "FighterId": 140005012,
+          "FirstName": "Josiah",
+          "LastName": "Harrell",
+          "PreFightWins": 0,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 165,
+          "Active": false
+        }
+      ]
+    }
+  ]
+}

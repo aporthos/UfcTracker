@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Ufc tracker"
-include (":app")
+include(":app")
 include(":core:data")
 include(":core:domain")
 include(":feature:events")

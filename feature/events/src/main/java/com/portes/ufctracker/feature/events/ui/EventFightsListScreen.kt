@@ -1,40 +1,48 @@
 package com.portes.ufctracker.feature.events.ui
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil.compose.rememberAsyncImagePainter
 import com.portes.ufctracker.core.model.models.EventModel
 import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterModel
-
+import com.portes.ufctracker.core.designsystem.component.LoadingComponent
+import com.portes.ufctracker.feature.events.ui.components.EventItem
 
 @Composable
-fun EventRoute(upPress: () -> Unit, viewModel: EventsViewModel = hiltViewModel()) {
-    val uiState by viewModel.uiStateEvent.collectAsStateWithLifecycle()
+internal fun EventFightsListRoute(
+    upPress: () -> Unit,
+    viewModel: EventsFightsListViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("TopAppBar") },
+                title = { Text("${viewModel.eventName} ${viewModel.eventId}") },
                 navigationIcon = {
                     IconButton(onClick = { upPress() }) {
                         Icon(
@@ -63,7 +71,7 @@ fun FavoritesRoute() {
 }
 
 @Composable
-fun EventScreen(
+internal fun EventScreen(
     modifier: Modifier,
     uiState: EventUiState,
     onClick: (EventModel) -> Unit
@@ -71,9 +79,7 @@ fun EventScreen(
     val context = LocalContext.current
 
     when (uiState) {
-        EventUiState.Loading -> {
-
-        }
+        EventUiState.Loading -> LoadingComponent()
         is EventUiState.Success -> FightsList(
             modifier = modifier,
             fights = uiState.event.fights,
@@ -91,7 +97,11 @@ fun EventScreen(
 }
 
 @Composable
-fun FightsList(modifier: Modifier, fights: List<FightModel>, onClick: (FighterModel) -> Unit) {
+internal fun FightsList(
+    modifier: Modifier,
+    fights: List<FightModel>,
+    onClick: (FighterModel) -> Unit
+) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -104,7 +114,7 @@ fun FightsList(modifier: Modifier, fights: List<FightModel>, onClick: (FighterMo
 }
 
 @Composable
-fun FightCard(fight: FightModel, onClick: (FighterModel) -> Unit) {
+internal fun FightCard(fight: FightModel, onClick: (FighterModel) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -130,29 +140,5 @@ fun FightCard(fight: FightModel, onClick: (FighterModel) -> Unit) {
                 onClick = onClick
             )
         }
-    }
-}
-
-@Composable
-fun RowScope.EventItem(fighter: FighterModel, onClick: (FighterModel) -> Unit) {
-    Column(
-        modifier = Modifier
-            .weight(1f)
-            .clickable { onClick(fighter) },
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        val asyncPainter = rememberAsyncImagePainter(fighter.imageUrl)
-        Image(
-            modifier = Modifier
-                .size(150.dp)
-                .clip(CircleShape),
-            painter = asyncPainter,
-            contentScale = ContentScale.Crop,
-            contentDescription = null
-        )
-        Text(
-            textAlign = TextAlign.Center,
-            text = fighter.fullName
-        )
     }
 }

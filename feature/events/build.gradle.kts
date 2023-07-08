@@ -60,8 +60,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:${Versions.Compose.runtimeCompose}")
     implementation("io.coil-kt:coil-compose:${Versions.Compose.coil}")
 
+    implementation("com.jakewharton.timber:timber:${Versions.Other.timber}")
+
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
     implementation(project(":core:common"))
+    implementation(project(":core:designsystem"))
 }

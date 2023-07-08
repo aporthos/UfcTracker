@@ -43,4 +43,5 @@ android {
 
 dependencies {
     implementation("androidx.compose.material:material:${Versions.Compose.material}")
+    implementation("com.airbnb.android:lottie-compose:${Versions.Compose.lottie}")
 }
