@@ -5,7 +5,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.portes.ufctracker.core.designsystem.theme.UfcTrackerTheme
-import com.portes.ufctracker.navigation.UfcTrackerHomeSections
 import com.portes.ufctracker.navigation.UfcTrackerNavGraph
 
 @Composable
@@ -22,14 +21,15 @@ fun UfcTrackerApp() {
                         currentRoute = appState.currentRoute,
                         navigateToRoute = {
                             appState.navController.navigate(it)
-                        }
+                        },
                     )
                 }
-            }) { innerPaddingModifier ->
+            },
+        ) { innerPaddingModifier ->
             UfcTrackerNavGraph(
                 modifier = Modifier.padding(innerPaddingModifier),
                 navController = appState.navController,
-                upPress = appState::upPress
+                upPress = appState::upPress,
             )
         }
     }

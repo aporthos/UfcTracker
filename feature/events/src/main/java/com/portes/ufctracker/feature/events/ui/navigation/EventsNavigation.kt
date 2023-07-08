@@ -9,11 +9,10 @@ import androidx.navigation.navigation
 import com.portes.ufctracker.feature.events.ui.EventFightsListRoute
 import com.portes.ufctracker.feature.events.ui.EventsListRoute
 
-
 enum class HomeDestinations(val destination: String) {
     HOME("home"),
     HOME_EVENTS("home/events"),
-    FIGHTERS("home/fighters")
+    FIGHTERS("home/fighters"),
 }
 
 fun NavGraphBuilder.eventsGraph(
@@ -22,7 +21,7 @@ fun NavGraphBuilder.eventsGraph(
 ) {
     navigation(
         route = HomeDestinations.HOME.destination,
-        startDestination = HomeDestinations.HOME_EVENTS.destination
+        startDestination = HomeDestinations.HOME_EVENTS.destination,
     ) {
         composable(HomeDestinations.HOME_EVENTS.destination) {
             EventsListRoute(onEventClick = { eventId, name ->
@@ -31,7 +30,7 @@ fun NavGraphBuilder.eventsGraph(
         }
         composable(
             route = "${HomeDestinations.FIGHTERS}/{$EVENT_ID}/{$EVENT_NAME}",
-            arguments = listArguments
+            arguments = listArguments,
         ) {
             EventFightsListRoute(upPress = onBackClick)
         }
@@ -40,7 +39,7 @@ fun NavGraphBuilder.eventsGraph(
 
 val listArguments = listOf(
     navArgument(EVENT_ID) { type = NavType.IntType },
-    navArgument(EVENT_NAME) { type = NavType.StringType }
+    navArgument(EVENT_NAME) { type = NavType.StringType },
 )
 
 fun NavController.navigateToEvent(eventId: Int, name: String) {

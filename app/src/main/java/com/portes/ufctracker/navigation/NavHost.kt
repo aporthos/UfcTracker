@@ -10,12 +10,11 @@ import com.portes.ufctracker.feature.events.ui.navigation.HomeDestinations
 import com.portes.ufctracker.feature.events.ui.navigation.eventsGraph
 import com.portes.ufctracker.feature.events.ui.navigation.navigateToEvent
 
-
 @Composable
 fun UfcTrackerNavGraph(
     modifier: Modifier,
     navController: NavHostController,
-    upPress: () -> Unit
+    upPress: () -> Unit,
 ) {
     NavHost(
         modifier = modifier,
@@ -26,7 +25,7 @@ fun UfcTrackerNavGraph(
             onBackClick = upPress,
             onEventClick = { eventId: Int, name: String ->
                 navController.navigateToEvent(eventId, name)
-            }
+            },
         )
         composable(UfcTrackerHomeSections.CURRENT_BET.route) {
             FavoritesRoute()

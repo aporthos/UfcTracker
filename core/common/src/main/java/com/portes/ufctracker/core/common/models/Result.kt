@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import retrofit2.Response
 
-
 sealed interface Result<out T> {
     data class Success<out T>(val data: T) : Result<T>
     data class Error(val exception: String?) : Result<Nothing>

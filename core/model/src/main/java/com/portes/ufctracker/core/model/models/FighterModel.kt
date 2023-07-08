@@ -10,5 +10,5 @@ data class FighterModel(
     val preFightNoContests: Int,
     val winner: Boolean,
     val moneyline: Int,
-    val active: Boolean
+    val active: Boolean,
 )

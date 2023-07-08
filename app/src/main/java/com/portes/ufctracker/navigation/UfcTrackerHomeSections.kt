@@ -10,8 +10,8 @@ import com.portes.ufctracker.R
 enum class UfcTrackerHomeSections(
     @StringRes val title: Int,
     val icon: ImageVector,
-    val route: String
+    val route: String,
 ) {
     EVENTS(R.string.home_event, Icons.Outlined.Home, "home/events"),
-    CURRENT_BET(R.string.home_current_bet, Icons.Outlined.Favorite, "home/currentBet")
+    CURRENT_BET(R.string.home_current_bet, Icons.Outlined.Favorite, "home/currentBet"),
 }

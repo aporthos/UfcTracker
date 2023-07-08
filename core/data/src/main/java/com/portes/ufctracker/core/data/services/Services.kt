@@ -12,4 +12,3 @@ interface Services {
     @GET("v3/mma/scores/json/Event/{eventId}?key=ff09fe226cdf48d8a7a3b148277bbc5c")
     suspend fun getEvent(@Path("eventId") eventId: Int): Response<EventEntity>
 }
-

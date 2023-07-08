@@ -26,7 +26,7 @@ fun rememberUfcTrackerAppState(
 @Stable
 class UfcTrackerAppState(
     val scaffoldState: ScaffoldState,
-    val navController: NavHostController
+    val navController: NavHostController,
 ) {
 
     val bottomBarTabs = UfcTrackerHomeSections.values()

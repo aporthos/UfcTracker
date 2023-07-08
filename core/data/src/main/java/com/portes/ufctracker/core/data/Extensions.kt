@@ -12,7 +12,6 @@ inline fun <reified T> AssetManager.convertToList(name: String, moshi: Moshi): L
     return adapter.fromJson(eventsList)
 }
 
-
 inline fun <reified T> AssetManager.convertToObject(name: String, moshi: Moshi): T? {
     val eventsList = open(name).bufferedReader().use { it.readText() }
     val adapter: JsonAdapter<T> = moshi.adapter(T::class.java)

@@ -42,5 +42,4 @@ object DataModule {
     @Provides
     fun providesTopTenService(retrofit: Retrofit): Services =
         retrofit.create(Services::class.java)
-
 }

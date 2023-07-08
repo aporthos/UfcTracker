@@ -26,16 +26,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.portes.ufctracker.core.designsystem.component.LoadingComponent
 import com.portes.ufctracker.core.model.models.EventModel
 import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterModel
-import com.portes.ufctracker.core.designsystem.component.LoadingComponent
 import com.portes.ufctracker.feature.events.ui.components.EventItem
 
 @Composable
 internal fun EventFightsListRoute(
     upPress: () -> Unit,
-    viewModel: EventsFightsListViewModel = hiltViewModel()
+    viewModel: EventsFightsListViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -50,7 +50,7 @@ internal fun EventFightsListRoute(
                             contentDescription = null,
                         )
                     }
-                }
+                },
             )
         },
     ) { innerPaddingModifier ->
@@ -58,12 +58,10 @@ internal fun EventFightsListRoute(
             modifier = Modifier.padding(innerPaddingModifier),
             uiState = uiState,
             onClick = {
-
-            })
+            },
+        )
     }
-
 }
-
 
 @Composable
 fun FavoritesRoute() {
@@ -74,7 +72,7 @@ fun FavoritesRoute() {
 internal fun EventScreen(
     modifier: Modifier,
     uiState: EventUiState,
-    onClick: (EventModel) -> Unit
+    onClick: (EventModel) -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -87,9 +85,10 @@ internal fun EventScreen(
                 Toast.makeText(
                     context,
                     "Seleccionaste ${it.fullName}",
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_SHORT,
                 ).show()
-            })
+            },
+        )
         is EventUiState.Error -> {
             Text(text = "Hello ${uiState.error}!")
         }
@@ -100,12 +99,12 @@ internal fun EventScreen(
 internal fun FightsList(
     modifier: Modifier,
     fights: List<FightModel>,
-    onClick: (FighterModel) -> Unit
+    onClick: (FighterModel) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .padding(top = 8.dp, bottom = 8.dp)
+            .padding(top = 8.dp, bottom = 8.dp),
     ) {
         items(fights, key = { it.fightId }) {
             FightCard(fight = it, onClick = onClick)
@@ -117,27 +116,27 @@ internal fun FightsList(
 internal fun FightCard(fight: FightModel, onClick: (FighterModel) -> Unit) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
             EventItem(
                 fighter = fight.fighters[0],
-                onClick = onClick
+                onClick = onClick,
             )
             Text(
                 modifier = Modifier
                     .wrapContentHeight()
                     .align(Alignment.CenterVertically),
                 textAlign = TextAlign.Center,
-                text = "VS"
+                text = "VS",
             )
             EventItem(
                 fighter = fight.fighters[1],
-                onClick = onClick
+                onClick = onClick,
             )
         }
     }

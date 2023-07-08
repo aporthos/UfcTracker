@@ -29,7 +29,7 @@ import com.portes.ufctracker.feature.events.R
 @Composable
 internal fun EventsListRoute(
     onEventClick: (Int, String) -> Unit,
-    viewModel: EventsListViewModel = hiltViewModel()
+    viewModel: EventsListViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Scaffold(
@@ -42,7 +42,7 @@ internal fun EventsListRoute(
         EventListsScreen(
             modifier = Modifier.padding(innerPaddingModifier),
             uiState = uiState,
-            onEventClick = onEventClick
+            onEventClick = onEventClick,
         )
     }
 }
@@ -51,14 +51,14 @@ internal fun EventsListRoute(
 internal fun EventListsScreen(
     modifier: Modifier,
     uiState: EventsListUiState,
-    onEventClick: (Int, String) -> Unit
+    onEventClick: (Int, String) -> Unit,
 ) {
     when (uiState) {
         EventsListUiState.Loading -> LoadingComponent()
         is EventsListUiState.Success -> EventsList(
             modifier = modifier,
             events = uiState.events,
-            onEventClick = onEventClick
+            onEventClick = onEventClick,
         )
         is EventsListUiState.Error -> {
             Text(text = "Error :( ->>${uiState.error}!")
@@ -70,7 +70,7 @@ internal fun EventListsScreen(
 internal fun EventsList(
     modifier: Modifier,
     events: List<EventModel>,
-    onEventClick: (Int, String) -> Unit
+    onEventClick: (Int, String) -> Unit,
 ) {
     LazyColumn(modifier = modifier.fillMaxHeight(), contentPadding = PaddingValues(16.dp)) {
         items(events, key = { it.eventId }) {
@@ -82,20 +82,20 @@ internal fun EventsList(
 @Composable
 internal fun EventCars(
     event: EventModel,
-    onEventClick: (Int, String) -> Unit
+    onEventClick: (Int, String) -> Unit,
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { onEventClick(event.eventId, event.name) }
+            .clickable { onEventClick(event.eventId, event.name) },
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
             Text(
                 text = event.shortName,
                 style = TextStyle(
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                    fontWeight = FontWeight.Bold,
+                ),
             )
             Text(text = event.name)
         }

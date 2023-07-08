@@ -25,7 +25,7 @@ data class FighterEntity(
     @Json(name = "Moneyline")
     val moneyline: Int?,
     @Json(name = "Active")
-    val active: Boolean?
+    val active: Boolean?,
 )
 
 fun FighterEntity.toModel() = FighterModel(
@@ -38,5 +38,5 @@ fun FighterEntity.toModel() = FighterModel(
     imageUrl = "https://fightingtomatoes.com/images/fighters/$firstName$lastName.jpg",
     winner = winner ?: false,
     moneyline = moneyline ?: 0,
-    active = active ?: false
+    active = active ?: false,
 )

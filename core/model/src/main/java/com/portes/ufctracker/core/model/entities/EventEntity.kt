@@ -38,5 +38,5 @@ fun EventEntity.toModel() = EventModel(
     dateTime = dateTime.orEmpty(),
     status = status.orEmpty(),
     active = active ?: false,
-    fights = fights?.map { it.toModel() } ?: emptyList()
+    fights = fights?.map { it.toModel() } ?: emptyList(),
 )

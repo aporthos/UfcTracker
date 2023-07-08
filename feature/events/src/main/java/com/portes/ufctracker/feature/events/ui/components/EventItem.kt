@@ -26,7 +26,7 @@ fun RowScope.EventItem(fighter: FighterModel, onClick: (FighterModel) -> Unit) {
         modifier = Modifier
             .weight(1f)
             .clickable { onClick(fighter) },
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         AsyncImage(
             modifier = Modifier
@@ -42,7 +42,7 @@ fun RowScope.EventItem(fighter: FighterModel, onClick: (FighterModel) -> Unit) {
         )
         Text(
             textAlign = TextAlign.Center,
-            text = fighter.fullName
+            text = fighter.fullName,
         )
     }
 }

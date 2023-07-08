@@ -6,12 +6,15 @@ import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.domain.usecase.GetEventsListUseCase
 import com.portes.ufctracker.core.model.models.EventModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
 internal class EventsListViewModel @Inject constructor(
-    getEventsListUseCase: GetEventsListUseCase
+    getEventsListUseCase: GetEventsListUseCase,
 ) : ViewModel() {
 
     val uiState: StateFlow<EventsListUiState> = getEventsListUseCase(Unit).map { result ->

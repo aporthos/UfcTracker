@@ -30,11 +30,10 @@ fun UfcTrackerBottomAppBar(
                 icon = {
                     Icon(
                         imageVector = section.icon,
-                        contentDescription = null
+                        contentDescription = null,
                     )
-                }
+                },
             )
         }
-
     }
 }

@@ -47,7 +47,5 @@ fun FightEntity.toModel() = FightModel(
     resultType = resultType.orEmpty(),
     winnerId = winnerId.orEmpty(),
     active = active ?: false,
-    fighters = fighters?.map { it.toModel() } ?: emptyList()
+    fighters = fighters?.map { it.toModel() } ?: emptyList(),
 )
-
-

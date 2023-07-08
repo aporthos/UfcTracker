@@ -7,8 +7,8 @@ internal const val EVENT_NAME = "EVENT_NAME"
 
 internal class EventsArgs(val eventId: Int, val name: String) {
     constructor(savedStateHandle: SavedStateHandle) :
-            this(
-                checkNotNull(savedStateHandle[EVENT_ID]),
-                checkNotNull(savedStateHandle[EVENT_NAME])
-            )
+        this(
+            checkNotNull(savedStateHandle[EVENT_ID]),
+            checkNotNull(savedStateHandle[EVENT_NAME]),
+        )
 }
