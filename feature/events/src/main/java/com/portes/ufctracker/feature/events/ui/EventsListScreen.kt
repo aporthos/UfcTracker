@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.portes.ufctracker.core.designsystem.component.ErrorComponent
 import com.portes.ufctracker.core.designsystem.component.LoadingComponent
 import com.portes.ufctracker.core.model.models.EventModel
 import com.portes.ufctracker.feature.events.R
@@ -60,9 +61,10 @@ internal fun EventListsScreen(
             events = uiState.events,
             onEventClick = onEventClick,
         )
-        is EventsListUiState.Error -> {
-            Text(text = "Error :( ->>${uiState.error}!")
-        }
+        is EventsListUiState.Error -> ErrorComponent(
+            modifier = modifier,
+            message = uiState.error
+        )
     }
 }
 

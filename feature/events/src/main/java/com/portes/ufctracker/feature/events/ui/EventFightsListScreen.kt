@@ -10,15 +10,22 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.ExtendedFloatingActionButton
+import androidx.compose.material.FabPosition
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -26,11 +33,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.portes.ufctracker.core.designsystem.component.ErrorComponent
 import com.portes.ufctracker.core.designsystem.component.LoadingComponent
-import com.portes.ufctracker.core.model.models.EventModel
 import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterModel
-import com.portes.ufctracker.feature.events.ui.components.EventItem
+import com.portes.ufctracker.feature.events.ui.components.FighterComponent
 
 @Composable
 internal fun EventFightsListRoute(
@@ -53,45 +60,52 @@ internal fun EventFightsListRoute(
                 },
             )
         },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                text = { Text("Crear apuesta") },
+                onClick = viewModel::createFightBet,
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = null
+                    )
+                }
+            )
+        },
+        floatingActionButtonPosition = FabPosition.End,
+        isFloatingActionButtonDocked = true
     ) { innerPaddingModifier ->
+        val context = LocalContext.current
+        LaunchedEffect(key1 = true) {
+            viewModel.showToast.collect {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+        }
         EventScreen(
             modifier = Modifier.padding(innerPaddingModifier),
             uiState = uiState,
-            onClick = {
-            },
+            onFighterClick = viewModel::addFighterToBet,
         )
     }
-}
-
-@Composable
-fun FavoritesRoute() {
-    Text(text = "Aun no hay nada")
 }
 
 @Composable
 internal fun EventScreen(
     modifier: Modifier,
     uiState: EventUiState,
-    onClick: (EventModel) -> Unit,
+    onFighterClick: (Boolean, Int, FighterModel) -> Unit,
 ) {
-    val context = LocalContext.current
-
     when (uiState) {
         EventUiState.Loading -> LoadingComponent()
         is EventUiState.Success -> FightsList(
             modifier = modifier,
             fights = uiState.event.fights,
-            onClick = {
-                Toast.makeText(
-                    context,
-                    "Seleccionaste ${it.fullName}",
-                    Toast.LENGTH_SHORT,
-                ).show()
-            },
+            onFighterClick = onFighterClick,
         )
-        is EventUiState.Error -> {
-            Text(text = "Hello ${uiState.error}!")
-        }
+        is EventUiState.Error -> ErrorComponent(
+            modifier = modifier,
+            message = uiState.error
+        )
     }
 }
 
@@ -99,7 +113,7 @@ internal fun EventScreen(
 internal fun FightsList(
     modifier: Modifier,
     fights: List<FightModel>,
-    onClick: (FighterModel) -> Unit,
+    onFighterClick: (Boolean, Int, FighterModel) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier
@@ -107,13 +121,16 @@ internal fun FightsList(
             .padding(top = 8.dp, bottom = 8.dp),
     ) {
         items(fights, key = { it.fightId }) {
-            FightCard(fight = it, onClick = onClick)
+            FightCard(
+                fight = it,
+                onFighterClick = onFighterClick
+            )
         }
     }
 }
 
 @Composable
-internal fun FightCard(fight: FightModel, onClick: (FighterModel) -> Unit) {
+internal fun FightCard(fight: FightModel, onFighterClick: (Boolean, Int, FighterModel) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -123,9 +140,18 @@ internal fun FightCard(fight: FightModel, onClick: (FighterModel) -> Unit) {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            EventItem(
+            var isSelectedFighterOne by rememberSaveable { mutableStateOf(fight.fighters[0].isSelectedBet) }
+            var isSelectedFighterTwo by rememberSaveable { mutableStateOf(fight.fighters[1].isSelectedBet) }
+
+            FighterComponent(
+                isSelected = isSelectedFighterOne,
+                fightId = fight.fightId,
                 fighter = fight.fighters[0],
-                onClick = onClick,
+                onClick = { fighter ->
+                    isSelectedFighterOne = !isSelectedFighterOne
+                    isSelectedFighterTwo = false
+                    onFighterClick(isSelectedFighterOne, fight.fightId, fighter)
+                },
             )
             Text(
                 modifier = Modifier
@@ -134,9 +160,15 @@ internal fun FightCard(fight: FightModel, onClick: (FighterModel) -> Unit) {
                 textAlign = TextAlign.Center,
                 text = "VS",
             )
-            EventItem(
+            FighterComponent(
+                isSelected = isSelectedFighterTwo,
+                fightId = fight.fightId,
                 fighter = fight.fighters[1],
-                onClick = onClick,
+                onClick = { fighter ->
+                    isSelectedFighterTwo = !isSelectedFighterTwo
+                    isSelectedFighterOne = false
+                    onFighterClick(isSelectedFighterTwo, fight.fightId, fighter)
+                },
             )
         }
     }

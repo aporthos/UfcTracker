@@ -1,5 +1,7 @@
 package com.portes.ufctracker.feature.events.ui.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
@@ -10,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -18,20 +21,36 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.portes.ufctracker.core.designsystem.R
+import com.portes.ufctracker.core.designsystem.theme.GreenChecked
 import com.portes.ufctracker.core.model.models.FighterModel
 
 @Composable
-fun RowScope.EventItem(fighter: FighterModel, onClick: (FighterModel) -> Unit) {
+fun RowScope.FighterComponent(
+    isSelected: Boolean,
+    fightId: Int,
+    fighter: FighterModel,
+    onClick: (FighterModel) -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .weight(1f)
             .clickable { onClick(fighter) },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+
+        val modifier = Modifier
+            .size(80.dp)
+            .clip(CircleShape)
+            .border(
+                border = if (isSelected) BorderStroke(
+                    6.dp,
+                    GreenChecked
+                ) else BorderStroke(6.dp, Color.Unspecified),
+                shape = CircleShape
+            )
+
         AsyncImage(
-            modifier = Modifier
-                .size(150.dp)
-                .clip(CircleShape),
+            modifier = modifier,
             model = ImageRequest.Builder(LocalContext.current)
                 .data(fighter.imageUrl)
                 .build(),
@@ -42,7 +61,7 @@ fun RowScope.EventItem(fighter: FighterModel, onClick: (FighterModel) -> Unit) {
         )
         Text(
             textAlign = TextAlign.Center,
-            text = fighter.fullName,
+            text = "$fightId: ${fighter.fighterId} -> ${fighter.fullName}",
         )
     }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "909381386194",
+    "project_id": "ufc-tracker",
+    "storage_bucket": "ufc-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909381386194:android:43e391f83cf88247cf920b",
+        "android_client_info": {
+          "package_name": "com.portes.ufctracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909381386194-g9cjte15uk0986b57qt6vlb2q8u9g5jh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVAWpcbfJ66zCaagC4ZRYzQnNJWvOcBrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909381386194-g9cjte15uk0986b57qt6vlb2q8u9g5jh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,3 +10,9 @@ abstract class FlowUseCase<in P, R>(private val dispatcher: CoroutineDispatcher)
 
     protected abstract fun execute(params: P): Flow<Result<R>>
 }
+
+abstract class FlowSingleUseCase<in P, R>(private val dispatcher: CoroutineDispatcher) {
+    operator fun invoke(params: P): Flow<R> = execute(params).flowOn(dispatcher)
+
+    protected abstract fun execute(params: P): Flow<R>
+}

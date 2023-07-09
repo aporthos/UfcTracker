@@ -21,16 +21,16 @@ class EventsRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getEvent(eventId: Int): Flow<Result<EventModel>> {
+    override fun getFightsList(eventId: Int): Flow<Result<EventModel>> {
         return if (BuildConfig.READ_LOCAL) {
-            eventsLocalDataSource.getEvent(eventId)
+            eventsLocalDataSource.getFightsList(eventId)
         } else {
-            eventsRemoteDataSource.getEvent(eventId)
+            eventsRemoteDataSource.getFightsList(eventId)
         }
     }
 }
 
 interface EventsRepository {
     fun getEventsList(): Flow<Result<List<EventModel>>>
-    fun getEvent(eventId: Int): Flow<Result<EventModel>>
+    fun getFightsList(eventId: Int): Flow<Result<EventModel>>
 }

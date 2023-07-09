@@ -7,25 +7,25 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class FighterEntity(
     @Json(name = "FighterId")
-    val fighterId: Int?,
+    val fighterId: Int? = 0,
     @Json(name = "FirstName")
-    val firstName: String?,
+    val firstName: String? = "",
     @Json(name = "LastName")
-    val lastName: String?,
+    val lastName: String? = "",
     @Json(name = "PreFightWins")
-    val preFightWins: Int?,
+    val preFightWins: Int? = 0,
     @Json(name = "PreFightLosses")
-    val preFightLosses: Int?,
+    val preFightLosses: Int? = 0,
     @Json(name = "PreFightDraws")
-    val preFightDraws: Int?,
+    val preFightDraws: Int? = 0,
     @Json(name = "PreFightNoContests")
-    val preFightNoContests: Int?,
+    val preFightNoContests: Int? = 0,
     @Json(name = "Winner")
-    val winner: Boolean?,
+    val winner: Boolean? = false,
     @Json(name = "Moneyline")
-    val moneyline: Int?,
+    val moneyline: Int? = 0,
     @Json(name = "Active")
-    val active: Boolean?,
+    val active: Boolean? = false,
 )
 
 fun FighterEntity.toModel() = FighterModel(

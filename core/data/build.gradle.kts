@@ -1,10 +1,8 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("org.jmailen.kotlinter")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -48,6 +46,10 @@ dependencies {
 
     implementation("com.squareup.moshi:moshi:${Versions.Squareup.Moshi.moshi}")
     implementation("com.jakewharton.timber:timber:${Versions.Other.timber}")
+
+    implementation(platform("com.google.firebase:firebase-bom:${Versions.Firestore.bom}"))
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.AndroidX.coroutinesPlayServices}")
 
     implementation(project(":core:common"))
     implementation(project(":core:model"))

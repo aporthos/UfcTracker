@@ -5,10 +5,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.portes.ufctracker.feature.events.ui.FavoritesRoute
 import com.portes.ufctracker.feature.events.ui.navigation.HomeDestinations
 import com.portes.ufctracker.feature.events.ui.navigation.eventsGraph
 import com.portes.ufctracker.feature.events.ui.navigation.navigateToEvent
+import com.portes.ufctracker.feature.fightbets.FightBetsListRoute
 
 @Composable
 fun UfcTrackerNavGraph(
@@ -27,8 +27,8 @@ fun UfcTrackerNavGraph(
                 navController.navigateToEvent(eventId, name)
             },
         )
-        composable(UfcTrackerHomeSections.CURRENT_BET.route) {
-            FavoritesRoute()
+        composable(UfcTrackerHomeSections.FIGHT_BETS.route) {
+            FightBetsListRoute()
         }
     }
 }

@@ -2,7 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("org.jmailen.kotlinter")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
@@ -41,6 +41,8 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
+
+    implementation("com.jakewharton.timber:timber:${Versions.Other.timber}")
 
     implementation(project(":core:data"))
     implementation(project(":core:common"))

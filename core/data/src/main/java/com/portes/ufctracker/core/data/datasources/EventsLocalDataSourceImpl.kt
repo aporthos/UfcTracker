@@ -26,6 +26,7 @@ class EventsLocalDataSourceImpl @Inject constructor(
 
     override fun getEventsList(): Flow<Result<List<EventModel>>> {
         val response = try {
+            Result.Loading
             val result = context.assets.convertToList<EventEntity>(EVENTS_JSON, moshi)
             result?.map {
                 it.toModel()
@@ -42,8 +43,9 @@ class EventsLocalDataSourceImpl @Inject constructor(
         return flowOf(response)
     }
 
-    override fun getEvent(eventId: Int): Flow<Result<EventModel>> {
+    override fun getFightsList(eventId: Int): Flow<Result<EventModel>> {
         val response = try {
+            Result.Loading
             val result = context.assets.convertToObject<EventEntity>(EVENTS_BY_ID_JSON, moshi)
             result?.toModel()?.let {
                 Result.Success(it)
@@ -54,12 +56,11 @@ class EventsLocalDataSourceImpl @Inject constructor(
             Timber.e(e)
             Result.Error(e.localizedMessage)
         }
-
         return flowOf(response)
     }
 }
 
 interface EventsLocalDataSource {
     fun getEventsList(): Flow<Result<List<EventModel>>>
-    fun getEvent(eventId: Int): Flow<Result<EventModel>>
+    fun getFightsList(eventId: Int): Flow<Result<EventModel>>
 }

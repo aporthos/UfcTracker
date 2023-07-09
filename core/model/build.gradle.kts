@@ -1,6 +1,6 @@
 plugins {
     id("kotlin")
-    id("org.jmailen.kotlinter")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 dependencies {

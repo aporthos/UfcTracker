@@ -27,7 +27,7 @@ class EventsRemoteDataSourceImpl @Inject constructor(
         emit(Result.Error(it.message))
     }.flowOn(dispatcher)
 
-    override fun getEvent(eventId: Int): Flow<Result<EventModel>> = flow {
+    override fun getFightsList(eventId: Int): Flow<Result<EventModel>> = flow {
         val events = services.getEvent(eventId).callApi {
             it.toModel()
         }
@@ -39,5 +39,5 @@ class EventsRemoteDataSourceImpl @Inject constructor(
 
 interface EventsRemoteDataSource {
     fun getEventsList(): Flow<Result<List<EventModel>>>
-    fun getEvent(eventId: Int): Flow<Result<EventModel>>
+    fun getFightsList(eventId: Int): Flow<Result<EventModel>>
 }

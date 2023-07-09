@@ -4,6 +4,7 @@ object Versions {
         const val lifecyle = "2.6.1"
         const val lifecyleViewmodel = "2.6.1"
         const val coroutines = "1.2.1"
+        const val coroutinesPlayServices = "1.7.1"
     }
 
     object Compose {
