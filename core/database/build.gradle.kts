@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.portes.ufctracker.core.data"
+    namespace = "com.portes.ufctracker.core.database"
     compileSdk = AppConfig.compileSdk
 
     defaultConfig {
@@ -15,7 +15,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        buildConfigField("boolean", "READ_LOCAL", "true")
     }
 
     buildTypes {
@@ -37,21 +36,13 @@ android {
 }
 
 dependencies {
+
     implementation("androidx.core:core-ktx:${Versions.AndroidX.core}")
 
     implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
 
-    implementation("com.squareup.retrofit2:retrofit:${Versions.Squareup.Retrofit.retrofit}")
-
-    implementation("com.squareup.moshi:moshi:${Versions.Squareup.Moshi.moshi}")
-    implementation("com.jakewharton.timber:timber:${Versions.Other.timber}")
-
-    implementation(platform("com.google.firebase:firebase-bom:${Versions.Firestore.bom}"))
-    implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.AndroidX.coroutinesPlayServices}")
-
-    implementation(project(":core:common"))
-    implementation(project(":core:model"))
-    implementation(project(":core:database"))
+    implementation("androidx.room:room-runtime:${Versions.AndroidX.roomRuntime}")
+    kapt("androidx.room:room-compiler:${Versions.AndroidX.roomCompiler}")
+    implementation("androidx.room:room-ktx:${Versions.AndroidX.roomKtx}")
 }

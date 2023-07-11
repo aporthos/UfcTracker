@@ -1,0 +1,573 @@
+{
+  "EventId": 309,
+  "LeagueId": 1,
+  "Name": "UFC Fight Night: Holm vs. Silva",
+  "ShortName": "UFC Fight Night",
+  "Season": 2023,
+  "Day": "2023-07-15T00:00:00",
+  "DateTime": "2023-07-15T19:00:00",
+  "Status": "Scheduled",
+  "Active": true,
+  "Fights": [
+    {
+      "FightId": 3766,
+      "Order": 1,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 3,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000447,
+          "FirstName": "Holly",
+          "LastName": "Holm",
+          "PreFightWins": 12,
+          "PreFightLosses": 4,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -126,
+          "Active": true
+        },
+        {
+          "FighterId": 140000842,
+          "FirstName": "Mayra",
+          "LastName": "Bueno Silva",
+          "PreFightWins": 6,
+          "PreFightLosses": 1,
+          "PreFightDraws": 1,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 103,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3765,
+      "Order": 2,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001192,
+          "FirstName": "Albert",
+          "LastName": "Duraev",
+          "PreFightWins": 13,
+          "PreFightLosses": 3,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 103,
+          "Active": true
+        },
+        {
+          "FighterId": 140000587,
+          "FirstName": "Junyong",
+          "LastName": "Park",
+          "PreFightWins": 13,
+          "PreFightLosses": 3,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -122,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8391,
+      "Order": 3,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000323,
+          "FirstName": "Walt",
+          "LastName": "Harris",
+          "PreFightWins": 10,
+          "PreFightLosses": 6,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 1,
+          "Winner": false,
+          "Moneyline": -140,
+          "Active": true
+        },
+        {
+          "FighterId": 140000785,
+          "FirstName": "Josh",
+          "LastName": "Parisian",
+          "PreFightWins": 12,
+          "PreFightLosses": 4,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 118,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3819,
+      "Order": 4,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001639,
+          "FirstName": "Chelsea",
+          "LastName": "Chandler",
+          "PreFightWins": 3,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 100,
+          "Active": true
+        },
+        {
+          "FighterId": 140000891,
+          "FirstName": "Norma",
+          "LastName": "Dumont",
+          "PreFightWins": 6,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -119,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8390,
+      "Order": 5,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000596,
+          "FirstName": "Ottman",
+          "LastName": "Azaitar",
+          "PreFightWins": 10,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 82,
+          "Active": true
+        },
+        {
+          "FighterId": 140001677,
+          "FirstName": "Francisco",
+          "LastName": "Prado",
+          "PreFightWins": 7,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -99,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8389,
+      "Order": 6,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000494,
+          "FirstName": "Terrance",
+          "LastName": "McKinney",
+          "PreFightWins": 10,
+          "PreFightLosses": 3,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 102,
+          "Active": true
+        },
+        {
+          "FighterId": 140001525,
+          "FirstName": "Nazim",
+          "LastName": "Sadykhov",
+          "PreFightWins": 5,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -121,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8388,
+      "Order": 7,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001036,
+          "FirstName": "Tucker",
+          "LastName": "Lutz",
+          "PreFightWins": 8,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 131,
+          "Active": true
+        },
+        {
+          "FighterId": 140001015,
+          "FirstName": "Melsik",
+          "LastName": "Baghdasaryan",
+          "PreFightWins": 4,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -158,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3822,
+      "Order": 8,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001261,
+          "FirstName": "Istela",
+          "LastName": "Nunes",
+          "PreFightWins": 4,
+          "PreFightLosses": 3,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 1,
+          "Winner": false,
+          "Moneyline": 161,
+          "Active": true
+        },
+        {
+          "FighterId": 140001580,
+          "FirstName": "Viktoriia",
+          "LastName": "Dudakova",
+          "PreFightWins": 4,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -196,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3821,
+      "Order": 9,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001673,
+          "FirstName": "Melquizael",
+          "LastName": "Costa",
+          "PreFightWins": 15,
+          "PreFightLosses": 4,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -168,
+          "Active": true
+        },
+        {
+          "FighterId": 140000896,
+          "FirstName": "Austin",
+          "LastName": "Lingo",
+          "PreFightWins": 6,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 138,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 3820,
+      "Order": 10,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001625,
+          "FirstName": "Jafel",
+          "LastName": "Filho",
+          "PreFightWins": 11,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        },
+        {
+          "FighterId": 140001125,
+          "FirstName": "Juancamilo",
+          "LastName": "Ronderos",
+          "PreFightWins": 3,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8387,
+      "Order": 10,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001244,
+          "FirstName": "Genaro",
+          "LastName": "Valdez",
+          "PreFightWins": 6,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 189,
+          "Active": true
+        },
+        {
+          "FighterId": 140001410,
+          "FirstName": "Evan",
+          "LastName": "Elder",
+          "PreFightWins": 4,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -234,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8386,
+      "Order": 11,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000608,
+          "FirstName": "Tyson",
+          "LastName": "Nam",
+          "PreFightWins": 17,
+          "PreFightLosses": 10,
+          "PreFightDraws": 1,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 246,
+          "Active": true
+        },
+        {
+          "FighterId": 140005006,
+          "FirstName": "Azat",
+          "LastName": "Maksum",
+          "PreFightWins": 13,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -327,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8385,
+      "Order": 12,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001699,
+          "FirstName": "Carl",
+          "LastName": "Deaton",
+          "PreFightWins": 14,
+          "PreFightLosses": 4,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 1,
+          "Winner": false,
+          "Moneyline": 99,
+          "Active": true
+        },
+        {
+          "FighterId": 140000825,
+          "FirstName": "Alexander",
+          "LastName": "Munoz",
+          "PreFightWins": 4,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -118,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8384,
+      "Order": 13,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 2,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000081,
+          "FirstName": "Ashlee",
+          "LastName": "Evans-Smith",
+          "PreFightWins": 4,
+          "PreFightLosses": 3,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 117,
+          "Active": true
+        },
+        {
+          "FighterId": 140001488,
+          "FirstName": "Ailin",
+          "LastName": "Perez",
+          "PreFightWins": 4,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -139,
+          "Active": true
+        }
+      ]
+    }
+  ]
+}

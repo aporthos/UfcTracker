@@ -21,7 +21,7 @@ class EventsLocalDataSourceImpl @Inject constructor(
 ) : EventsLocalDataSource {
     companion object {
         private const val EVENTS_JSON = "events.json"
-        private const val EVENTS_BY_ID_JSON = "eventById.json"
+        private const val EVENTS_BY_ID_JSON = "_event.json"
     }
 
     override fun getEventsList(): Flow<Result<List<EventModel>>> {
@@ -46,7 +46,7 @@ class EventsLocalDataSourceImpl @Inject constructor(
     override fun getFightsList(eventId: Int): Flow<Result<EventModel>> {
         val response = try {
             Result.Loading
-            val result = context.assets.convertToObject<EventEntity>(EVENTS_BY_ID_JSON, moshi)
+            val result = context.assets.convertToObject<EventEntity>("$eventId$EVENTS_BY_ID_JSON", moshi)
             result?.toModel()?.let {
                 Result.Success(it)
             } ?: run {

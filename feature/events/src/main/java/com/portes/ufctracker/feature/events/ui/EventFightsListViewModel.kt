@@ -6,16 +6,20 @@ import androidx.lifecycle.viewModelScope
 import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.domain.usecase.AddOrRemoveFightBetsUseCase
 import com.portes.ufctracker.core.domain.usecase.GetFightsListUseCase
+import com.portes.ufctracker.core.domain.usecase.GetNicknameUseCase
+import com.portes.ufctracker.core.domain.usecase.SaveNicknameUseCase
 import com.portes.ufctracker.core.model.models.EventModel
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.feature.events.ui.navigation.EventsArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -26,6 +30,8 @@ import javax.inject.Inject
 internal class EventsFightsListViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     getFightsListUseCase: GetFightsListUseCase,
+    private val saveNicknameUseCase: SaveNicknameUseCase,
+    private val getNicknameUseCase: GetNicknameUseCase,
     private val addOrRemoveFightBetsUseCase: AddOrRemoveFightBetsUseCase,
 ) : ViewModel() {
 
@@ -37,11 +43,14 @@ internal class EventsFightsListViewModel @Inject constructor(
     private val fighterBetsForAdd = hashMapOf<Int, FighterModel>()
     private val fighterBetsForRemove = hashMapOf<Int, FighterModel>()
 
+    private var _shouldShowAlertDialog = MutableStateFlow(false)
+    val shouldShowAlertDialog: StateFlow<Boolean> = _shouldShowAlertDialog.asStateFlow()
+
     private val _showToast = MutableSharedFlow<String>()
     val showToast: SharedFlow<String> = _showToast.asSharedFlow()
 
     val uiState: StateFlow<EventUiState> = getFightsListUseCase(
-        GetFightsListUseCase.Params(298)
+        GetFightsListUseCase.Params(eventsArgs.eventId)
     ).map { resultList ->
         when (resultList) {
             Result.Loading -> EventUiState.Loading
@@ -55,6 +64,12 @@ internal class EventsFightsListViewModel @Inject constructor(
     )
 
     fun createFightBet() {
+        val nickname = getNicknameUseCase()
+        if (nickname.isEmpty()) {
+            _shouldShowAlertDialog.tryEmit(true)
+            return
+        }
+
         viewModelScope.launch {
             val addFighterBetsAdd = fighterBetsForAdd.map {
                 FighterBetRequestModel(it.key, it.value)
@@ -63,7 +78,8 @@ internal class EventsFightsListViewModel @Inject constructor(
                 FighterBetRequestModel(it.key, it.value)
             }
             val params = AddOrRemoveFightBetsUseCase.Params(
-                eventId = 298,
+                eventId = eventsArgs.eventId,
+                eventName = eventsArgs.name,
                 addFighterBets = addFighterBetsAdd,
                 removeFighterBets = removeFighterBets,
             )
@@ -80,6 +96,14 @@ internal class EventsFightsListViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun shouldShowAlertDialog(boolean: Boolean) {
+        _shouldShowAlertDialog.value = boolean
+    }
+
+    fun saveNickname(nickname: String) {
+        saveNicknameUseCase(nickname)
     }
 
     fun addFighterToBet(isAddFighterBet: Boolean, fightId: Int, fighter: FighterModel) {

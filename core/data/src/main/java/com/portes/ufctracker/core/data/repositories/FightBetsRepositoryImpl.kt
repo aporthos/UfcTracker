@@ -7,7 +7,7 @@ import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.model.entities.FightBetsEntity
 import com.portes.ufctracker.core.model.entities.toModel
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
-import com.portes.ufctracker.core.model.models.FighterModel
+import com.portes.ufctracker.core.model.models.FighterRequest
 import com.portes.ufctracker.core.model.models.GamblerModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,12 +16,12 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class FightBetsRepositoryImpl @Inject constructor(
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore,
+
 ) : FightBetsRepository {
     companion object {
         private const val COLLECTION_FIGHT_BETS = "fightbets"
         private const val COLLECTION_GAMBLER = "gambler"
-        val nameFake = "amadeus"
     }
 
     override fun getFightBetsList(eventId: Int): Flow<List<GamblerModel>> = flow {
@@ -40,7 +40,7 @@ class FightBetsRepositoryImpl @Inject constructor(
         emit(result)
     }
 
-    override fun getMyFightBets(eventId: Int): Flow<List<Int?>> = flow {
+    override fun getMyFightBets(eventId: Int, nickname: String): Flow<List<Int?>> = flow {
         val countriesRef = firestore.collection(COLLECTION_FIGHT_BETS)
         val ukDocRef = countriesRef.document("$eventId")
         val snapshot = firestore.collectionGroup(COLLECTION_GAMBLER)
@@ -50,12 +50,22 @@ class FightBetsRepositoryImpl @Inject constructor(
             .get().await()
         val result = snapshot.toObjects<FightBetsEntity>().map {
             it.toModel()
-        }.filter { it.name == nameFake }.map { it.fighter?.fighterId }
+        }.filter { it.name == nickname }.map { it.fighter?.fighterId }
+        emit(result)
+    }
+
+    override fun getFightBetsByEvent(): Flow<List<Int>> = flow {
+        val fightBets = firestore.collection(COLLECTION_FIGHT_BETS).get().await()
+        val result = fightBets.map {
+            it.reference.id.toInt()
+        }
         emit(result)
     }
 
     override fun addOrRemoveFightBetsList(
         eventId: Int,
+        eventName: String,
+        nickname: String,
         addFighterBets: List<FighterBetRequestModel>,
         removeFighterBets: List<FighterBetRequestModel>
     ): Flow<Result<Boolean>> = flow {
@@ -63,15 +73,20 @@ class FightBetsRepositoryImpl @Inject constructor(
             emit(Result.Loading)
             val batch = firestore.batch()
             addFighterBets.forEach {
-                val fighterBet = Fighter(name = nameFake, fightId = it.fightId, it.fighter)
+                val model = EventName(eventName = eventName)
+
+                val event =
+                    firestore.document("/fightbets/$eventId")
+                batch.set(event, model)
+                val fighterBet = FighterRequest(name = nickname, fightId = it.fightId, it.fighter)
                 val document =
-                    firestore.document("/fightbets/$eventId/fights/${it.fightId}/gambler/$nameFake")
+                    firestore.document("/fightbets/$eventId/fights/${it.fightId}/gambler/$nickname")
                 batch.set(document, fighterBet)
             }
 
             removeFighterBets.forEach {
                 val documentDelete =
-                    firestore.document("/fightbets/$eventId/fights/${it.fightId}/gambler/$nameFake")
+                    firestore.document("/fightbets/$eventId/fights/${it.fightId}/gambler/$nickname")
                 batch.delete(documentDelete)
             }
             batch.commit()
@@ -83,17 +98,16 @@ class FightBetsRepositoryImpl @Inject constructor(
     }
 }
 
-data class Fighter(
-    val name: String,
-    val fightId: Int,
-    val fighter: FighterModel
-)
+data class EventName(val eventName: String)
 
 interface FightBetsRepository {
     fun getFightBetsList(eventId: Int): Flow<List<GamblerModel>>
-    fun getMyFightBets(eventId: Int): Flow<List<Int?>>
+    fun getMyFightBets(eventId: Int, nickname: String): Flow<List<Int?>>
+    fun getFightBetsByEvent(): Flow<List<Int>>
     fun addOrRemoveFightBetsList(
         eventId: Int,
+        eventName: String,
+        nickname: String,
         addFighterBets: List<FighterBetRequestModel>,
         removeFighterBets: List<FighterBetRequestModel>
     ): Flow<Result<Boolean>>

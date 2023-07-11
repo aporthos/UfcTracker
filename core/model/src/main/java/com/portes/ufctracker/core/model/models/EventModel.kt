@@ -1,5 +1,7 @@
 package com.portes.ufctracker.core.model.models
 
+import com.portes.ufctracker.core.model.entities.StatusEvent
+
 data class EventModel(
     val eventId: Int,
     val leagueId: Int,
@@ -8,7 +10,8 @@ data class EventModel(
     val season: Int,
     val day: String,
     val dateTime: String,
-    val status: String,
+    val status: StatusEvent,
     val active: Boolean,
+    val fightStar: MutableList<FighterModel> = mutableListOf(),
     val fights: List<FightModel>,
 )

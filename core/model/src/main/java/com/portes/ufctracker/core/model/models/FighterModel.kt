@@ -11,5 +11,6 @@ data class FighterModel(
     val winner: Boolean,
     val moneyline: Int,
     val active: Boolean,
+    var nickName: String = "",
     var isSelectedBet: Boolean = false
 )

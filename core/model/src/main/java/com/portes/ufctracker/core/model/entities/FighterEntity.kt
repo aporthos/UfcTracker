@@ -1,5 +1,6 @@
 package com.portes.ufctracker.core.model.entities
 
+import com.portes.ufctracker.core.database.FighterLocalEntity
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -12,6 +13,8 @@ data class FighterEntity(
     val firstName: String? = "",
     @Json(name = "LastName")
     val lastName: String? = "",
+    @Json(name = "Nickname")
+    val nickname: String? = "",
     @Json(name = "PreFightWins")
     val preFightWins: Int? = 0,
     @Json(name = "PreFightLosses")
@@ -39,4 +42,11 @@ fun FighterEntity.toModel() = FighterModel(
     winner = winner ?: false,
     moneyline = moneyline ?: 0,
     active = active ?: false,
+)
+
+fun FighterEntity.toEntity() = FighterLocalEntity(
+    fighterId = fighterId ?: 0,
+    fullName = "${firstName.orEmpty()} ${lastName.orEmpty()}",
+    nickname = nickname.orEmpty(),
+    imageUrl = "https://fightingtomatoes.com/images/fighters/$firstName$lastName.jpg"
 )

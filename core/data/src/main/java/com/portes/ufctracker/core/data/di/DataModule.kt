@@ -5,10 +5,16 @@ import com.portes.ufctracker.core.data.datasources.EventsLocalDataSource
 import com.portes.ufctracker.core.data.datasources.EventsLocalDataSourceImpl
 import com.portes.ufctracker.core.data.datasources.EventsRemoteDataSource
 import com.portes.ufctracker.core.data.datasources.EventsRemoteDataSourceImpl
+import com.portes.ufctracker.core.data.datasources.FightersLocalDataSource
+import com.portes.ufctracker.core.data.datasources.FightersLocalDataSourceImpl
 import com.portes.ufctracker.core.data.repositories.EventsRepository
 import com.portes.ufctracker.core.data.repositories.EventsRepositoryImpl
 import com.portes.ufctracker.core.data.repositories.FightBetsRepository
 import com.portes.ufctracker.core.data.repositories.FightBetsRepositoryImpl
+import com.portes.ufctracker.core.data.repositories.FightersRepository
+import com.portes.ufctracker.core.data.repositories.FightersRepositoryImpl
+import com.portes.ufctracker.core.data.repositories.PreferencesRepository
+import com.portes.ufctracker.core.data.repositories.PreferencesRepositoryImpl
 import com.portes.ufctracker.core.data.services.Services
 import dagger.Binds
 import dagger.Module
@@ -44,6 +50,21 @@ object DataModule {
         fun bindsFightBetsRepository(
             fightBetsRepository: FightBetsRepositoryImpl,
         ): FightBetsRepository
+
+        @Binds
+        fun bindsFightersLocalDataSource(
+            fightersLocalDataSource: FightersLocalDataSourceImpl,
+        ): FightersLocalDataSource
+
+        @Binds
+        fun bindsFightersRepository(
+            fightersRepository: FightersRepositoryImpl,
+        ): FightersRepository
+
+        @Binds
+        fun bindsPreferencesRepository(
+            preferencesRepository: PreferencesRepositoryImpl,
+        ): PreferencesRepository
     }
 
     @Singleton

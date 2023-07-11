@@ -5,6 +5,9 @@ object Versions {
         const val lifecyleViewmodel = "2.6.1"
         const val coroutines = "1.2.1"
         const val coroutinesPlayServices = "1.7.1"
+        const val roomRuntime = "2.5.2"
+        const val roomCompiler = "2.5.2"
+        const val roomKtx = "2.5.2"
     }
 
     object Compose {
