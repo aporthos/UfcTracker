@@ -7,6 +7,7 @@ import com.portes.ufctracker.core.data.convertToObject
 import com.portes.ufctracker.core.model.entities.EventEntity
 import com.portes.ufctracker.core.model.entities.toModel
 import com.portes.ufctracker.core.model.models.EventModel
+import com.portes.ufctracker.core.model.models.FightModel
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -43,12 +44,13 @@ class EventsLocalDataSourceImpl @Inject constructor(
         return flowOf(response)
     }
 
-    override fun getFightsList(eventId: Int): Flow<Result<EventModel>> {
+    override fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>> {
         val response = try {
             Result.Loading
-            val result = context.assets.convertToObject<EventEntity>("$eventId$EVENTS_BY_ID_JSON", moshi)
+            val result =
+                context.assets.convertToObject<EventEntity>("$eventId$EVENTS_BY_ID_JSON", moshi)
             result?.toModel()?.let {
-                Result.Success(it)
+                Result.Success(it.fights)
             } ?: run {
                 Result.Error("Not read file")
             }
@@ -62,5 +64,5 @@ class EventsLocalDataSourceImpl @Inject constructor(
 
 interface EventsLocalDataSource {
     fun getEventsList(): Flow<Result<List<EventModel>>>
-    fun getFightsList(eventId: Int): Flow<Result<EventModel>>
+    fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>>
 }

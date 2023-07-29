@@ -19,7 +19,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Chip
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -80,7 +79,6 @@ internal fun EventsListRoute(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun EventListsScreen(
     modifier: Modifier,

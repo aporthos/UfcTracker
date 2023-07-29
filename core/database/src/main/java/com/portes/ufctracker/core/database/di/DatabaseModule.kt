@@ -21,7 +21,10 @@ object DatabaseModule {
     ): UfcTrackerDatabase = Room.databaseBuilder(
         context = context, UfcTrackerDatabase::class.java,
         "UfcTrackerDatabase",
-    ).fallbackToDestructiveMigration().build()
+    )
+        .createFromAsset("UfcTrackerDatabase.db")
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Provides
     @Singleton

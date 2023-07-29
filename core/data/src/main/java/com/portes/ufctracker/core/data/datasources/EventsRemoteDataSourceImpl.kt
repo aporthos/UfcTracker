@@ -6,6 +6,7 @@ import com.portes.ufctracker.core.common.models.callApi
 import com.portes.ufctracker.core.data.services.Services
 import com.portes.ufctracker.core.model.entities.toModel
 import com.portes.ufctracker.core.model.models.EventModel
+import com.portes.ufctracker.core.model.models.FightModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -27,9 +28,9 @@ class EventsRemoteDataSourceImpl @Inject constructor(
         emit(Result.Error(it.message))
     }.flowOn(dispatcher)
 
-    override fun getFightsList(eventId: Int): Flow<Result<EventModel>> = flow {
+    override fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>> = flow {
         val events = services.getEvent(eventId).callApi {
-            it.toModel()
+            it.toModel().fights
         }
         emit(events)
     }.catch {
@@ -39,5 +40,5 @@ class EventsRemoteDataSourceImpl @Inject constructor(
 
 interface EventsRemoteDataSource {
     fun getEventsList(): Flow<Result<List<EventModel>>>
-    fun getFightsList(eventId: Int): Flow<Result<EventModel>>
+    fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>>
 }

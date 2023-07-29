@@ -33,11 +33,9 @@ data class EventEntity(
 
 fun EventEntity.toModel() = EventModel(
     eventId = eventId ?: 0,
-    leagueId = leagueId ?: 0,
     name = name.orEmpty(),
     shortName = shortName.orEmpty(),
     season = season ?: 0,
-    day = day.orEmpty(),
     dateTime = parseDate(dateTime.orEmpty()),
     status = if (status?.equals("Final") == true) StatusEvent.FINISHED else StatusEvent.SCHEDULED,
     active = active ?: false,

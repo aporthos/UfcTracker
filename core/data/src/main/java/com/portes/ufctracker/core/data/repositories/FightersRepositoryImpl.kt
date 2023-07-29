@@ -15,7 +15,7 @@ class FightersRepositoryImpl @Inject constructor(
         return fightersLocalDataSource.getFightersByName(fullName = fullName)
     }
 
-    override fun getFightersById(fighterId: Int): FighterLocaleModel? {
+    override fun getFighterById(fighterId: Int): FighterLocaleModel? {
         return fightersLocalDataSource.getFightersById(fighterId = fighterId)
     }
 }
@@ -23,5 +23,5 @@ class FightersRepositoryImpl @Inject constructor(
 interface FightersRepository {
     suspend fun saveFightersList()
     fun getFightersByName(fullName: String): FighterLocaleModel?
-    fun getFightersById(fighterId: Int): FighterLocaleModel?
+    fun getFighterById(fighterId: Int): FighterLocaleModel?
 }

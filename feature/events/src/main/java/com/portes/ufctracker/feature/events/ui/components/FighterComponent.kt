@@ -70,7 +70,7 @@ fun RowScope.FighterComponent(
         )
         Text(
             textAlign = TextAlign.Center,
-            text = fighter.nickName,
+            text = fighter.nickname,
             style = MaterialTheme.typography.caption.copy(fontWeight = FontWeight.Bold),
             color = Purple500
         )

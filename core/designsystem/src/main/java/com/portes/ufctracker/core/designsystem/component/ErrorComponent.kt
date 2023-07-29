@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun ErrorComponent(modifier: Modifier, message: String?) {
+fun ErrorComponent(modifier: Modifier = Modifier, message: String?) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

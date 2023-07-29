@@ -35,6 +35,10 @@ android {
         jvmTarget = "1.8"
     }
 
+    kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs + listOf(
+        "-Xopt-in=androidx.compose.material.ExperimentalMaterialApi"
+    )
+
     buildFeatures {
         compose = true
     }

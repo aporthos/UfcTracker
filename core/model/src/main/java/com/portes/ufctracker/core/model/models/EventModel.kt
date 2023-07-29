@@ -4,11 +4,9 @@ import com.portes.ufctracker.core.model.entities.StatusEvent
 
 data class EventModel(
     val eventId: Int,
-    val leagueId: Int,
     val name: String,
     val shortName: String,
     val season: Int,
-    val day: String,
     val dateTime: String,
     val status: StatusEvent,
     val active: Boolean,

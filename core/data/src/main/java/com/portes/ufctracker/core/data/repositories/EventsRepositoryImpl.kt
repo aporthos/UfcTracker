@@ -5,6 +5,7 @@ import com.portes.ufctracker.core.data.BuildConfig
 import com.portes.ufctracker.core.data.datasources.EventsLocalDataSource
 import com.portes.ufctracker.core.data.datasources.EventsRemoteDataSource
 import com.portes.ufctracker.core.model.models.EventModel
+import com.portes.ufctracker.core.model.models.FightModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -21,7 +22,7 @@ class EventsRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getFightsList(eventId: Int): Flow<Result<EventModel>> {
+    override fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>> {
         return if (BuildConfig.READ_LOCAL) {
             eventsLocalDataSource.getFightsList(eventId)
         } else {
@@ -32,5 +33,5 @@ class EventsRepositoryImpl @Inject constructor(
 
 interface EventsRepository {
     fun getEventsList(): Flow<Result<List<EventModel>>>
-    fun getFightsList(eventId: Int): Flow<Result<EventModel>>
+    fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>>
 }

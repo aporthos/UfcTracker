@@ -8,20 +8,17 @@ import com.portes.ufctracker.core.domain.usecase.AddOrRemoveFightBetsUseCase
 import com.portes.ufctracker.core.domain.usecase.GetFightsListUseCase
 import com.portes.ufctracker.core.domain.usecase.GetNicknameUseCase
 import com.portes.ufctracker.core.domain.usecase.SaveNicknameUseCase
-import com.portes.ufctracker.core.model.models.EventModel
+import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.feature.events.ui.navigation.EventsArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -43,19 +40,32 @@ internal class EventsFightsListViewModel @Inject constructor(
     private val fighterBetsForAdd = hashMapOf<Int, FighterModel>()
     private val fighterBetsForRemove = hashMapOf<Int, FighterModel>()
 
-    private var _shouldShowAlertDialog = MutableStateFlow(false)
-    val shouldShowAlertDialog: StateFlow<Boolean> = _shouldShowAlertDialog.asStateFlow()
+    private var shouldShowAlertDialog = MutableStateFlow(false)
+    private var fighterBetsLocal = MutableStateFlow<List<FightModel>>(emptyList())
+    private var fightsRemote = mutableListOf<FightModel>()
 
-    private val _showToast = MutableSharedFlow<String>()
-    val showToast: SharedFlow<String> = _showToast.asSharedFlow()
-
-    val uiState: StateFlow<EventUiState> = getFightsListUseCase(
-        GetFightsListUseCase.Params(eventsArgs.eventId)
-    ).map { resultList ->
-        when (resultList) {
+    val uiState: StateFlow<EventUiState> = combine(
+        getFightsListUseCase(
+            GetFightsListUseCase.Params(eventsArgs.eventId)
+        ),
+        fighterBetsLocal,
+        shouldShowAlertDialog,
+    ) { result, fighterBetsLocal, shouldShowAlertDialog ->
+        when (result) {
             Result.Loading -> EventUiState.Loading
-            is Result.Success -> EventUiState.Success(resultList.data)
-            is Result.Error -> EventUiState.Error(resultList.exception)
+            is Result.Success -> {
+                fightsRemote = result.data.toMutableList()
+                EventUiState.Success(
+                    SuccessEvents(
+                        fights = result.data,
+                        fightsBets = fighterBetsLocal,
+                        shouldShowAlertDialog = shouldShowAlertDialog
+                    )
+                )
+            }
+            is Result.Error -> EventUiState.Error(
+                error = result.exception
+            )
         }
     }.stateIn(
         scope = viewModelScope,
@@ -66,12 +76,19 @@ internal class EventsFightsListViewModel @Inject constructor(
     fun createFightBet() {
         val nickname = getNicknameUseCase()
         if (nickname.isEmpty()) {
-            _shouldShowAlertDialog.tryEmit(true)
+            shouldShowAlertDialog.update { true }
+            return
+        }
+
+        if (fighterBetsForAdd.isEmpty() && fighterBetsForRemove.isEmpty()) {
+            fighterBetsLocal.update {
+                getOnlySelectedBet()
+            }
             return
         }
 
         viewModelScope.launch {
-            val addFighterBetsAdd = fighterBetsForAdd.map {
+            val addFighterBets = fighterBetsForAdd.map {
                 FighterBetRequestModel(it.key, it.value)
             }
             val removeFighterBets = fighterBetsForRemove.map {
@@ -80,30 +97,73 @@ internal class EventsFightsListViewModel @Inject constructor(
             val params = AddOrRemoveFightBetsUseCase.Params(
                 eventId = eventsArgs.eventId,
                 eventName = eventsArgs.name,
-                addFighterBets = addFighterBetsAdd,
+                addFighterBets = addFighterBets,
                 removeFighterBets = removeFighterBets,
             )
             addOrRemoveFightBetsUseCase(params).collect { result ->
                 when (result) {
-                    Result.Loading -> Timber.i("Result -> Loading")
+                    Result.Loading -> Unit
                     is Result.Success -> {
-                        _showToast.emit("Se actualizo tu apuesta")
+                        removeOrAddFight(addFighterBets, removeFighterBets)
+                        fighterBetsLocal.update {
+                            getOnlySelectedBet()
+                        }
+                        fighterBetsForAdd.clear()
+                        fighterBetsForRemove.clear()
                     }
                     is Result.Error -> {
                         Timber.e(result.exception)
-                        _showToast.emit(result.exception.orEmpty())
                     }
                 }
             }
         }
     }
 
-    fun shouldShowAlertDialog(boolean: Boolean) {
-        _shouldShowAlertDialog.value = boolean
+    private fun removeOrAddFight(
+        addFighterBets: List<FighterBetRequestModel>,
+        removeFighterBets: List<FighterBetRequestModel>
+    ) {
+
+        addFighterBets.map { fighter ->
+            fightsRemote.first { it.fightId == fighter.fightId }.fighters.map {
+                it.isSelectedBet = false
+            }
+        }
+
+        addFighterBets.map { fighterBets ->
+            fightsRemote.first { it.fightId == fighterBets.fightId }.fighters.first {
+                it.fighterId == fighterBets.fighter.fighterId
+            }.isSelectedBet = true
+        }
+
+        removeFighterBets.map { fighterBets ->
+            fightsRemote.first { it.fightId == fighterBets.fightId }.fighters.first {
+                it.fighterId == fighterBets.fighter.fighterId
+            }.isSelectedBet = false
+        }
     }
 
-    fun saveNickname(nickname: String) {
+    private fun getOnlySelectedBet(): MutableList<FightModel> {
+        val listFightBets = mutableListOf<FightModel>()
+        fightsRemote.filter { fight ->
+            fight.fighters.any { it.isSelectedBet }
+        }.map {
+            listFightBets.add(it)
+        }
+        return listFightBets
+    }
+
+    fun shouldShowAlertDialog(show: Boolean) {
+        shouldShowAlertDialog.update { show }
+    }
+
+    fun resetFighterBet() {
+        fighterBetsLocal.update { emptyList() }
+    }
+
+    fun saveNicknameAndCreateFightBet(nickname: String) {
         saveNicknameUseCase(nickname)
+        createFightBet()
     }
 
     fun addFighterToBet(isAddFighterBet: Boolean, fightId: Int, fighter: FighterModel) {
@@ -119,6 +179,15 @@ internal class EventsFightsListViewModel @Inject constructor(
 
 sealed interface EventUiState {
     object Loading : EventUiState
-    data class Success(var event: EventModel) : EventUiState
+    data class Success(
+        var data: SuccessEvents
+    ) : EventUiState
+
     data class Error(val error: String? = null) : EventUiState
 }
+
+data class SuccessEvents(
+    var fights: List<FightModel>,
+    val fightsBets: List<FightModel> = emptyList(),
+    val shouldShowAlertDialog: Boolean
+)

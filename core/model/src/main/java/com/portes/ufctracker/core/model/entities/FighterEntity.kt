@@ -1,5 +1,6 @@
 package com.portes.ufctracker.core.model.entities
 
+import com.google.firebase.firestore.PropertyName
 import com.portes.ufctracker.core.database.FighterLocalEntity
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.squareup.moshi.Json
@@ -13,7 +14,7 @@ data class FighterEntity(
     val firstName: String? = "",
     @Json(name = "LastName")
     val lastName: String? = "",
-    @Json(name = "Nickname")
+    @Json(name = "nickname")
     val nickname: String? = "",
     @Json(name = "PreFightWins")
     val preFightWins: Int? = 0,
@@ -29,19 +30,24 @@ data class FighterEntity(
     val moneyline: Int? = 0,
     @Json(name = "Active")
     val active: Boolean? = false,
+    @Json(name = "selectedBet")
+    @get:PropertyName("selectedBet")
+    @set:PropertyName("selectedBet")
+    var isSelectedBet: Boolean? = false,
+    @Json(name = "imageUrl")
+    var imageUrl: String? = "",
+    @Json(name = "fullName")
+    var fullName: String? = "",
 )
 
 fun FighterEntity.toModel() = FighterModel(
     fighterId = fighterId ?: 0,
     fullName = "${firstName.orEmpty()} ${lastName.orEmpty()}",
-    preFightWins = preFightWins ?: 0,
-    preFightLosses = preFightLosses ?: 0,
-    preFightDraws = preFightDraws ?: 0,
-    preFightNoContests = preFightNoContests ?: 0,
     imageUrl = "https://fightingtomatoes.com/images/fighters/$firstName$lastName.jpg",
     winner = winner ?: false,
     moneyline = moneyline ?: 0,
     active = active ?: false,
+    isSelectedBet = isSelectedBet ?: false
 )
 
 fun FighterEntity.toEntity() = FighterLocalEntity(
