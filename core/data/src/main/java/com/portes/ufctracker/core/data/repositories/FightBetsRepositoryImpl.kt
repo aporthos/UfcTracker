@@ -4,6 +4,9 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObjects
 import com.portes.ufctracker.core.common.models.Result
+import com.portes.ufctracker.core.common.toDate
+import com.portes.ufctracker.core.common.todayOrAfter
+import com.portes.ufctracker.core.model.entities.EventRequest
 import com.portes.ufctracker.core.model.entities.FightBetsEntity
 import com.portes.ufctracker.core.model.entities.toModel
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
@@ -25,12 +28,12 @@ class FightBetsRepositoryImpl @Inject constructor(
     }
 
     override fun getFightBetsList(eventId: Int): Flow<List<GamblerModel>> = flow {
-        val countriesRef = firestore.collection(COLLECTION_FIGHT_BETS)
-        val ukDocRef = countriesRef.document("$eventId")
+        val fightbets = firestore.collection(COLLECTION_FIGHT_BETS)
+        val event = fightbets.document("$eventId")
         val snapshot = firestore.collectionGroup(COLLECTION_GAMBLER)
             .orderBy(FieldPath.documentId())
-            .startAt(ukDocRef.path)
-            .endAt(ukDocRef.path + "\uf8ff")
+            .startAt(event.path)
+            .endAt(event.path + "\uf8ff")
             .get().await()
         val result = snapshot.toObjects<FightBetsEntity>().map {
             it.toModel()
@@ -41,12 +44,12 @@ class FightBetsRepositoryImpl @Inject constructor(
     }
 
     override fun getMyFightBets(eventId: Int, nickname: String): Flow<List<Int?>> = flow {
-        val countriesRef = firestore.collection(COLLECTION_FIGHT_BETS)
-        val ukDocRef = countriesRef.document("$eventId")
+        val fightbets = firestore.collection(COLLECTION_FIGHT_BETS)
+        val event = fightbets.document("$eventId")
         val snapshot = firestore.collectionGroup(COLLECTION_GAMBLER)
             .orderBy(FieldPath.documentId())
-            .startAt(ukDocRef.path)
-            .endAt(ukDocRef.path + "\uf8ff")
+            .startAt(event.path)
+            .endAt(event.path + "\uf8ff")
             .get().await()
         val result = snapshot.toObjects<FightBetsEntity>().map {
             it.toModel()
@@ -56,15 +59,24 @@ class FightBetsRepositoryImpl @Inject constructor(
 
     override fun getFightBetsByEvent(): Flow<List<Int>> = flow {
         val fightBets = firestore.collection(COLLECTION_FIGHT_BETS).get().await()
-        val result = fightBets.map {
-            it.reference.id.toInt()
+        val event = fightBets.toObjects<EventRequest>().map {
+            it.eventId
         }
-        emit(result)
+        emit(event)
+    }
+
+    override fun getFightLast(): Flow<EventRequest?> = flow {
+        val fightBets = firestore.collection(COLLECTION_FIGHT_BETS).get().await()
+        val event = fightBets.toObjects<EventRequest>().find {
+            it.day.toDate().todayOrAfter()
+        }
+        emit(event)
     }
 
     override fun addOrRemoveFightBetsList(
         eventId: Int,
         eventName: String,
+        day: String,
         nickname: String,
         addFighterBets: List<FighterBetRequestModel>,
         removeFighterBets: List<FighterBetRequestModel>
@@ -73,7 +85,7 @@ class FightBetsRepositoryImpl @Inject constructor(
             emit(Result.Loading)
             val batch = firestore.batch()
             addFighterBets.forEach {
-                val model = EventName(eventName = eventName)
+                val model = EventRequest(eventName = eventName, day = day, eventId = eventId)
 
                 val event =
                     firestore.document("/fightbets/$eventId")
@@ -98,15 +110,15 @@ class FightBetsRepositoryImpl @Inject constructor(
     }
 }
 
-data class EventName(val eventName: String)
-
 interface FightBetsRepository {
     fun getFightBetsList(eventId: Int): Flow<List<GamblerModel>>
     fun getMyFightBets(eventId: Int, nickname: String): Flow<List<Int?>>
     fun getFightBetsByEvent(): Flow<List<Int>>
+    fun getFightLast(): Flow<EventRequest?>
     fun addOrRemoveFightBetsList(
         eventId: Int,
         eventName: String,
+        day: String,
         nickname: String,
         addFighterBets: List<FighterBetRequestModel>,
         removeFighterBets: List<FighterBetRequestModel>

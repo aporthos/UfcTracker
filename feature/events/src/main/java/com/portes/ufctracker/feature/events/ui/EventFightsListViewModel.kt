@@ -97,6 +97,7 @@ internal class EventsFightsListViewModel @Inject constructor(
             val params = AddOrRemoveFightBetsUseCase.Params(
                 eventId = eventsArgs.eventId,
                 eventName = eventsArgs.name,
+                day = eventsArgs.eventDate,
                 addFighterBets = addFighterBets,
                 removeFighterBets = removeFighterBets,
             )

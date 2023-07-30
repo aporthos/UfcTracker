@@ -3,15 +3,17 @@ package com.portes.ufctracker.core.domain.usecase
 import com.portes.ufctracker.core.common.di.IoDispatcher
 import com.portes.ufctracker.core.common.domain.FlowUseCase
 import com.portes.ufctracker.core.common.models.Result
+import com.portes.ufctracker.core.common.today
+import com.portes.ufctracker.core.common.todayOrAfter
 import com.portes.ufctracker.core.data.repositories.EventsRepository
 import com.portes.ufctracker.core.data.repositories.FightBetsRepository
-import com.portes.ufctracker.core.model.entities.StatusEvent
 import com.portes.ufctracker.core.model.models.EventModel
 import com.portes.ufctracker.core.model.models.EventsCategoriesModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import java.util.Date
 import javax.inject.Inject
 
 class GetEventsListUseCase @Inject constructor(
@@ -39,20 +41,21 @@ class GetEventsListUseCase @Inject constructor(
                 val eventGambledScheduled = mutableListOf<EventModel>()
                 val eventGambledFinished = mutableListOf<EventModel>()
                 val eventUpcoming = mutableListOf<EventModel>()
-                val eventPast = mutableListOf<EventModel>()
                 eventsList.data.map { event ->
-                    if (fightBets.contains(event.eventId) && event.status == StatusEvent.SCHEDULED) {
-                        eventGambledScheduled.add(event)
-                    }
-                    if (fightBets.contains(event.eventId) && event.status == StatusEvent.FINISHED) {
-                        eventGambledFinished.add(event)
-                    }
-                    if (!fightBets.contains(event.eventId) && event.status == StatusEvent.SCHEDULED) {
-                        eventUpcoming.add(event)
-                    }
-
-                    if (!fightBets.contains(event.eventId) && event.status == StatusEvent.FINISHED) {
-                        eventPast.add(event)
+                    when {
+                        fightBets.contains(event.eventId) -> {
+                            if (event.day.todayOrAfter()) {
+                                eventGambledScheduled.add(event)
+                            }
+                            if (event.day.before(Date().today())) {
+                                eventGambledFinished.add(event)
+                            }
+                        }
+                        !fightBets.contains(event.eventId) -> {
+                            if (event.day.todayOrAfter()) {
+                                eventUpcoming.add(event)
+                            }
+                        }
                     }
                 }
                 Result.Success(
@@ -60,7 +63,6 @@ class GetEventsListUseCase @Inject constructor(
                         eventGambledScheduled = eventGambledScheduled,
                         eventGambledFinished = eventGambledFinished,
                         eventUpcoming = eventUpcoming,
-                        eventPast = eventPast
                     )
                 )
             }

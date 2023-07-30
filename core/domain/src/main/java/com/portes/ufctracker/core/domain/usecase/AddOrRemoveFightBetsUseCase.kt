@@ -19,6 +19,7 @@ class AddOrRemoveFightBetsUseCase @Inject constructor(
     data class Params(
         val eventId: Int,
         val eventName: String,
+        val day: String,
         val addFighterBets: List<FighterBetRequestModel>,
         val removeFighterBets: List<FighterBetRequestModel>
     )
@@ -27,6 +28,7 @@ class AddOrRemoveFightBetsUseCase @Inject constructor(
         fightBetsRepository.addOrRemoveFightBetsList(
             eventId = params.eventId,
             eventName = params.eventName,
+            day = params.day,
             nickname = preferencesRepository.getNickname(),
             addFighterBets = params.addFighterBets,
             removeFighterBets = params.removeFighterBets

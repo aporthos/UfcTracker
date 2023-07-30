@@ -33,3 +33,7 @@ fun <T, R> Response<T>.callApi(transform: (T) -> R): Result<R> {
         Result.Error(e.message)
     }
 }
+
+fun <T> Result<T>.successOr(fallback: T): T {
+    return (this as? Result.Success<T>)?.data ?: fallback
+}

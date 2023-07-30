@@ -39,4 +39,5 @@ dependencies {
     implementation(project(":core:database"))
     implementation(platform("com.google.firebase:firebase-bom:${Versions.Firestore.bom}"))
     implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation(project(":core:common"))
 }

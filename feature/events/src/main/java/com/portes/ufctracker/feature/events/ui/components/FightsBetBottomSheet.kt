@@ -10,11 +10,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Chip
 import androidx.compose.material.ChipDefaults
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
@@ -27,22 +25,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.core.app.ShareCompat
 import com.portes.ufctracker.core.common.saveAndGetUri
 import com.portes.ufctracker.core.designsystem.component.ImageResult
+import com.portes.ufctracker.core.designsystem.component.ItemFightText
 import com.portes.ufctracker.core.designsystem.component.ScreenshotComponent
 import com.portes.ufctracker.core.designsystem.component.rememberScreenshotState
 import com.portes.ufctracker.core.designsystem.theme.Purple500
-import com.portes.ufctracker.core.designsystem.theme.RoseWhite
 import com.portes.ufctracker.core.model.models.FightModel
 import timber.log.Timber
 
@@ -124,7 +118,10 @@ internal fun FightsBetBottomSheet(
                     modifier = Modifier.background(color = Color.White)
                 ) {
                     fighterBets.forEach {
-                        ItemFightsBet(it)
+                        val fighterOne = Pair(it.fighters[0].fullName, it.fighters[0].isSelectedBet)
+                        val fighterSecond =
+                            Pair(it.fighters[1].fullName, it.fighters[1].isSelectedBet)
+                        ItemFightText(fighterOne, fighterSecond)
                     }
                 }
             }
@@ -143,49 +140,6 @@ internal fun FightsBetBottomSheet(
         }
     ) {
         content()
-    }
-}
-
-@Composable
-fun ItemFightsBet(fight: FightModel) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp),
-        shape = RoundedCornerShape(8.dp),
-        elevation = 0.dp,
-        backgroundColor = RoseWhite
-    ) {
-        Row {
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterVertically)
-                    .padding(horizontal = 4.dp),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
-                text = fight.fighters[0].fullName,
-                textDecoration = if (fight.fighters[0].isSelectedBet) TextDecoration.LineThrough else null
-            )
-            Text(
-                modifier = Modifier
-                    .align(Alignment.CenterVertically),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h6,
-                color = Purple500,
-                text = "VS",
-            )
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterVertically)
-                    .padding(horizontal = 4.dp),
-                textDecoration = if (fight.fighters[1].isSelectedBet) TextDecoration.LineThrough else null,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
-                text = fight.fighters[1].fullName,
-            )
-        }
     }
 }
 

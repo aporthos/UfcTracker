@@ -23,9 +23,7 @@ fun UfcTrackerNavGraph(
     ) {
         eventsGraph(
             onBackClick = upPress,
-            onEventClick = { eventId: Int, name: String ->
-                navController.navigateToEvent(eventId, name)
-            },
+            onEventClick = navController::navigateToEvent
         )
         composable(UfcTrackerHomeSections.FIGHT_BETS.route) {
             FightBetsListRoute()

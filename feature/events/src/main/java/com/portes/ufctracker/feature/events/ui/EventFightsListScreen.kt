@@ -1,7 +1,7 @@
 package com.portes.ufctracker.feature.events.ui
 
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -144,8 +144,8 @@ internal fun FightsList(
 ) {
     LazyColumn(
         modifier = modifier
-            .fillMaxSize()
-            .padding(top = 8.dp, bottom = 8.dp),
+            .fillMaxHeight()
+            .padding(8.dp),
     ) {
         items(fights, key = { it.fightId }) {
             FightCard(

@@ -18,7 +18,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Chip
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -26,7 +25,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,20 +45,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.portes.ufctracker.core.common.parseString
+import com.portes.ufctracker.core.common.parseToString
 import com.portes.ufctracker.core.designsystem.component.ErrorComponent
 import com.portes.ufctracker.core.designsystem.component.LoadingComponent
 import com.portes.ufctracker.core.designsystem.theme.GreenChecked
 import com.portes.ufctracker.core.designsystem.theme.Purple500
-import com.portes.ufctracker.core.designsystem.theme.RedChecked
 import com.portes.ufctracker.core.designsystem.theme.RoseWhite
-import com.portes.ufctracker.core.model.entities.StatusEvent
 import com.portes.ufctracker.core.model.models.EventModel
 import com.portes.ufctracker.core.model.models.EventsCategoriesModel
 import com.portes.ufctracker.feature.events.R
+import com.portes.ufctracker.core.designsystem.R as DesygnSystem
 
 @Composable
 internal fun EventsListRoute(
-    onEventClick: (Int, String) -> Unit,
+    onEventClick: (Int, String, String) -> Unit,
     viewModel: EventsListViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -83,31 +82,15 @@ internal fun EventsListRoute(
 internal fun EventListsScreen(
     modifier: Modifier,
     uiState: EventsListUiState,
-    onEventClick: (Int, String) -> Unit,
+    onEventClick: (Int, String, String) -> Unit,
 ) {
     when (uiState) {
         EventsListUiState.Loading -> LoadingComponent()
-        is EventsListUiState.Success -> {
-            Column(modifier = Modifier.padding(horizontal = 8.dp)) {
-                Chip(
-                    onClick = {},
-//                    colors = ChipDefaults.chipColors(
-//                        backgroundColor = GreenChecked,
-//                        contentColor = Color.White
-//                    ),
-                    leadingIcon = {
-                        Icon(Icons.Filled.Check, contentDescription = null)
-                    }
-                ) {
-                    Text(text = "2023")
-                }
-                EventsList(
-                    modifier = modifier,
-                    events = uiState.events,
-                    onEventClick = onEventClick,
-                )
-            }
-        }
+        is EventsListUiState.Success -> EventsList(
+            modifier = modifier,
+            events = uiState.events,
+            onEventClick = onEventClick,
+        )
         is EventsListUiState.Error -> ErrorComponent(
             modifier = modifier,
             message = uiState.error
@@ -119,23 +102,26 @@ internal fun EventListsScreen(
 internal fun EventsList(
     modifier: Modifier,
     events: EventsCategoriesModel,
-    onEventClick: (Int, String) -> Unit,
+    onEventClick: (Int, String, String) -> Unit,
 ) {
     var isExpandedEventGambledScheduled by remember { mutableStateOf(true) }
     var isExpandedEventUpcoming by remember { mutableStateOf(true) }
-    var isExpandedEventPast by remember { mutableStateOf(false) }
     var isExpandedEventGambledFinished by remember { mutableStateOf(false) }
-    LazyColumn(modifier = modifier.fillMaxHeight()) {
-        eventsCategories(
+    LazyColumn(
+        modifier = modifier
+            .fillMaxHeight()
+            .padding(8.dp)
+    ) {
+        itemEventsCategories(
             events = events.eventGambledScheduled,
             isExpanded = isExpandedEventGambledScheduled,
-            titleCategory = "Mis apuestas",
+            titleCategory = "Apuestas abiertas",
             onEventClick = onEventClick,
             onCardClick = {
                 isExpandedEventGambledScheduled = !isExpandedEventGambledScheduled
             }
         )
-        eventsCategories(
+        itemEventsCategories(
             events = events.eventUpcoming,
             isExpanded = isExpandedEventUpcoming,
             titleCategory = "Proximos eventos",
@@ -144,7 +130,7 @@ internal fun EventsList(
                 isExpandedEventUpcoming = !isExpandedEventUpcoming
             }
         )
-        eventsCategories(
+        itemEventsCategories(
             events = events.eventGambledFinished,
             isExpanded = isExpandedEventGambledFinished,
             titleCategory = "Apuestas anteriores",
@@ -153,23 +139,14 @@ internal fun EventsList(
                 isExpandedEventGambledFinished = !isExpandedEventGambledFinished
             }
         )
-        eventsCategories(
-            events = events.eventPast,
-            isExpanded = isExpandedEventPast,
-            titleCategory = "Anteriores eventos",
-            onEventClick = onEventClick,
-            onCardClick = {
-                isExpandedEventPast = !isExpandedEventPast
-            }
-        )
     }
 }
 
-internal fun LazyListScope.eventsCategories(
+internal fun LazyListScope.itemEventsCategories(
     events: List<EventModel>,
     isExpanded: Boolean,
     titleCategory: String,
-    onEventClick: (Int, String) -> Unit,
+    onEventClick: (Int, String, String) -> Unit,
     onCardClick: () -> Unit
 ) {
     item {
@@ -208,47 +185,17 @@ internal fun LazyListScope.eventsCategories(
 @Composable
 internal fun EventCards(
     event: EventModel,
-    onEventClick: (Int, String) -> Unit,
+    onEventClick: (Int, String, String) -> Unit,
 ) {
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .clickable { onEventClick(event.eventId, event.name) },
+            .clickable { onEventClick(event.eventId, event.name, event.day.parseString()) },
         shape = RoundedCornerShape(8.dp),
         elevation = 0.dp,
         backgroundColor = RoseWhite
     ) {
         Column {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Spacer(Modifier.weight(1f))
-                val (color, status) = if (event.status == StatusEvent.FINISHED) {
-                    Pair(RedChecked, "Finalizado")
-                } else {
-                    Pair(GreenChecked, "Proximos")
-                }
-
-                Card(
-                    shape = RoundedCornerShape(topStart = 0.dp),
-                    elevation = 0.dp,
-                    backgroundColor = color
-                ) {
-                    Row {
-                        Icon(
-                            modifier = Modifier.size(15.dp),
-                            imageVector = Icons.Filled.Check,
-                            contentDescription = null,
-                            tint = Color.White
-                        )
-                        Text(
-                            modifier = Modifier.padding(horizontal = 0.dp, vertical = 0.dp),
-                            text = status,
-                            color = Color.White,
-                        )
-                    }
-                }
-            }
             Text(
                 modifier = Modifier
                     .padding(vertical = 8.dp, horizontal = 8.dp),
@@ -270,7 +217,7 @@ internal fun EventCards(
                         style = MaterialTheme.typography.h5
                     )
                     Text(
-                        text = event.dateTime,
+                        text = event.dateTime.parseToString(),
                         style = MaterialTheme.typography.caption
                     )
                 }
@@ -295,8 +242,8 @@ internal fun EventCards(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(event.fightStar.firstOrNull()?.imageUrl)
                             .build(),
-                        placeholder = painterResource(com.portes.ufctracker.core.designsystem.R.drawable.place_holder),
-                        error = painterResource(com.portes.ufctracker.core.designsystem.R.drawable.place_holder),
+                        placeholder = painterResource(DesygnSystem.drawable.place_holder),
+                        error = painterResource(DesygnSystem.drawable.place_holder),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                     )
@@ -308,8 +255,8 @@ internal fun EventCards(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data("https://fightingtomatoes.com/images/fighters/YairRodriguez.jpg")
                             .build(),
-                        placeholder = painterResource(com.portes.ufctracker.core.designsystem.R.drawable.place_holder),
-                        error = painterResource(com.portes.ufctracker.core.designsystem.R.drawable.place_holder),
+                        placeholder = painterResource(DesygnSystem.drawable.place_holder),
+                        error = painterResource(DesygnSystem.drawable.place_holder),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
                     )
