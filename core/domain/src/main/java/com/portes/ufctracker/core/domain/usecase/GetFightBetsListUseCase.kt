@@ -5,12 +5,12 @@ import com.portes.ufctracker.core.common.domain.FlowUseCase
 import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.data.repositories.EventsRepository
 import com.portes.ufctracker.core.data.repositories.FightBetsRepository
+import com.portes.ufctracker.core.model.entities.EventRequest
 import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.core.model.models.GamblerModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapConcat
@@ -21,39 +21,50 @@ class GetFightBetsListUseCase @Inject constructor(
     private val fightBetsRepository: FightBetsRepository,
     private val repository: EventsRepository,
     @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
-) : FlowUseCase<Unit, List<CategoryFightBets>>(
+) : FlowUseCase<Unit, InfoLastFight>(
     dispatcher
 ) {
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    override fun execute(params: Unit): Flow<Result<List<CategoryFightBets>>> {
+    override fun execute(params: Unit): Flow<Result<InfoLastFight>> {
         // TODO: Check another solution
-        val getFightBetsList = fightBetsRepository.getFightLast().flatMapMerge {
+        val getFightLast = fightBetsRepository.getFightLast()
+
+        val getFightBetsList = getFightLast.flatMapMerge {
             fightBetsRepository.getFightBetsList(it?.eventId ?: 0)
         }
 
-        val getFightsList = fightBetsRepository.getFightLast().flatMapConcat {
+        val getFightsList = getFightLast.flatMapConcat {
             repository.getFightsList(it?.eventId ?: 0)
         }
         return combine(
+            getFightLast,
             getFightBetsList,
             getFightsList
-        ) { fightBets, fightsList ->
+        ) { fightLast, fightBets, fightsList ->
             when (fightsList) {
-                is Result.Loading -> Result.Loading
-                is Result.Success -> Result.Success(mapperInCategories(fightBets, fightsList.data))
+                Result.Loading -> Result.Loading
+                is Result.Success -> Result.Success(
+                    mapperInCategories(
+                        fightLast,
+                        fightBets,
+                        fightsList.data
+                    )
+                )
                 is Result.Error -> Result.Error(fightsList.exception)
             }
         }
     }
 
     private fun mapperInCategories(
+        fightLast: EventRequest?,
         fightBets: List<GamblerModel>,
         fightsList: List<FightModel>
-    ): MutableList<CategoryFightBets> {
-        val listCategory = mutableListOf<CategoryFightBets>()
+    ): InfoLastFight {
+        val categoriesFightBets = mutableListOf<CategoryFightBets>()
         fightBets.forEach { gambler ->
             val fights = ArrayList<FightModel>()
+            val totalFights = gambler.fights.size
+            var fightsWins = 0
             gambler.fights.forEach { fightGambler ->
                 val fighters = ArrayList<FighterModel>()
                 fightsList.filter { it.fightId == fightGambler.fightId }
@@ -61,23 +72,36 @@ class GetFightBetsListUseCase @Inject constructor(
                         fight.fighters.forEach { fighter ->
                             fighter.isSelectedBet =
                                 fighter.fighterId == fightGambler.fighter?.fighterId
+                            if (fighter.winner && fighter.fighterId == fightGambler.fighter?.fighterId) {
+                                fightsWins++
+                            }
                             fighters.add(fighter.copy())
                         }
                         fights.add(fight.copy(fighters = fighters))
                     }
             }
-            listCategory.add(
+            categoriesFightBets.add(
                 CategoryFightBets(
                     name = gambler.name,
-                    fights = fights
+                    fights = fights,
+                    fightsWins = fightsWins,
+                    fightsLost = totalFights - fightsWins
                 )
             )
         }
-        return listCategory
+        categoriesFightBets.sortByDescending { it.fightsWins }
+        return InfoLastFight(fightLast, categoriesFightBets)
     }
 }
 
+data class InfoLastFight(
+    val fightLast: EventRequest?,
+    val categoryFightBets: List<CategoryFightBets>
+)
+
 data class CategoryFightBets(
     val name: String,
-    val fights: List<FightModel>
+    val fights: List<FightModel>,
+    val fightsWins: Int,
+    val fightsLost: Int,
 )

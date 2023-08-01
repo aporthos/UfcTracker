@@ -8,6 +8,7 @@ import com.portes.ufctracker.core.domain.usecase.AddOrRemoveFightBetsUseCase
 import com.portes.ufctracker.core.domain.usecase.GetFightsListUseCase
 import com.portes.ufctracker.core.domain.usecase.GetNicknameUseCase
 import com.portes.ufctracker.core.domain.usecase.SaveNicknameUseCase
+import com.portes.ufctracker.core.model.entities.EventRequest
 import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
 import com.portes.ufctracker.core.model.models.FighterModel
@@ -95,9 +96,12 @@ internal class EventsFightsListViewModel @Inject constructor(
                 FighterBetRequestModel(it.key, it.value)
             }
             val params = AddOrRemoveFightBetsUseCase.Params(
-                eventId = eventsArgs.eventId,
-                eventName = eventsArgs.name,
-                day = eventsArgs.eventDate,
+                eventRequest = EventRequest(
+                    eventName = eventsArgs.name,
+                    day = eventsArgs.eventDate,
+                    dayTime = eventsArgs.eventDateTime,
+                    eventId = eventsArgs.eventId
+                ),
                 addFighterBets = addFighterBets,
                 removeFighterBets = removeFighterBets,
             )

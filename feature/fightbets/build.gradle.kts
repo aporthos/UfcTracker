@@ -42,6 +42,10 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.0"
     }
+
+    kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs + listOf(
+        "-Xopt-in=androidx.compose.material.ExperimentalMaterialApi"
+    )
 }
 
 dependencies {

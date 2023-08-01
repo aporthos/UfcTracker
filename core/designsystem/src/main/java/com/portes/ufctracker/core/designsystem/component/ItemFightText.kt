@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -34,7 +33,7 @@ fun ItemFightText(fighterOne: Pair<String, Boolean>, fighterSecond: Pair<String,
                     .align(Alignment.CenterVertically)
                     .padding(horizontal = 4.dp),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
+                style = MaterialTheme.typography.h6,
                 text = fighterOne.first,
                 textDecoration = if (fighterOne.second) TextDecoration.LineThrough else null
             )
@@ -54,7 +53,7 @@ fun ItemFightText(fighterOne: Pair<String, Boolean>, fighterSecond: Pair<String,
                 text = fighterSecond.first,
                 textDecoration = if (fighterSecond.second) TextDecoration.LineThrough else null,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
+                style = MaterialTheme.typography.h6,
             )
         }
     }

@@ -5,6 +5,7 @@ import com.portes.ufctracker.core.common.domain.FlowUseCase
 import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.data.repositories.FightBetsRepository
 import com.portes.ufctracker.core.data.repositories.PreferencesRepository
+import com.portes.ufctracker.core.model.entities.EventRequest
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -17,18 +18,14 @@ class AddOrRemoveFightBetsUseCase @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : FlowUseCase<AddOrRemoveFightBetsUseCase.Params, Boolean>(dispatcher) {
     data class Params(
-        val eventId: Int,
-        val eventName: String,
-        val day: String,
+        val eventRequest: EventRequest,
         val addFighterBets: List<FighterBetRequestModel>,
         val removeFighterBets: List<FighterBetRequestModel>
     )
 
     override fun execute(params: Params): Flow<Result<Boolean>> =
         fightBetsRepository.addOrRemoveFightBetsList(
-            eventId = params.eventId,
-            eventName = params.eventName,
-            day = params.day,
+            eventRequest = params.eventRequest,
             nickname = preferencesRepository.getNickname(),
             addFighterBets = params.addFighterBets,
             removeFighterBets = params.removeFighterBets

@@ -1,7 +1,5 @@
 package com.portes.ufctracker.feature.events.ui.components
 
-import android.content.Context
-import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,8 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import androidx.core.app.ShareCompat
 import com.portes.ufctracker.core.common.saveAndGetUri
+import com.portes.ufctracker.core.common.shareImage
 import com.portes.ufctracker.core.designsystem.component.ImageResult
 import com.portes.ufctracker.core.designsystem.component.ItemFightText
 import com.portes.ufctracker.core.designsystem.component.ScreenshotComponent
@@ -98,9 +96,7 @@ internal fun FightsBetBottomSheet(
                 horizontalArrangement = Arrangement.End
             ) {
                 Chip(
-                    onClick = {
-                        screenshotState.capture()
-                    },
+                    onClick = screenshotState::capture,
                     colors = ChipDefaults.chipColors(
                         backgroundColor = Purple500,
                         contentColor = Color.White,
@@ -129,7 +125,7 @@ internal fun FightsBetBottomSheet(
                 is ImageResult.Initial -> Unit
                 is ImageResult.Success -> {
                     val uri = imageResult.data.saveAndGetUri(context)
-                    shareFightsBet(context, uri)
+                    context.shareImage(uri)
                 }
                 is ImageResult.Error -> {
                     Toast.makeText(context, "Ocurrio un error al generar el SS", Toast.LENGTH_LONG)
@@ -141,12 +137,4 @@ internal fun FightsBetBottomSheet(
     ) {
         content()
     }
-}
-
-fun shareFightsBet(context: Context, uri: Uri) {
-    ShareCompat.IntentBuilder(context)
-        .setType("image/*")
-        .addStream(uri)
-        .setChooserTitle("Compartir")
-        .startChooser()
 }

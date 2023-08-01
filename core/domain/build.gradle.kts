@@ -33,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    kotlinOptions.freeCompilerArgs = kotlinOptions.freeCompilerArgs + listOf(
+        "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+    )
 }
 
 dependencies {

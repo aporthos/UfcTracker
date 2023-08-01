@@ -74,9 +74,7 @@ class FightBetsRepositoryImpl @Inject constructor(
     }
 
     override fun addOrRemoveFightBetsList(
-        eventId: Int,
-        eventName: String,
-        day: String,
+        eventRequest: EventRequest,
         nickname: String,
         addFighterBets: List<FighterBetRequestModel>,
         removeFighterBets: List<FighterBetRequestModel>
@@ -85,20 +83,18 @@ class FightBetsRepositoryImpl @Inject constructor(
             emit(Result.Loading)
             val batch = firestore.batch()
             addFighterBets.forEach {
-                val model = EventRequest(eventName = eventName, day = day, eventId = eventId)
-
                 val event =
-                    firestore.document("/fightbets/$eventId")
-                batch.set(event, model)
+                    firestore.document("/$COLLECTION_FIGHT_BETS/${eventRequest.eventId}")
+                batch.set(event, eventRequest)
                 val fighterBet = FighterRequest(name = nickname, fightId = it.fightId, it.fighter)
                 val document =
-                    firestore.document("/fightbets/$eventId/fights/${it.fightId}/gambler/$nickname")
+                    firestore.document("/$COLLECTION_FIGHT_BETS/${eventRequest.eventId}/fights/${it.fightId}/gambler/$nickname")
                 batch.set(document, fighterBet)
             }
 
             removeFighterBets.forEach {
                 val documentDelete =
-                    firestore.document("/fightbets/$eventId/fights/${it.fightId}/gambler/$nickname")
+                    firestore.document("/$COLLECTION_FIGHT_BETS/${eventRequest.eventId}/fights/${it.fightId}/gambler/$nickname")
                 batch.delete(documentDelete)
             }
             batch.commit()
@@ -116,9 +112,7 @@ interface FightBetsRepository {
     fun getFightBetsByEvent(): Flow<List<Int>>
     fun getFightLast(): Flow<EventRequest?>
     fun addOrRemoveFightBetsList(
-        eventId: Int,
-        eventName: String,
-        day: String,
+        eventRequest: EventRequest,
         nickname: String,
         addFighterBets: List<FighterBetRequestModel>,
         removeFighterBets: List<FighterBetRequestModel>

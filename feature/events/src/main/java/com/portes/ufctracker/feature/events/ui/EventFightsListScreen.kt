@@ -1,18 +1,23 @@
 package com.portes.ufctracker.feature.events.ui
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.FabPosition
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,12 +33,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.portes.ufctracker.core.designsystem.component.ErrorComponent
 import com.portes.ufctracker.core.designsystem.component.LoadingComponent
+import com.portes.ufctracker.core.designsystem.component.OperationsFAB
+import com.portes.ufctracker.core.designsystem.component.isScrollingUp
 import com.portes.ufctracker.core.designsystem.theme.Purple500
 import com.portes.ufctracker.core.designsystem.theme.RoseWhite
 import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.feature.events.ui.components.AlertDialogComponent
-import com.portes.ufctracker.feature.events.ui.components.CreateFightBetsFAB
 import com.portes.ufctracker.feature.events.ui.components.FighterComponent
 import com.portes.ufctracker.feature.events.ui.components.FightsBetShare
 import com.portes.ufctracker.feature.events.ui.components.TopAppBarFightsList
@@ -45,6 +51,7 @@ internal fun EventFightsListRoute(
     viewModel: EventsFightsListViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val lazyListState = rememberLazyListState()
 
     Scaffold(
         topBar = {
@@ -54,7 +61,13 @@ internal fun EventFightsListRoute(
             )
         },
         floatingActionButton = {
-            CreateFightBetsFAB(onClick = viewModel::createFightBet)
+            AnimatedVisibility(visible = lazyListState.isScrollingUp()) {
+                OperationsFAB(
+                    title = "Crear apuesta",
+                    icon = Icons.Default.Add,
+                    onClick = viewModel::createFightBet
+                )
+            }
         },
         floatingActionButtonPosition = FabPosition.End,
         isFloatingActionButtonDocked = true
@@ -65,7 +78,8 @@ internal fun EventFightsListRoute(
             onFighterClick = viewModel::addFighterToBet,
             onDismissDialog = viewModel::shouldShowAlertDialog,
             onSaveNicknameAndCreateFightBet = viewModel::saveNicknameAndCreateFightBet,
-            isClosedBottomSheet = viewModel::resetFighterBet
+            isClosedBottomSheet = viewModel::resetFighterBet,
+            lazyListState = lazyListState
         )
     }
 }
@@ -78,6 +92,7 @@ internal fun EventScreen(
     onDismissDialog: (Boolean) -> Unit,
     onSaveNicknameAndCreateFightBet: (String) -> Unit,
     isClosedBottomSheet: () -> Unit,
+    lazyListState: LazyListState,
 ) {
     when (uiState) {
         EventUiState.Loading -> LoadingComponent()
@@ -88,7 +103,8 @@ internal fun EventScreen(
                 onFighterClick = onFighterClick,
                 onDismissDialog = onDismissDialog,
                 onSaveNicknameAndCreateFightBet = onSaveNicknameAndCreateFightBet,
-                isClosedBottomSheet = isClosedBottomSheet
+                isClosedBottomSheet = isClosedBottomSheet,
+                lazyListState = lazyListState
             )
         }
         is EventUiState.Error -> ErrorComponent(
@@ -106,12 +122,14 @@ internal fun EventSuccessScreen(
     onDismissDialog: (Boolean) -> Unit,
     onSaveNicknameAndCreateFightBet: (String) -> Unit,
     isClosedBottomSheet: () -> Unit,
+    lazyListState: LazyListState,
 ) {
     val coroutineScope = rememberCoroutineScope()
     FightsList(
         modifier = modifier,
         fights = data.fights,
         onFighterClick = onFighterClick,
+        lazyListState = lazyListState
     )
     if (data.fightsBets.isNotEmpty()) {
         FightsBetShare(
@@ -140,9 +158,11 @@ internal fun EventSuccessScreen(
 internal fun FightsList(
     modifier: Modifier,
     fights: List<FightModel>,
+    lazyListState: LazyListState,
     onFighterClick: (Boolean, Int, FighterModel) -> Unit,
 ) {
     LazyColumn(
+        state = lazyListState,
         modifier = modifier
             .fillMaxHeight()
             .padding(8.dp),

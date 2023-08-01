@@ -59,7 +59,7 @@ import com.portes.ufctracker.core.designsystem.R as DesygnSystem
 
 @Composable
 internal fun EventsListRoute(
-    onEventClick: (Int, String, String) -> Unit,
+    onEventClick: (Int, String, String, String) -> Unit,
     viewModel: EventsListViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -82,7 +82,7 @@ internal fun EventsListRoute(
 internal fun EventListsScreen(
     modifier: Modifier,
     uiState: EventsListUiState,
-    onEventClick: (Int, String, String) -> Unit,
+    onEventClick: (Int, String, String, String) -> Unit,
 ) {
     when (uiState) {
         EventsListUiState.Loading -> LoadingComponent()
@@ -102,7 +102,7 @@ internal fun EventListsScreen(
 internal fun EventsList(
     modifier: Modifier,
     events: EventsCategoriesModel,
-    onEventClick: (Int, String, String) -> Unit,
+    onEventClick: (Int, String, String, String) -> Unit,
 ) {
     var isExpandedEventGambledScheduled by remember { mutableStateOf(true) }
     var isExpandedEventUpcoming by remember { mutableStateOf(true) }
@@ -146,7 +146,7 @@ internal fun LazyListScope.itemEventsCategories(
     events: List<EventModel>,
     isExpanded: Boolean,
     titleCategory: String,
-    onEventClick: (Int, String, String) -> Unit,
+    onEventClick: (Int, String, String, String) -> Unit,
     onCardClick: () -> Unit
 ) {
     item {
@@ -185,12 +185,19 @@ internal fun LazyListScope.itemEventsCategories(
 @Composable
 internal fun EventCards(
     event: EventModel,
-    onEventClick: (Int, String, String) -> Unit,
+    onEventClick: (Int, String, String, String) -> Unit,
 ) {
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .clickable { onEventClick(event.eventId, event.name, event.day.parseString()) },
+            .clickable {
+                onEventClick(
+                    event.eventId,
+                    event.name,
+                    event.day.parseString(),
+                    event.dateTime.parseToString()
+                )
+            },
         shape = RoundedCornerShape(8.dp),
         elevation = 0.dp,
         backgroundColor = RoseWhite
