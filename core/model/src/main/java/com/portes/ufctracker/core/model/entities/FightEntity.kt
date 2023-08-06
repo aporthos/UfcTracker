@@ -1,6 +1,10 @@
 package com.portes.ufctracker.core.model.entities
 
+import com.portes.ufctracker.core.database.dao.FightWithFightersEntity
+import com.portes.ufctracker.core.database.entities.FightLocalEntity
+import com.portes.ufctracker.core.database.entities.FighterLocalEntity
 import com.portes.ufctracker.core.model.models.FightModel
+import com.portes.ufctracker.core.model.models.FighterModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -40,4 +44,41 @@ fun FightEntity.toModel() = FightModel(
     status = status.orEmpty(),
     active = active ?: false,
     fighters = fighters?.map { it.toModel() } ?: emptyList(),
+)
+
+fun FightModel.toEntityLocal() = FightLocalEntity(
+    fightId = fightId,
+    order = order,
+    status = status,
+    active = active,
+    eventId = eventId
+)
+
+fun FightWithFightersEntity.toFightModel() = FightModel(
+    fightId = fightEntity.fightId,
+    order = fightEntity.order,
+    status = fightEntity.status,
+    active = fightEntity.active,
+    fighters = this.fighterEntities.map {
+        it.toFighterModel()
+    }
+)
+
+fun List<FightWithFightersEntity>.toFightsModel(): List<FightModel> {
+    return map {
+        it.toFightModel()
+    }
+}
+
+
+fun FighterLocalEntity.toFighterModel() = FighterModel(
+    fighterId = fighterId,
+    fightId = fightId,
+    fullName = fullName,
+    imageUrl = imageUrl,
+    winner = winner,
+    active = active,
+    nickname = nickname,
+    isFighterBet = isFighterBet,
+    isFightBet = isFightBet
 )

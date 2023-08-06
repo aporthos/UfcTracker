@@ -1,5 +1,6 @@
 package com.portes.ufctracker.feature.events.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -21,8 +22,8 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,7 +40,8 @@ import com.portes.ufctracker.core.designsystem.theme.Purple500
 import com.portes.ufctracker.core.designsystem.theme.RoseWhite
 import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterModel
-import com.portes.ufctracker.feature.events.ui.components.AlertDialogComponent
+import com.portes.ufctracker.feature.events.ui.components.AlertDialogSaveFightBets
+import com.portes.ufctracker.feature.events.ui.components.AlertDialogSaveNickname
 import com.portes.ufctracker.feature.events.ui.components.FighterComponent
 import com.portes.ufctracker.feature.events.ui.components.FightsBetShare
 import com.portes.ufctracker.feature.events.ui.components.TopAppBarFightsList
@@ -52,21 +54,26 @@ internal fun EventFightsListRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val lazyListState = rememberLazyListState()
+    var showButtonCreateFightBets by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             TopAppBarFightsList(
                 name = "${viewModel.eventName} ${viewModel.eventId}",
-                upPress = upPress
+                upPress = viewModel::onBackPressed
             )
         },
         floatingActionButton = {
-            AnimatedVisibility(visible = lazyListState.isScrollingUp()) {
-                OperationsFAB(
-                    title = "Crear apuesta",
-                    icon = Icons.Default.Add,
-                    onClick = viewModel::createFightBet
-                )
+            if (showButtonCreateFightBets) {
+                AnimatedVisibility(visible = lazyListState.isScrollingUp()) {
+                    OperationsFAB(
+                        title = "Crear apuesta",
+                        icon = Icons.Default.Add,
+                        onClick = viewModel::createFightBet
+                    )
+                }
+                viewModel.reset()
+
             }
         },
         floatingActionButtonPosition = FabPosition.End,
@@ -76,11 +83,21 @@ internal fun EventFightsListRoute(
             modifier = Modifier.padding(innerPaddingModifier),
             uiState = uiState,
             onFighterClick = viewModel::addFighterToBet,
-            onDismissDialog = viewModel::shouldShowAlertDialog,
+            onDismissAlertSaveNickname = viewModel::shouldShowAlertSaveNickname,
+            onDismissAlertSaveFightBets = viewModel::shouldShowAlertSaveFightBets,
             onSaveNicknameAndCreateFightBet = viewModel::saveNicknameAndCreateFightBet,
             isClosedBottomSheet = viewModel::resetFighterBet,
-            lazyListState = lazyListState
+            lazyListState = lazyListState,
+            upPress = upPress,
+            onSaveFightsBets = viewModel::createFightBet,
+            showButtonCreateFightBets = {
+                showButtonCreateFightBets = it
+            },
         )
+    }
+
+    BackHandler(enabled = true) {
+        viewModel.onBackPressed()
     }
 }
 
@@ -88,23 +105,31 @@ internal fun EventFightsListRoute(
 internal fun EventScreen(
     modifier: Modifier,
     uiState: EventUiState,
-    onFighterClick: (Boolean, Int, FighterModel) -> Unit,
-    onDismissDialog: (Boolean) -> Unit,
+    onFighterClick: (Boolean, FighterModel) -> Unit,
+    onDismissAlertSaveNickname: (Boolean) -> Unit,
+    onDismissAlertSaveFightBets: (Boolean?) -> Unit,
     onSaveNicknameAndCreateFightBet: (String) -> Unit,
     isClosedBottomSheet: () -> Unit,
     lazyListState: LazyListState,
+    upPress: () -> Unit,
+    onSaveFightsBets: () -> Unit,
+    showButtonCreateFightBets: (Boolean) -> Unit,
 ) {
     when (uiState) {
         EventUiState.Loading -> LoadingComponent()
         is EventUiState.Success -> {
+            showButtonCreateFightBets(uiState.data.shouldShowButtonCreateFightBets)
             EventSuccessScreen(
                 modifier = modifier,
                 data = uiState.data,
                 onFighterClick = onFighterClick,
-                onDismissDialog = onDismissDialog,
+                onDismissAlertSaveNickname = onDismissAlertSaveNickname,
+                onDismissAlertSaveFightBets = onDismissAlertSaveFightBets,
                 onSaveNicknameAndCreateFightBet = onSaveNicknameAndCreateFightBet,
                 isClosedBottomSheet = isClosedBottomSheet,
-                lazyListState = lazyListState
+                lazyListState = lazyListState,
+                upPress = upPress,
+                onSaveFightsBets = onSaveFightsBets,
             )
         }
         is EventUiState.Error -> ErrorComponent(
@@ -118,11 +143,14 @@ internal fun EventScreen(
 internal fun EventSuccessScreen(
     modifier: Modifier,
     data: SuccessEvents,
-    onFighterClick: (Boolean, Int, FighterModel) -> Unit,
-    onDismissDialog: (Boolean) -> Unit,
+    onFighterClick: (Boolean, FighterModel) -> Unit,
+    onDismissAlertSaveNickname: (Boolean) -> Unit,
+    onDismissAlertSaveFightBets: (Boolean?) -> Unit,
     onSaveNicknameAndCreateFightBet: (String) -> Unit,
     isClosedBottomSheet: () -> Unit,
     lazyListState: LazyListState,
+    upPress: () -> Unit,
+    onSaveFightsBets: () -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     FightsList(
@@ -143,15 +171,34 @@ internal fun EventSuccessScreen(
         )
     }
 
-    if (data.shouldShowAlertDialog) {
-        AlertDialogComponent(
-            onDismissDialog = { onDismissDialog(false) },
+
+    if (data.shouldShowAlertSaveNickname) {
+        AlertDialogSaveNickname(
+            onDismissDialog = { onDismissAlertSaveNickname(false) },
             onSaveClick = { nickname ->
-                onDismissDialog(false)
+                onDismissAlertSaveNickname(false)
                 onSaveNicknameAndCreateFightBet(nickname)
             }
         )
     }
+
+    if (data.shouldShowAlertSaveFightBets != null) {
+        if (data.shouldShowAlertSaveFightBets) {
+            AlertDialogSaveFightBets(
+                onDismissDialog = {
+                    onDismissAlertSaveFightBets(null)
+                    upPress()
+                },
+                onSaveClick = { ->
+                    onDismissAlertSaveFightBets(null)
+                    onSaveFightsBets()
+                }
+            )
+        } else {
+            upPress()
+        }
+    }
+
 }
 
 @Composable
@@ -159,7 +206,7 @@ internal fun FightsList(
     modifier: Modifier,
     fights: List<FightModel>,
     lazyListState: LazyListState,
-    onFighterClick: (Boolean, Int, FighterModel) -> Unit,
+    onFighterClick: (Boolean, FighterModel) -> Unit,
 ) {
     LazyColumn(
         state = lazyListState,
@@ -177,7 +224,7 @@ internal fun FightsList(
 }
 
 @Composable
-internal fun FightCard(fight: FightModel, onFighterClick: (Boolean, Int, FighterModel) -> Unit) {
+internal fun FightCard(fight: FightModel, onFighterClick: (Boolean, FighterModel) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -187,18 +234,18 @@ internal fun FightCard(fight: FightModel, onFighterClick: (Boolean, Int, Fighter
         backgroundColor = RoseWhite
     ) {
         Row {
-            var isSelectedFighterOne by rememberSaveable { mutableStateOf(fight.fighters[0].isSelectedBet) }
-            var isSelectedFighterTwo by rememberSaveable { mutableStateOf(fight.fighters[1].isSelectedBet) }
 
-            FighterComponent(
-                isSelected = isSelectedFighterOne,
-                fighter = fight.fighters[0],
-                onClick = { fighter ->
-                    isSelectedFighterOne = !isSelectedFighterOne
-                    isSelectedFighterTwo = false
-                    onFighterClick(isSelectedFighterOne, fight.fightId, fighter)
-                },
-            )
+
+            fight.fighters.getOrNull(0)?.let {
+                FighterComponent(
+                    isSelected = it.isFighterBet,
+                    fighter = it,
+                    onClick = { fighter ->
+                        onFighterClick(!it.isFighterBet, fighter)
+                    },
+                )
+            }
+
             Text(
                 modifier = Modifier
                     .wrapContentHeight()
@@ -208,15 +255,16 @@ internal fun FightCard(fight: FightModel, onFighterClick: (Boolean, Int, Fighter
                 color = Purple500,
                 text = "VS",
             )
-            FighterComponent(
-                isSelected = isSelectedFighterTwo,
-                fighter = fight.fighters[1],
-                onClick = { fighter ->
-                    isSelectedFighterTwo = !isSelectedFighterTwo
-                    isSelectedFighterOne = false
-                    onFighterClick(isSelectedFighterTwo, fight.fightId, fighter)
-                },
-            )
+            fight.fighters.getOrNull(1)?.let {
+                FighterComponent(
+                    isSelected = it.isFighterBet,
+                    fighter = it,
+                    onClick = { fighter ->
+                        onFighterClick(!it.isFighterBet, fighter)
+                    },
+                )
+            }
+
         }
     }
 }

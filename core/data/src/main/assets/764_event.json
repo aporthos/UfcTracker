@@ -1,0 +1,253 @@
+{
+  "EventId": 764,
+  "LeagueId": 1,
+  "Name": "Dana White's Contender Series: Season 7, Week 1",
+  "ShortName": "Dana White's Contender Series",
+  "Season": 2023,
+  "Day": "2023-08-08T00:00:00",
+  "DateTime": "2023-08-08T19:00:00",
+  "Status": "Scheduled",
+  "Active": true,
+  "Fights": [
+    {
+      "FightId": 8436,
+      "Order": 1,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 5,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140005023,
+          "FirstName": "Lucas",
+          "LastName": "Fernando",
+          "PreFightWins": 12,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        },
+        {
+          "FighterId": 140005024,
+          "FirstName": "Cesar",
+          "LastName": "Almeida",
+          "PreFightWins": 5,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8435,
+      "Order": 2,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 5,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140005021,
+          "FirstName": "Bogdan",
+          "LastName": "Grad",
+          "PreFightWins": 15,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        },
+        {
+          "FighterId": 140005022,
+          "FirstName": "Tom",
+          "LastName": "Nolan",
+          "PreFightWins": 9,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8434,
+      "Order": 3,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 5,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001456,
+          "FirstName": "Caio",
+          "LastName": "Machado",
+          "PreFightWins": 12,
+          "PreFightLosses": 2,
+          "PreFightDraws": 2,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        },
+        {
+          "FighterId": 140001593,
+          "FirstName": "Kevin",
+          "LastName": "Szaflarski",
+          "PreFightWins": 15,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8433,
+      "Order": 4,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 5,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001256,
+          "FirstName": "Reyes",
+          "LastName": "Cortez",
+          "PreFightWins": 12,
+          "PreFightLosses": 4,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        },
+        {
+          "FighterId": 140005020,
+          "FirstName": "Payton",
+          "LastName": "Talbott",
+          "PreFightWins": 9,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8432,
+      "Order": 5,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": null,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140005018,
+          "FirstName": "Kevin",
+          "LastName": "Borjas",
+          "PreFightWins": 11,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        },
+        {
+          "FighterId": 140005019,
+          "FirstName": "Rickson",
+          "LastName": "Zenidim",
+          "PreFightWins": 19,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8494,
+      "Order": 5,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 5,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140005053,
+          "FirstName": "Victor",
+          "LastName": "Dias",
+          "PreFightWins": 15,
+          "PreFightLosses": 4,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        },
+        {
+          "FighterId": 140005018,
+          "FirstName": "Kevin",
+          "LastName": "Borjas",
+          "PreFightWins": 11,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "EventId": 750,
   "LeagueId": 1,
-  "Name": "UFC Fight Night: Sandhagen vs. Nurmagomedov",
+  "Name": "UFC Fight Night: Sandhagen vs. Font",
   "ShortName": "UFC Fight Night",
   "Season": 2023,
   "Day": "2023-08-05T00:00:00",
@@ -10,7 +10,7 @@
   "Active": true,
   "Fights": [
     {
-      "FightId": 8376,
+      "FightId": 8457,
       "Order": 1,
       "Status": "Scrambled",
       "WeightClass": "Scrambled",
@@ -24,6 +24,18 @@
       "Active": true,
       "Fighters": [
         {
+          "FighterId": 140000668,
+          "FirstName": "Rob",
+          "LastName": "Font",
+          "PreFightWins": 22,
+          "PreFightLosses": 7,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 279,
+          "Active": true
+        },
+        {
           "FighterId": 140000007,
           "FirstName": "Cory",
           "LastName": "Sandhagen",
@@ -32,19 +44,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": 272,
-          "Active": true
-        },
-        {
-          "FighterId": 140000905,
-          "FirstName": "Umar",
-          "LastName": "Nurmagomedov",
-          "PreFightWins": 17,
-          "PreFightLosses": 0,
-          "PreFightDraws": 0,
-          "PreFightNoContests": 0,
-          "Winner": false,
-          "Moneyline": -362,
+          "Moneyline": -369,
           "Active": true
         }
       ]
@@ -72,7 +72,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 319,
           "Active": true
         },
         {
@@ -84,7 +84,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": -430,
           "Active": true
         }
       ]
@@ -112,7 +112,7 @@
           "PreFightDraws": 1,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 144,
           "Active": true
         },
         {
@@ -124,7 +124,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": -173,
           "Active": true
         }
       ]
@@ -136,7 +136,7 @@
       "WeightClass": "Scrambled",
       "CardSegment": "Scrambled",
       "Referee": "Scrambled",
-      "Rounds": null,
+      "Rounds": 4,
       "ResultClock": 0,
       "ResultRound": 0,
       "ResultType": "Scrambled",
@@ -152,7 +152,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 156,
           "Active": true
         },
         {
@@ -164,7 +164,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": -186,
           "Active": true
         }
       ]
@@ -192,7 +192,7 @@
           "PreFightDraws": 1,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": -174,
           "Active": true
         },
         {
@@ -204,7 +204,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 145,
           "Active": true
         }
       ]
@@ -232,7 +232,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": -242,
           "Active": true
         },
         {
@@ -244,13 +244,13 @@
           "PreFightDraws": 1,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 197,
           "Active": true
         }
       ]
     },
     {
-      "FightId": 8398,
+      "FightId": 8470,
       "Order": 7,
       "Status": "Scrambled",
       "WeightClass": "Scrambled",
@@ -264,27 +264,27 @@
       "Active": true,
       "Fighters": [
         {
-          "FighterId": 140001041,
-          "FirstName": "Damon",
-          "LastName": "Jackson",
-          "PreFightWins": 24,
-          "PreFightLosses": 6,
-          "PreFightDraws": 1,
-          "PreFightNoContests": 1,
-          "Winner": false,
-          "Moneyline": null,
-          "Active": true
-        },
-        {
-          "FighterId": 140000488,
-          "FirstName": "Billy",
-          "LastName": "Quarantillo",
+          "FighterId": 140000334,
+          "FirstName": "Raoni",
+          "LastName": "Barcelos",
           "PreFightWins": 18,
-          "PreFightLosses": 6,
+          "PreFightLosses": 5,
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 181,
+          "Active": true
+        },
+        {
+          "FighterId": 140000890,
+          "FirstName": "Kyler",
+          "LastName": "Phillips",
+          "PreFightWins": 11,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -217,
           "Active": true
         }
       ]
@@ -313,7 +313,7 @@
           "PreFightNoContests": 0,
           "Winner": false,
           "Moneyline": null,
-          "Active": true
+          "Active": false
         },
         {
           "FighterId": 140000305,
@@ -325,53 +325,13 @@
           "PreFightNoContests": 1,
           "Winner": false,
           "Moneyline": null,
-          "Active": true
-        }
-      ]
-    },
-    {
-      "FightId": 8395,
-      "Order": 9,
-      "Status": "Scrambled",
-      "WeightClass": "Scrambled",
-      "CardSegment": "Scrambled",
-      "Referee": "Scrambled",
-      "Rounds": 4,
-      "ResultClock": 0,
-      "ResultRound": 0,
-      "ResultType": "Scrambled",
-      "WinnerId": null,
-      "Active": true,
-      "Fighters": [
-        {
-          "FighterId": 140000030,
-          "FirstName": "Said",
-          "LastName": "Nurmagomedov",
-          "PreFightWins": 18,
-          "PreFightLosses": 4,
-          "PreFightDraws": 0,
-          "PreFightNoContests": 0,
-          "Winner": false,
-          "Moneyline": null,
-          "Active": true
-        },
-        {
-          "FighterId": 140000890,
-          "FirstName": "Kyler",
-          "LastName": "Phillips",
-          "PreFightWins": 11,
-          "PreFightLosses": 2,
-          "PreFightDraws": 0,
-          "PreFightNoContests": 0,
-          "Winner": false,
-          "Moneyline": null,
-          "Active": true
+          "Active": false
         }
       ]
     },
     {
       "FightId": 8393,
-      "Order": 10,
+      "Order": 8,
       "Status": "Scrambled",
       "WeightClass": "Scrambled",
       "CardSegment": "Scrambled",
@@ -392,7 +352,7 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 120,
           "Active": true
         },
         {
@@ -404,13 +364,133 @@
           "PreFightDraws": 1,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": -145,
           "Active": true
         }
       ]
     },
     {
-      "FightId": 8397,
+      "FightId": 8398,
+      "Order": 9,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 4,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140001041,
+          "FirstName": "Damon",
+          "LastName": "Jackson",
+          "PreFightWins": 24,
+          "PreFightLosses": 6,
+          "PreFightDraws": 1,
+          "PreFightNoContests": 1,
+          "Winner": false,
+          "Moneyline": 163,
+          "Active": true
+        },
+        {
+          "FighterId": 140000488,
+          "FirstName": "Billy",
+          "LastName": "Quarantillo",
+          "PreFightWins": 18,
+          "PreFightLosses": 6,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -195,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8471,
+      "Order": 10,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 4,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": true,
+      "Fighters": [
+        {
+          "FighterId": 140000976,
+          "FirstName": "Cody",
+          "LastName": "Durden",
+          "PreFightWins": 16,
+          "PreFightLosses": 5,
+          "PreFightDraws": 1,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 175,
+          "Active": true
+        },
+        {
+          "FighterId": 140001266,
+          "FirstName": "Jake",
+          "LastName": "Hadley",
+          "PreFightWins": 11,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -209,
+          "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8472,
+      "Order": 11,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 4,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140001731,
+          "FirstName": "Jesse",
+          "LastName": "Butler",
+          "PreFightWins": 13,
+          "PreFightLosses": 6,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 399,
+          "Active": false
+        },
+        {
+          "FighterId": 140000495,
+          "FirstName": "Sean",
+          "LastName": "Woodson",
+          "PreFightWins": 11,
+          "PreFightLosses": 1,
+          "PreFightDraws": 1,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -510,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8492,
       "Order": 11,
       "Status": "Scrambled",
       "WeightClass": "Scrambled",
@@ -424,18 +504,6 @@
       "Active": true,
       "Fighters": [
         {
-          "FighterId": 140000564,
-          "FirstName": "Steve",
-          "LastName": "Garcia",
-          "PreFightWins": 15,
-          "PreFightLosses": 6,
-          "PreFightDraws": 0,
-          "PreFightNoContests": 0,
-          "Winner": false,
-          "Moneyline": null,
-          "Active": true
-        },
-        {
           "FighterId": 140000495,
           "FirstName": "Sean",
           "LastName": "Woodson",
@@ -446,41 +514,13 @@
           "Winner": false,
           "Moneyline": null,
           "Active": true
-        }
-      ]
-    },
-    {
-      "FightId": 8396,
-      "Order": 12,
-      "Status": "Scrambled",
-      "WeightClass": "Scrambled",
-      "CardSegment": "Scrambled",
-      "Referee": "Scrambled",
-      "Rounds": 4,
-      "ResultClock": 0,
-      "ResultRound": 0,
-      "ResultType": "Scrambled",
-      "WinnerId": null,
-      "Active": true,
-      "Fighters": [
-        {
-          "FighterId": 140000926,
-          "FirstName": "Tagir",
-          "LastName": "Ulanbekov",
-          "PreFightWins": 15,
-          "PreFightLosses": 2,
-          "PreFightDraws": 0,
-          "PreFightNoContests": 0,
-          "Winner": false,
-          "Moneyline": null,
-          "Active": true
         },
         {
-          "FighterId": 140001266,
-          "FirstName": "Jake",
-          "LastName": "Hadley",
-          "PreFightWins": 11,
-          "PreFightLosses": 1,
+          "FighterId": 140001016,
+          "FirstName": "Dennis",
+          "LastName": "Buzukja",
+          "PreFightWins": 12,
+          "PreFightLosses": 2,
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
@@ -491,7 +531,7 @@
     },
     {
       "FightId": 8394,
-      "Order": 13,
+      "Order": 12,
       "Status": "Scrambled",
       "WeightClass": "Scrambled",
       "CardSegment": "Scrambled",
@@ -506,13 +546,13 @@
         {
           "FighterId": 140005007,
           "FirstName": "Assu",
-          "LastName": "Almabaev",
+          "LastName": "Almabayev",
           "PreFightWins": 18,
           "PreFightLosses": 2,
           "PreFightDraws": 0,
           "PreFightNoContests": 0,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": -201,
           "Active": true
         },
         {
@@ -524,8 +564,168 @@
           "PreFightDraws": 0,
           "PreFightNoContests": 1,
           "Winner": false,
-          "Moneyline": null,
+          "Moneyline": 171,
           "Active": true
+        }
+      ]
+    },
+    {
+      "FightId": 8376,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 6,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140000007,
+          "FirstName": "Cory",
+          "LastName": "Sandhagen",
+          "PreFightWins": 17,
+          "PreFightLosses": 5,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": 272,
+          "Active": false
+        },
+        {
+          "FighterId": 140000905,
+          "FirstName": "Umar",
+          "LastName": "Nurmagomedov",
+          "PreFightWins": 17,
+          "PreFightLosses": 0,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": -362,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8395,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 4,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140000030,
+          "FirstName": "Said",
+          "LastName": "Nurmagomedov",
+          "PreFightWins": 18,
+          "PreFightLosses": 4,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        },
+        {
+          "FighterId": 140000890,
+          "FirstName": "Kyler",
+          "LastName": "Phillips",
+          "PreFightWins": 11,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8396,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 4,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140000926,
+          "FirstName": "Tagir",
+          "LastName": "Ulanbekov",
+          "PreFightWins": 15,
+          "PreFightLosses": 2,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        },
+        {
+          "FighterId": 140001266,
+          "FirstName": "Jake",
+          "LastName": "Hadley",
+          "PreFightWins": 11,
+          "PreFightLosses": 1,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        }
+      ]
+    },
+    {
+      "FightId": 8397,
+      "Order": null,
+      "Status": "Scrambled",
+      "WeightClass": "Scrambled",
+      "CardSegment": "Scrambled",
+      "Referee": "Scrambled",
+      "Rounds": 4,
+      "ResultClock": 0,
+      "ResultRound": 0,
+      "ResultType": "Scrambled",
+      "WinnerId": null,
+      "Active": false,
+      "Fighters": [
+        {
+          "FighterId": 140000564,
+          "FirstName": "Steve",
+          "LastName": "Garcia",
+          "PreFightWins": 15,
+          "PreFightLosses": 6,
+          "PreFightDraws": 0,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
+        },
+        {
+          "FighterId": 140000495,
+          "FirstName": "Sean",
+          "LastName": "Woodson",
+          "PreFightWins": 11,
+          "PreFightLosses": 1,
+          "PreFightDraws": 1,
+          "PreFightNoContests": 0,
+          "Winner": false,
+          "Moneyline": null,
+          "Active": false
         }
       ]
     }

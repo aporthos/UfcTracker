@@ -255,12 +255,12 @@
   {
     "EventId": 309,
     "LeagueId": 1,
-    "Name": "UFC Fight Night: Holm vs. Silva",
+    "Name": "UFC Fight Night: Holm vs. Bueno Silva",
     "ShortName": "UFC Fight Night",
     "Season": 2023,
     "Day": "2023-07-15T00:00:00",
     "DateTime": "2023-07-15T19:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Active": true
   },
   {
@@ -271,7 +271,7 @@
     "Season": 2023,
     "Day": "2023-07-22T00:00:00",
     "DateTime": "2023-07-22T12:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Active": true
   },
   {
@@ -282,13 +282,13 @@
     "Season": 2023,
     "Day": "2023-07-29T00:00:00",
     "DateTime": "2023-07-29T18:00:00",
-    "Status": "Scheduled",
+    "Status": "Final",
     "Active": true
   },
   {
     "EventId": 750,
     "LeagueId": 1,
-    "Name": "UFC Fight Night: Sandhagen vs. Nurmagomedov",
+    "Name": "UFC Fight Night: Sandhagen vs. Font",
     "ShortName": "UFC Fight Night",
     "Season": 2023,
     "Day": "2023-08-05T00:00:00",
@@ -319,13 +319,35 @@
     "Active": true
   },
   {
+    "EventId": 765,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 2",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-08-15T00:00:00",
+    "DateTime": "2023-08-15T19:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
     "EventId": 311,
     "LeagueId": 1,
     "Name": "UFC 292: Sterling vs. O'Malley",
     "ShortName": "UFC 292",
     "Season": 2023,
     "Day": "2023-08-19T00:00:00",
-    "DateTime": "2023-08-19T18:00:00",
+    "DateTime": "2023-08-19T18:30:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
+    "EventId": 766,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 3",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-08-22T00:00:00",
+    "DateTime": "2023-08-22T20:00:00",
     "Status": "Scheduled",
     "Active": true
   },
@@ -341,6 +363,17 @@
     "Active": true
   },
   {
+    "EventId": 767,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 4",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-08-29T00:00:00",
+    "DateTime": "2023-08-29T20:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
     "EventId": 752,
     "LeagueId": 1,
     "Name": "UFC Fight Night: Gane vs. Spivac",
@@ -348,6 +381,17 @@
     "Season": 2023,
     "Day": "2023-09-02T00:00:00",
     "DateTime": "2023-09-02T12:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
+    "EventId": 768,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 5",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-09-05T00:00:00",
+    "DateTime": "2023-09-05T20:00:00",
     "Status": "Scheduled",
     "Active": true
   },
@@ -363,6 +407,17 @@
     "Active": true
   },
   {
+    "EventId": 769,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 6",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-09-12T00:00:00",
+    "DateTime": "2023-09-12T20:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
     "EventId": 762,
     "LeagueId": 1,
     "Name": "UFC Fight Night: Grasso vs. Shevchenko 2",
@@ -374,9 +429,53 @@
     "Active": true
   },
   {
+    "EventId": 770,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 7",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-09-19T00:00:00",
+    "DateTime": "2023-09-19T20:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
+    "EventId": 771,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 8",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-09-26T00:00:00",
+    "DateTime": "2023-09-26T20:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
+    "EventId": 772,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 9",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-10-03T00:00:00",
+    "DateTime": "2023-10-03T20:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
+    "EventId": 773,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 10",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-10-10T00:00:00",
+    "DateTime": "2023-10-10T20:00:00",
+    "Status": "Scheduled",
+    "Active": true
+  },
+  {
     "EventId": 299,
     "LeagueId": 1,
-    "Name": "UFC 294",
+    "Name": "UFC 294: Makhachev vs. Oliveira 2",
     "ShortName": "UFC 294",
     "Season": 2023,
     "Day": "2023-10-21T00:00:00",

@@ -2,6 +2,7 @@ package com.portes.ufctracker.core.data.repositories
 
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.firestore.ktx.toObjects
 import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.common.toDate
@@ -9,7 +10,9 @@ import com.portes.ufctracker.core.common.todayOrAfter
 import com.portes.ufctracker.core.model.entities.EventRequest
 import com.portes.ufctracker.core.model.entities.FightBetsEntity
 import com.portes.ufctracker.core.model.entities.toModel
+import com.portes.ufctracker.core.model.models.FightBetsModel
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
+import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.core.model.models.FighterRequest
 import com.portes.ufctracker.core.model.models.GamblerModel
 import kotlinx.coroutines.flow.Flow
@@ -20,8 +23,7 @@ import javax.inject.Inject
 
 class FightBetsRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
-
-) : FightBetsRepository {
+    ) : FightBetsRepository {
     companion object {
         private const val COLLECTION_FIGHT_BETS = "fightbets"
         private const val COLLECTION_GAMBLER = "gambler"
@@ -43,7 +45,7 @@ class FightBetsRepositoryImpl @Inject constructor(
         emit(result)
     }
 
-    override fun getMyFightBets(eventId: Int, nickname: String): Flow<List<Int?>> = flow {
+    override fun getMyFightBets(eventId: Int, nickname: String): Flow<List<FightBetsModel>> = flow {
         val fightbets = firestore.collection(COLLECTION_FIGHT_BETS)
         val event = fightbets.document("$eventId")
         val snapshot = firestore.collectionGroup(COLLECTION_GAMBLER)
@@ -53,7 +55,7 @@ class FightBetsRepositoryImpl @Inject constructor(
             .get().await()
         val result = snapshot.toObjects<FightBetsEntity>().map {
             it.toModel()
-        }.filter { it.name == nickname }.map { it.fighter?.fighterId }
+        }.filter { it.name == nickname }
         emit(result)
     }
 
@@ -108,7 +110,7 @@ class FightBetsRepositoryImpl @Inject constructor(
 
 interface FightBetsRepository {
     fun getFightBetsList(eventId: Int): Flow<List<GamblerModel>>
-    fun getMyFightBets(eventId: Int, nickname: String): Flow<List<Int?>>
+    fun getMyFightBets(eventId: Int, nickname: String): Flow<List<FightBetsModel>>
     fun getFightBetsByEvent(): Flow<List<Int>>
     fun getFightLast(): Flow<EventRequest?>
     fun addOrRemoveFightBetsList(

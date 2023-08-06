@@ -25,7 +25,6 @@ import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -172,9 +171,9 @@ internal fun LazyListScope.itemFightsBets(gamblers: List<CategoryFightBets>) {
         }
         items(it.fights) { fight ->
             val fighterOne =
-                Pair(fight.fighters[0].fullName, fight.fighters[0].isSelectedBet)
+                Pair(fight.fighters[0].fullName, fight.fighters[0].isFighterBet)
             val fighterSecond =
-                Pair(fight.fighters[1].fullName, fight.fighters[1].isSelectedBet)
+                Pair(fight.fighters[1].fullName, fight.fighters[1].isFighterBet)
             ItemFightText(fighterOne, fighterSecond)
         }
     }

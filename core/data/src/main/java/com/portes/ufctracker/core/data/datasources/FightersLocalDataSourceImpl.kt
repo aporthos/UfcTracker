@@ -1,47 +1,101 @@
 package com.portes.ufctracker.core.data.datasources
 
-import android.content.Context
-import com.portes.ufctracker.core.data.convertToList
-import com.portes.ufctracker.core.database.FighterDao
-import com.portes.ufctracker.core.database.FighterLocalEntity
-import com.portes.ufctracker.core.model.entities.FighterEntity
-import com.portes.ufctracker.core.model.entities.toEntity
-import com.portes.ufctracker.core.model.models.FighterLocaleModel
-import com.squareup.moshi.Moshi
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.portes.ufctracker.core.database.dao.FIGHTER_BET
+import com.portes.ufctracker.core.database.dao.FIGHT_BET
+import com.portes.ufctracker.core.database.dao.FightersDao
+import com.portes.ufctracker.core.database.dao.FightersInfoDao
+import com.portes.ufctracker.core.database.entities.FighterInfoLocalEntity
+import com.portes.ufctracker.core.model.entities.toEntityLocal
+import com.portes.ufctracker.core.model.entities.transform
+import com.portes.ufctracker.core.model.models.FightBetsModel
+import com.portes.ufctracker.core.model.models.FighterInfoLocalModel
+import com.portes.ufctracker.core.model.models.FighterModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import timber.log.Timber
 import javax.inject.Inject
 
 class FightersLocalDataSourceImpl @Inject constructor(
-    @ApplicationContext private val context: Context,
-    private val fighterDao: FighterDao,
-    private val moshi: Moshi,
+    private val fightersDao: FightersDao,
+    private val fightersInfoDao: FightersInfoDao,
 ) : FightersLocalDataSource {
-    override suspend fun saveFightersList() {
-        val result =
-            context.assets.convertToList<FighterEntity>("fightersList.json", moshi)?.map {
-                it.toEntity()
+
+    override suspend fun updateFight(
+        eventId: Int,
+        isFighterBet: Boolean,
+        fightId: Int,
+        fighterId: Int
+    ) {
+        fightersDao.resetFightersBet(eventId = eventId, fightId = fightId)
+        fightersDao.updateFighterBet(
+            eventId = eventId,
+            selected = isFighterBet.toFighterBet(),
+            fightId = fightId,
+            fighterId = fighterId
+        )
+        fightersDao.checkFightStatusBet(eventId = eventId, fightId = fightId)
+    }
+
+    override suspend fun saveFighters(
+        eventId: Int,
+        fightId: Int,
+        fights: List<FighterModel>,
+        fightsBet: List<FightBetsModel>
+    ): List<Long> {
+        val result = fights.map { fighter ->
+            fighter.isFighterBet = fightsBet.any { it.fighter?.fighterId == fighter.fighterId }
+            fighter.nickname =
+                fightersInfoDao.getFightersInfoById(fighterId = fighter.fighterId)?.nickname.orEmpty()
+            fighter.fightId = fightId
+            fighter.eventId = eventId
+            fighter.toEntityLocal()
+        }
+        val insert = fightersDao.insertOrIgnoreFighters(result)
+        fightersDao.checkFightStatusBet(eventId = eventId, fightId = fightId)
+        return insert
+    }
+
+    override fun getFightsByBet(
+        eventId: Int,
+        isFighterBet: Boolean,
+        isFightBet: Boolean,
+    ): Flow<List<FighterModel>> {
+        return fightersDao.getFightsByBet(
+            eventId = eventId,
+            isFighterBet = isFighterBet.toFighterBet(),
+            isFightBet = isFighterBet.toFightBet()
+        ).map {
+            it.map {
+                it.transform()
             }
-        fighterDao.insertOrIgnoreFighters(result)
-    }
-
-    override fun getFightersByName(fullName: String): FighterLocaleModel? {
-        return fighterDao.getFighterByName(fullName)?.toModel()
-    }
-
-    override fun getFightersById(fighterId: Int): FighterLocaleModel? {
-        return fighterDao.getFighterById(fighterId)?.toModel()
+        }
     }
 }
 
-fun FighterLocalEntity.toModel() = FighterLocaleModel(
-    fighterId = fighterId,
-    fullName = fullName,
-    nickname = nickname,
-    imageUrl = imageUrl
-)
+fun Boolean.toFighterBet(): Int =
+    if (this) FIGHTER_BET.SELECTED.status else FIGHTER_BET.UNSELECTED.status
+
+fun Boolean.toFightBet(): Int =
+    if (this) FIGHT_BET.SELECTED.status else FIGHT_BET.UNSELECTED.status
 
 interface FightersLocalDataSource {
-    suspend fun saveFightersList()
-    fun getFightersByName(fullName: String): FighterLocaleModel?
-    fun getFightersById(fighterId: Int): FighterLocaleModel?
+    suspend fun saveFighters(
+        eventId: Int,
+        fightId: Int,
+        fights: List<FighterModel>,
+        fightsBet: List<FightBetsModel>
+    ): List<Long>
+
+    fun getFightsByBet(
+        eventId: Int,
+        isFighterBet: Boolean,
+        isFightBet: Boolean,
+    ): Flow<List<FighterModel>>
+
+    suspend fun updateFight(
+        eventId: Int,
+        isFighterBet: Boolean,
+        fightId: Int,
+        fighterId: Int
+    )
 }

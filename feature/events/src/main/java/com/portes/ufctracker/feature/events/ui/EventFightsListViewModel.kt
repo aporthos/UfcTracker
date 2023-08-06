@@ -4,16 +4,17 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.portes.ufctracker.core.common.models.Result
+import com.portes.ufctracker.core.data.repositories.FightersRepository
 import com.portes.ufctracker.core.domain.usecase.AddOrRemoveFightBetsUseCase
 import com.portes.ufctracker.core.domain.usecase.GetFightsListUseCase
 import com.portes.ufctracker.core.domain.usecase.GetNicknameUseCase
 import com.portes.ufctracker.core.domain.usecase.SaveNicknameUseCase
 import com.portes.ufctracker.core.model.entities.EventRequest
 import com.portes.ufctracker.core.model.models.FightModel
-import com.portes.ufctracker.core.model.models.FighterBetRequestModel
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.feature.events.ui.navigation.EventsArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -30,6 +31,7 @@ internal class EventsFightsListViewModel @Inject constructor(
     getFightsListUseCase: GetFightsListUseCase,
     private val saveNicknameUseCase: SaveNicknameUseCase,
     private val getNicknameUseCase: GetNicknameUseCase,
+    private val fightersRepository: FightersRepository,
     private val addOrRemoveFightBetsUseCase: AddOrRemoveFightBetsUseCase,
 ) : ViewModel() {
 
@@ -41,26 +43,44 @@ internal class EventsFightsListViewModel @Inject constructor(
     private val fighterBetsForAdd = hashMapOf<Int, FighterModel>()
     private val fighterBetsForRemove = hashMapOf<Int, FighterModel>()
 
-    private var shouldShowAlertDialog = MutableStateFlow(false)
+    private var shouldShowAlertSaveNickname = MutableStateFlow(false)
+    private var shouldShowButtonCreateFightBets =
+        MutableStateFlow<Map<Int, FighterModel>?>(mapOf())
+    private var shouldShowAlertSaveFightBets = MutableStateFlow<Boolean?>(null)
     private var fighterBetsLocal = MutableStateFlow<List<FightModel>>(emptyList())
-    private var fightsRemote = mutableListOf<FightModel>()
+    private var totalBets = -1
+
+    private val showButtonCreateFightBets = MutableStateFlow(false)
+
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            fightersRepository.getAndSaveFights(eventsArgs.eventId).collect {
+                Timber.i("getAndSaveFights : $it")
+            }
+        }
+    }
 
     val uiState: StateFlow<EventUiState> = combine(
         getFightsListUseCase(
             GetFightsListUseCase.Params(eventsArgs.eventId)
         ),
         fighterBetsLocal,
-        shouldShowAlertDialog,
-    ) { result, fighterBetsLocal, shouldShowAlertDialog ->
+        shouldShowAlertSaveNickname,
+        shouldShowAlertSaveFightBets,
+        showButtonCreateFightBets,
+    ) {
+            result, fighterBetsLocal, showAlertSaveNickname, showAlertSaveFightBets, showButtonCreateFightBets,
+        ->
         when (result) {
             Result.Loading -> EventUiState.Loading
             is Result.Success -> {
-                fightsRemote = result.data.toMutableList()
                 EventUiState.Success(
                     SuccessEvents(
                         fights = result.data,
                         fightsBets = fighterBetsLocal,
-                        shouldShowAlertDialog = shouldShowAlertDialog
+                        shouldShowAlertSaveNickname = showAlertSaveNickname,
+                        shouldShowAlertSaveFightBets = showAlertSaveFightBets,
+                        shouldShowButtonCreateFightBets = showButtonCreateFightBets
                     )
                 )
             }
@@ -77,44 +97,24 @@ internal class EventsFightsListViewModel @Inject constructor(
     fun createFightBet() {
         val nickname = getNicknameUseCase()
         if (nickname.isEmpty()) {
-            shouldShowAlertDialog.update { true }
-            return
-        }
-
-        if (fighterBetsForAdd.isEmpty() && fighterBetsForRemove.isEmpty()) {
-            fighterBetsLocal.update {
-                getOnlySelectedBet()
-            }
+            shouldShowAlertSaveNickname.update { true }
             return
         }
 
         viewModelScope.launch {
-            val addFighterBets = fighterBetsForAdd.map {
-                FighterBetRequestModel(it.key, it.value)
-            }
-            val removeFighterBets = fighterBetsForRemove.map {
-                FighterBetRequestModel(it.key, it.value)
-            }
             val params = AddOrRemoveFightBetsUseCase.Params(
                 eventRequest = EventRequest(
                     eventName = eventsArgs.name,
                     day = eventsArgs.eventDate,
                     dayTime = eventsArgs.eventDateTime,
                     eventId = eventsArgs.eventId
-                ),
-                addFighterBets = addFighterBets,
-                removeFighterBets = removeFighterBets,
+                )
             )
             addOrRemoveFightBetsUseCase(params).collect { result ->
                 when (result) {
                     Result.Loading -> Unit
                     is Result.Success -> {
-                        removeOrAddFight(addFighterBets, removeFighterBets)
-                        fighterBetsLocal.update {
-                            getOnlySelectedBet()
-                        }
-                        fighterBetsForAdd.clear()
-                        fighterBetsForRemove.clear()
+                        Timber.i("createFightBet: Update success")
                     }
                     is Result.Error -> {
                         Timber.e(result.exception)
@@ -124,42 +124,51 @@ internal class EventsFightsListViewModel @Inject constructor(
         }
     }
 
-    private fun removeOrAddFight(
-        addFighterBets: List<FighterBetRequestModel>,
-        removeFighterBets: List<FighterBetRequestModel>
-    ) {
+    private fun hasEmptyUpdateFights() =
+        fighterBetsForAdd.isEmpty() && fighterBetsForRemove.isEmpty()
 
-        addFighterBets.map { fighter ->
-            fightsRemote.first { it.fightId == fighter.fightId }.fighters.map {
-                it.isSelectedBet = false
+    fun onBackPressed() {
+        if (hasEmptyUpdateFights()) {
+            shouldShowAlertSaveFightBets.update { false }
+        } else {
+            if (totalBets == 0) {
+                onlyDeleteFight()
+                shouldShowAlertSaveFightBets.update { false }
+            } else {
+                shouldShowAlertSaveFightBets.update { true }
             }
         }
+    }
 
-        addFighterBets.map { fighterBets ->
-            fightsRemote.first { it.fightId == fighterBets.fightId }.fighters.first {
-                it.fighterId == fighterBets.fighter.fighterId
-            }.isSelectedBet = true
-        }
-
-        removeFighterBets.map { fighterBets ->
-            fightsRemote.first { it.fightId == fighterBets.fightId }.fighters.first {
-                it.fighterId == fighterBets.fighter.fighterId
-            }.isSelectedBet = false
+    private fun onlyDeleteFight() = viewModelScope.launch {
+        val params = AddOrRemoveFightBetsUseCase.Params(
+            eventRequest = EventRequest(
+                eventName = eventsArgs.name,
+                day = eventsArgs.eventDate,
+                dayTime = eventsArgs.eventDateTime,
+                eventId = eventsArgs.eventId
+            ),
+        )
+        addOrRemoveFightBetsUseCase(params).collect { result ->
+            when (result) {
+                Result.Loading -> Unit
+                is Result.Success -> {
+                    Timber.i("Deleted -> ${result.data}")
+                }
+                is Result.Error -> {
+                    Timber.e(result.exception)
+                }
+            }
         }
     }
 
-    private fun getOnlySelectedBet(): MutableList<FightModel> {
-        val listFightBets = mutableListOf<FightModel>()
-        fightsRemote.filter { fight ->
-            fight.fighters.any { it.isSelectedBet }
-        }.map {
-            listFightBets.add(it)
-        }
-        return listFightBets
+
+    fun shouldShowAlertSaveNickname(show: Boolean) {
+        shouldShowAlertSaveNickname.update { show }
     }
 
-    fun shouldShowAlertDialog(show: Boolean) {
-        shouldShowAlertDialog.update { show }
+    fun shouldShowAlertSaveFightBets(show: Boolean?) {
+        shouldShowAlertSaveFightBets.update { show }
     }
 
     fun resetFighterBet() {
@@ -171,14 +180,18 @@ internal class EventsFightsListViewModel @Inject constructor(
         createFightBet()
     }
 
-    fun addFighterToBet(isAddFighterBet: Boolean, fightId: Int, fighter: FighterModel) {
-        if (isAddFighterBet) {
-            fighterBetsForAdd[fightId] = fighter
-            fighterBetsForRemove.remove(fightId)
-        } else {
-            fighterBetsForAdd.remove(fightId)
-            fighterBetsForRemove[fightId] = fighter
+    fun addFighterToBet(isAddFighterBet: Boolean, fighter: FighterModel) =
+        viewModelScope.launch {
+            fightersRepository.updateFight(
+                eventId = eventId,
+                isSelectedBet = isAddFighterBet,
+                fightId = fighter.fightId,
+                fighterId = fighter.fighterId
+            )
         }
+
+    fun reset() {
+        shouldShowButtonCreateFightBets.update { emptyMap() }
     }
 }
 
@@ -194,5 +207,7 @@ sealed interface EventUiState {
 data class SuccessEvents(
     var fights: List<FightModel>,
     val fightsBets: List<FightModel> = emptyList(),
-    val shouldShowAlertDialog: Boolean
+    val shouldShowAlertSaveNickname: Boolean,
+    val shouldShowAlertSaveFightBets: Boolean?,
+    val shouldShowButtonCreateFightBets: Boolean,
 )

@@ -5,14 +5,22 @@ import com.portes.ufctracker.core.data.datasources.EventsLocalDataSource
 import com.portes.ufctracker.core.data.datasources.EventsLocalDataSourceImpl
 import com.portes.ufctracker.core.data.datasources.EventsRemoteDataSource
 import com.portes.ufctracker.core.data.datasources.EventsRemoteDataSourceImpl
+import com.portes.ufctracker.core.data.datasources.FightersInfoLocalDataSource
+import com.portes.ufctracker.core.data.datasources.FightersInfoLocalDataSourceImpl
 import com.portes.ufctracker.core.data.datasources.FightersLocalDataSource
 import com.portes.ufctracker.core.data.datasources.FightersLocalDataSourceImpl
+import com.portes.ufctracker.core.data.datasources.FightsLocalDataSource
+import com.portes.ufctracker.core.data.datasources.FightsLocalDataSourceImpl
 import com.portes.ufctracker.core.data.repositories.EventsRepository
 import com.portes.ufctracker.core.data.repositories.EventsRepositoryImpl
 import com.portes.ufctracker.core.data.repositories.FightBetsRepository
 import com.portes.ufctracker.core.data.repositories.FightBetsRepositoryImpl
+import com.portes.ufctracker.core.data.repositories.FightersInfoRepository
+import com.portes.ufctracker.core.data.repositories.FightersInfoRepositoryImpl
 import com.portes.ufctracker.core.data.repositories.FightersRepository
 import com.portes.ufctracker.core.data.repositories.FightersRepositoryImpl
+import com.portes.ufctracker.core.data.repositories.FightsRepository
+import com.portes.ufctracker.core.data.repositories.FightsRepositoryImpl
 import com.portes.ufctracker.core.data.repositories.PreferencesRepository
 import com.portes.ufctracker.core.data.repositories.PreferencesRepositoryImpl
 import com.portes.ufctracker.core.data.services.Services
@@ -65,6 +73,26 @@ object DataModule {
         fun bindsPreferencesRepository(
             preferencesRepository: PreferencesRepositoryImpl,
         ): PreferencesRepository
+
+        @Binds
+        fun bindsFightersInfoLocalDataSource(
+            fightersInfoLocalDataSource: FightersInfoLocalDataSourceImpl,
+        ): FightersInfoLocalDataSource
+
+        @Binds
+        fun bindsFightsLocalDataSource(
+            fightsLocalDataSource: FightsLocalDataSourceImpl,
+        ): FightsLocalDataSource
+
+        @Binds
+        fun bindsFightsRepository(
+            fightsRepository: FightsRepositoryImpl,
+        ): FightsRepository
+
+        @Binds
+        fun bindsFightersInfoRepository(
+            fightersInfoRepository: FightersInfoRepositoryImpl,
+        ): FightersInfoRepository
     }
 
     @Singleton

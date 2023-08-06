@@ -70,7 +70,7 @@ class GetFightBetsListUseCase @Inject constructor(
                 fightsList.filter { it.fightId == fightGambler.fightId }
                     .map { fight ->
                         fight.fighters.forEach { fighter ->
-                            fighter.isSelectedBet =
+                            fighter.isFighterBet =
                                 fighter.fighterId == fightGambler.fighter?.fighterId
                             if (fighter.winner && fighter.fighterId == fightGambler.fighter?.fighterId) {
                                 fightsWins++

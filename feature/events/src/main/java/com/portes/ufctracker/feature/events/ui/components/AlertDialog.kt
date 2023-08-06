@@ -23,7 +23,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 
 @Composable
-internal fun AlertDialogComponent(onDismissDialog: () -> Unit, onSaveClick: (String) -> Unit) {
+internal fun AlertDialogSaveNickname(onDismissDialog: () -> Unit, onSaveClick: (String) -> Unit) {
     var nickname by remember { mutableStateOf("") }
 
     Dialog(onDismissRequest = { onDismissDialog() }, properties = DialogProperties()) {
@@ -69,6 +69,51 @@ internal fun AlertDialogComponent(onDismissDialog: () -> Unit, onSaveClick: (Str
                             .weight(1F)
                     ) {
                         Text(text = "Agregar")
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+internal fun AlertDialogSaveFightBets(onDismissDialog: () -> Unit, onSaveClick: () -> Unit) {
+
+    Dialog(onDismissRequest = { onDismissDialog() }, properties = DialogProperties()) {
+        Card(
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier.padding(8.dp),
+            elevation = 8.dp
+        ) {
+            Column(
+                Modifier
+                    .background(Color.White)
+            ) {
+
+                Text(
+                    text = "Deseas guardar tus cambios ?",
+                    modifier = Modifier.padding(8.dp)
+                )
+
+                Row {
+                    TextButton(
+                        onClick = { onDismissDialog() },
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                            .weight(1F)
+                    ) {
+                        Text(text = "No")
+                    }
+
+                    Button(
+                        onClick = onSaveClick,
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                            .weight(1F)
+                    ) {
+                        Text(text = "Guardar")
                     }
                 }
             }

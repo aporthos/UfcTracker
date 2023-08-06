@@ -1,7 +1,8 @@
 package com.portes.ufctracker.core.model.entities
 
 import com.google.firebase.firestore.PropertyName
-import com.portes.ufctracker.core.database.FighterLocalEntity
+import com.portes.ufctracker.core.database.entities.FighterInfoLocalEntity
+import com.portes.ufctracker.core.database.entities.FighterLocalEntity
 import com.portes.ufctracker.core.model.models.FighterModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -14,7 +15,7 @@ data class FighterEntity(
     val firstName: String? = "",
     @Json(name = "LastName")
     val lastName: String? = "",
-    @Json(name = "nickname")
+    @Json(name = "Nickname")
     val nickname: String? = "",
     @Json(name = "PreFightWins")
     val preFightWins: Int? = 0,
@@ -31,9 +32,9 @@ data class FighterEntity(
     @Json(name = "Active")
     val active: Boolean? = false,
     @Json(name = "selectedBet")
-    @get:PropertyName("selectedBet")
-    @set:PropertyName("selectedBet")
-    var isSelectedBet: Boolean? = false,
+    @get:PropertyName("fighterBet")
+    @set:PropertyName("fighterBet")
+    var isFighterBet: Boolean? = false,
     @Json(name = "imageUrl")
     var imageUrl: String? = "",
     @Json(name = "fullName")
@@ -45,14 +46,28 @@ fun FighterEntity.toModel() = FighterModel(
     fullName = "${firstName.orEmpty()} ${lastName.orEmpty()}",
     imageUrl = "https://fightingtomatoes.com/images/fighters/$firstName$lastName.jpg",
     winner = winner ?: false,
-    moneyline = moneyline ?: 0,
     active = active ?: false,
-    isSelectedBet = isSelectedBet ?: false
+    isFighterBet = isFighterBet ?: false,
+    isFightBet = false
 )
 
-fun FighterEntity.toEntity() = FighterLocalEntity(
+fun FighterEntity.toEntity() = FighterInfoLocalEntity(
     fighterId = fighterId ?: 0,
     fullName = "${firstName.orEmpty()} ${lastName.orEmpty()}",
     nickname = nickname.orEmpty(),
     imageUrl = "https://fightingtomatoes.com/images/fighters/$firstName$lastName.jpg"
+)
+
+fun FighterModel.toEntityLocal() = FighterLocalEntity(
+    id = "${fightId}_${fighterId}",
+    fighterId = fighterId,
+    fightId = fightId,
+    fullName = fullName,
+    nickname = nickname,
+    imageUrl = imageUrl,
+    winner = winner,
+    active = active,
+    isFighterBet = isFighterBet,
+    isFightBet = isFightBet,
+    eventId = eventId
 )

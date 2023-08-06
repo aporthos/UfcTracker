@@ -114,9 +114,9 @@ internal fun FightsBetBottomSheet(
                     modifier = Modifier.background(color = Color.White)
                 ) {
                     fighterBets.forEach {
-                        val fighterOne = Pair(it.fighters[0].fullName, it.fighters[0].isSelectedBet)
+                        val fighterOne = Pair(it.fighters[0].fullName, it.fighters[0].isFighterBet)
                         val fighterSecond =
-                            Pair(it.fighters[1].fullName, it.fighters[1].isSelectedBet)
+                            Pair(it.fighters[1].fullName, it.fighters[1].isFighterBet)
                         ItemFightText(fighterOne, fighterSecond)
                     }
                 }
