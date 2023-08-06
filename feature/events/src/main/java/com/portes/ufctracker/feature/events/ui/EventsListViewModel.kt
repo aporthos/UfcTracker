@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.data.repositories.FightersInfoRepository
-import com.portes.ufctracker.core.data.repositories.FightersRepository
 import com.portes.ufctracker.core.domain.usecase.GetEventsListUseCase
 import com.portes.ufctracker.core.model.models.EventsCategoriesModel
 import dagger.hilt.android.lifecycle.HiltViewModel

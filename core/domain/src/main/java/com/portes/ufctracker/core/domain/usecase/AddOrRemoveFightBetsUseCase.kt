@@ -57,5 +57,4 @@ class AddOrRemoveFightBetsUseCase @Inject constructor(
             )
         }
     }
-
 }

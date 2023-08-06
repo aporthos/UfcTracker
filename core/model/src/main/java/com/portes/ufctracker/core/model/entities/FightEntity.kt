@@ -70,6 +70,11 @@ fun List<FightWithFightersEntity>.toFightsModel(): List<FightModel> {
     }
 }
 
+fun List<FighterLocalEntity>.toFightersModel(): List<FighterModel> {
+    return map {
+        it.toFighterModel()
+    }
+}
 
 fun FighterLocalEntity.toFighterModel() = FighterModel(
     fighterId = fighterId,

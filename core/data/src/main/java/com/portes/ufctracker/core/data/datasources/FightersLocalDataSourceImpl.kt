@@ -4,15 +4,12 @@ import com.portes.ufctracker.core.database.dao.FIGHTER_BET
 import com.portes.ufctracker.core.database.dao.FIGHT_BET
 import com.portes.ufctracker.core.database.dao.FightersDao
 import com.portes.ufctracker.core.database.dao.FightersInfoDao
-import com.portes.ufctracker.core.database.entities.FighterInfoLocalEntity
 import com.portes.ufctracker.core.model.entities.toEntityLocal
-import com.portes.ufctracker.core.model.entities.transform
+import com.portes.ufctracker.core.model.entities.toFightersModel
 import com.portes.ufctracker.core.model.models.FightBetsModel
-import com.portes.ufctracker.core.model.models.FighterInfoLocalModel
 import com.portes.ufctracker.core.model.models.FighterModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import timber.log.Timber
 import javax.inject.Inject
 
 class FightersLocalDataSourceImpl @Inject constructor(
@@ -65,9 +62,7 @@ class FightersLocalDataSourceImpl @Inject constructor(
             isFighterBet = isFighterBet.toFighterBet(),
             isFightBet = isFighterBet.toFightBet()
         ).map {
-            it.map {
-                it.transform()
-            }
+            it.toFightersModel()
         }
     }
 }

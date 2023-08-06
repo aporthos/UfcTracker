@@ -69,7 +69,7 @@ internal class EventsFightsListViewModel @Inject constructor(
         shouldShowAlertSaveFightBets,
         showButtonCreateFightBets,
     ) {
-            result, fighterBetsLocal, showAlertSaveNickname, showAlertSaveFightBets, showButtonCreateFightBets,
+        result, fighterBetsLocal, showAlertSaveNickname, showAlertSaveFightBets, showButtonCreateFightBets,
         ->
         when (result) {
             Result.Loading -> EventUiState.Loading
@@ -161,7 +161,6 @@ internal class EventsFightsListViewModel @Inject constructor(
             }
         }
     }
-
 
     fun shouldShowAlertSaveNickname(show: Boolean) {
         shouldShowAlertSaveNickname.update { show }

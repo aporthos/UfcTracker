@@ -2,7 +2,6 @@ package com.portes.ufctracker.core.data.repositories
 
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.firestore.ktx.toObjects
 import com.portes.ufctracker.core.common.models.Result
 import com.portes.ufctracker.core.common.toDate
@@ -12,7 +11,6 @@ import com.portes.ufctracker.core.model.entities.FightBetsEntity
 import com.portes.ufctracker.core.model.entities.toModel
 import com.portes.ufctracker.core.model.models.FightBetsModel
 import com.portes.ufctracker.core.model.models.FighterBetRequestModel
-import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.core.model.models.FighterRequest
 import com.portes.ufctracker.core.model.models.GamblerModel
 import kotlinx.coroutines.flow.Flow
@@ -23,7 +21,7 @@ import javax.inject.Inject
 
 class FightBetsRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
-    ) : FightBetsRepository {
+) : FightBetsRepository {
     companion object {
         private const val COLLECTION_FIGHT_BETS = "fightbets"
         private const val COLLECTION_GAMBLER = "gambler"

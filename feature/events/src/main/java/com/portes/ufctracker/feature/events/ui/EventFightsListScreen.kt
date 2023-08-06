@@ -73,7 +73,6 @@ internal fun EventFightsListRoute(
                     )
                 }
                 viewModel.reset()
-
             }
         },
         floatingActionButtonPosition = FabPosition.End,
@@ -171,7 +170,6 @@ internal fun EventSuccessScreen(
         )
     }
 
-
     if (data.shouldShowAlertSaveNickname) {
         AlertDialogSaveNickname(
             onDismissDialog = { onDismissAlertSaveNickname(false) },
@@ -198,7 +196,6 @@ internal fun EventSuccessScreen(
             upPress()
         }
     }
-
 }
 
 @Composable
@@ -235,7 +232,6 @@ internal fun FightCard(fight: FightModel, onFighterClick: (Boolean, FighterModel
     ) {
         Row {
 
-
             fight.fighters.getOrNull(0)?.let {
                 FighterComponent(
                     isSelected = it.isFighterBet,
@@ -264,7 +260,6 @@ internal fun FightCard(fight: FightModel, onFighterClick: (Boolean, FighterModel
                     },
                 )
             }
-
         }
     }
 }

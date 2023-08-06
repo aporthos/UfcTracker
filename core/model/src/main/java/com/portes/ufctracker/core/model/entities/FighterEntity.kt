@@ -59,7 +59,7 @@ fun FighterEntity.toEntity() = FighterInfoLocalEntity(
 )
 
 fun FighterModel.toEntityLocal() = FighterLocalEntity(
-    id = "${fightId}_${fighterId}",
+    id = "${fightId}_$fighterId",
     fighterId = fighterId,
     fightId = fightId,
     fullName = fullName,

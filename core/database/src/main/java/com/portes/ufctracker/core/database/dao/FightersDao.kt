@@ -105,6 +105,4 @@ abstract class FightersDao {
         isFighterBet: Int,
         isFightBet: Int,
     ): Flow<List<FighterLocalEntity>>
-
 }
-
