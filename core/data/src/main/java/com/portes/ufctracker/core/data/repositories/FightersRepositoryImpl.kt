@@ -11,8 +11,8 @@ import javax.inject.Inject
 
 class FightersRepositoryImpl @Inject constructor(
     private val fightBetsRepository: FightBetsRepository,
-    private val fightersLocalDataSource: FightersLocalDataSource,
-    private val fightsLocalDataSource: FightsLocalDataSource,
+    private val fightersLocal: FightersLocalDataSource,
+    private val fightsLocal: FightsLocalDataSource,
     private val eventsRepository: EventsRepository,
     private val preferencesRepository: PreferencesRepository,
 ) : FightersRepository {
@@ -29,15 +29,12 @@ class FightersRepositoryImpl @Inject constructor(
                 is Result.Loading -> Result.Loading
                 is Result.Success -> {
                     val onlyActives = remote.data
-                    fightsLocalDataSource.saveFights(eventId, onlyActives)
-                    onlyActives.forEach { fighter ->
-                        fightersLocalDataSource.saveFighters(
-                            eventId = eventId,
-                            fightId = fighter.fightId,
-                            fights = fighter.fighters,
-                            fightsBet = firestore
-                        )
-                    }
+                    fightsLocal.saveFights(eventId, onlyActives)
+                    fightersLocal.saveFighters(
+                        eventId = eventId,
+                        fights = onlyActives,
+                        fightsBet = firestore
+                    )
                     Result.Success(true)
                 }
                 is Result.Error -> {
@@ -48,11 +45,14 @@ class FightersRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun countFightersBetByEvent(eventId: Int): Flow<Int> =
+        fightersLocal.countFightersBetByEvent(eventId = eventId)
+
     override fun getFightsByBet(
         eventId: Int,
         isSelectedBet: Boolean,
         isFightBet: Boolean,
-    ): Flow<List<FighterModel>> = fightersLocalDataSource.getFightsByBet(
+    ): Flow<List<FighterModel>> = fightersLocal.getFightsByBet(
         eventId = eventId,
         isFighterBet = isFightBet,
         isFightBet = isSelectedBet,
@@ -64,7 +64,7 @@ class FightersRepositoryImpl @Inject constructor(
         fightId: Int,
         fighterId: Int
     ) {
-        fightersLocalDataSource.updateFight(eventId, isSelectedBet, fightId, fighterId)
+        fightersLocal.updateFight(eventId, isSelectedBet, fightId, fighterId)
     }
 }
 
@@ -83,4 +83,5 @@ interface FightersRepository {
     )
 
     suspend fun getAndSaveFights(eventId: Int): Flow<Result<Boolean>>
+    fun countFightersBetByEvent(eventId: Int): Flow<Int>
 }

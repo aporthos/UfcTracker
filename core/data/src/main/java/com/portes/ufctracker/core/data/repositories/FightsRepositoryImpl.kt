@@ -8,13 +8,16 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class FightsRepositoryImpl @Inject constructor(
-    private val fightersInfoLocalDataSource: FightsLocalDataSource
+    private val fightsLocal: FightsLocalDataSource
 ) : FightsRepository {
-    override fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>> {
-        return fightersInfoLocalDataSource.getFightsById(eventId).asResult()
-    }
+    override fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>> =
+        fightsLocal.getFightsByEvent(eventId = eventId).asResult()
+
+    override fun getFightsBet(eventId: Int): Flow<List<FightModel>> =
+        fightsLocal.getFightsBet(eventId = eventId)
 }
 
 interface FightsRepository {
     fun getFightsList(eventId: Int): Flow<Result<List<FightModel>>>
+    fun getFightsBet(eventId: Int): Flow<List<FightModel>>
 }

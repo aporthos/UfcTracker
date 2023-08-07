@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Relation
 import androidx.room.Transaction
+import com.portes.ufctracker.core.database.TABLE_FIGHTERS
 import com.portes.ufctracker.core.database.TABLE_FIGHTS
 import com.portes.ufctracker.core.database.entities.FightLocalEntity
 import com.portes.ufctracker.core.database.entities.FighterLocalEntity
@@ -27,7 +28,19 @@ interface FightsDao {
             ORDER BY `order`
     """
     )
-    fun getFightById(eventId: Int): Flow<List<FightWithFightersEntity>>
+    fun getFightsById(eventId: Int): Flow<List<FightWithFightersEntity>>
+
+    @Transaction
+    @Query(
+        value = """
+            SELECT  * FROM $TABLE_FIGHTS 
+            JOIN $TABLE_FIGHTERS ON $TABLE_FIGHTS.fightId = $TABLE_FIGHTERS.fightId
+            WHERE $TABLE_FIGHTS.eventId = :eventId 
+            AND $TABLE_FIGHTERS.isFightBet = 1
+            GROUP BY $TABLE_FIGHTS.fightId
+    """
+    )
+    fun getFightsBet(eventId: Int): Flow<List<FightWithFightersEntity>>
 }
 
 data class FightWithFightersEntity(

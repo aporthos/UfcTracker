@@ -11,7 +11,7 @@ data class FightLocalEntity(
     @PrimaryKey
     val fightId: Int,
     val eventId: Int,
-    val order: Int,
-    val status: String,
+    val order: Int = 0,
+    val status: String = "",
     val active: Boolean,
 )

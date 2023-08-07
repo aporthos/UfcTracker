@@ -91,6 +91,15 @@ abstract class FightersDao {
         }
     }
 
+    @Query(
+        value = """ 
+            SELECT COUNT(*) FROM $TABLE_FIGHTERS 
+            WHERE eventId = :eventId 
+            AND isFighterBet = 1
+    """
+    )
+    abstract fun countFightersBetByEvent(eventId: Int): Flow<Int>
+
     @Transaction
     @Query(
         value = """ 

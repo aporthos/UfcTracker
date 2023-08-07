@@ -5,6 +5,7 @@ import com.portes.ufctracker.core.model.entities.toEntityLocal
 import com.portes.ufctracker.core.model.entities.toFightsModel
 import com.portes.ufctracker.core.model.models.FightModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -19,8 +20,14 @@ class FightsLocalDataSourceImpl @Inject constructor(
         return fightDao.insertOrIgnoreFights(result)
     }
 
-    override fun getFightsById(eventId: Int): Flow<List<FightModel>> {
-        return fightDao.getFightById(eventId).map {
+    override fun getFightsByEvent(eventId: Int): Flow<List<FightModel>> {
+        return fightDao.getFightsById(eventId).map {
+            it.toFightsModel()
+        }.distinctUntilChanged()
+    }
+
+    override fun getFightsBet(eventId: Int): Flow<List<FightModel>> {
+        return fightDao.getFightsBet(eventId).map {
             it.toFightsModel()
         }
     }
@@ -28,5 +35,6 @@ class FightsLocalDataSourceImpl @Inject constructor(
 
 interface FightsLocalDataSource {
     suspend fun saveFights(eventId: Int, fights: List<FightModel>): List<Long>
-    fun getFightsById(eventId: Int): Flow<List<FightModel>>
+    fun getFightsByEvent(eventId: Int): Flow<List<FightModel>>
+    fun getFightsBet(eventId: Int): Flow<List<FightModel>>
 }

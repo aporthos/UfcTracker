@@ -15,6 +15,7 @@ import com.portes.ufctracker.core.model.models.FighterModel
 import com.portes.ufctracker.feature.events.ui.navigation.EventsArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -40,17 +41,13 @@ internal class EventsFightsListViewModel @Inject constructor(
     val eventId = eventsArgs.eventId
     val eventName = eventsArgs.name
 
-    private val fighterBetsForAdd = hashMapOf<Int, FighterModel>()
-    private val fighterBetsForRemove = hashMapOf<Int, FighterModel>()
-
     private var shouldShowAlertSaveNickname = MutableStateFlow(false)
+    private var shouldShowShare = MutableStateFlow(false)
     private var shouldShowButtonCreateFightBets =
         MutableStateFlow<Map<Int, FighterModel>?>(mapOf())
     private var shouldShowAlertSaveFightBets = MutableStateFlow<Boolean?>(null)
-    private var fighterBetsLocal = MutableStateFlow<List<FightModel>>(emptyList())
-    private var totalBets = -1
 
-    private val showButtonCreateFightBets = MutableStateFlow(false)
+    private var job: Job? = null
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -64,23 +61,21 @@ internal class EventsFightsListViewModel @Inject constructor(
         getFightsListUseCase(
             GetFightsListUseCase.Params(eventsArgs.eventId)
         ),
-        fighterBetsLocal,
+        shouldShowShare,
         shouldShowAlertSaveNickname,
         shouldShowAlertSaveFightBets,
-        showButtonCreateFightBets,
-    ) {
-        result, fighterBetsLocal, showAlertSaveNickname, showAlertSaveFightBets, showButtonCreateFightBets,
-        ->
+    ) { result, shouldShowShare, showAlertSaveNickname, showAlertSaveFightBets ->
         when (result) {
             Result.Loading -> EventUiState.Loading
             is Result.Success -> {
                 EventUiState.Success(
                     SuccessEvents(
-                        fights = result.data,
-                        fightsBets = fighterBetsLocal,
+                        fights = result.data.fightsBet,
+                        fightsBets = result.data.fightsNew,
                         shouldShowAlertSaveNickname = showAlertSaveNickname,
                         shouldShowAlertSaveFightBets = showAlertSaveFightBets,
-                        shouldShowButtonCreateFightBets = showButtonCreateFightBets
+                        shouldShowButtonCreate = result.data.showButtonCreate,
+                        shouldShowShare = shouldShowShare
                     )
                 )
             }
@@ -95,13 +90,17 @@ internal class EventsFightsListViewModel @Inject constructor(
     )
 
     fun createFightBet() {
+        if (job?.isActive == true) {
+            return
+        }
+
         val nickname = getNicknameUseCase()
         if (nickname.isEmpty()) {
             shouldShowAlertSaveNickname.update { true }
             return
         }
 
-        viewModelScope.launch {
+        job = viewModelScope.launch {
             val params = AddOrRemoveFightBetsUseCase.Params(
                 eventRequest = EventRequest(
                     eventName = eventsArgs.name,
@@ -114,7 +113,7 @@ internal class EventsFightsListViewModel @Inject constructor(
                 when (result) {
                     Result.Loading -> Unit
                     is Result.Success -> {
-                        Timber.i("createFightBet: Update success")
+                        shouldShowShare.update { true }
                     }
                     is Result.Error -> {
                         Timber.e(result.exception)
@@ -124,20 +123,14 @@ internal class EventsFightsListViewModel @Inject constructor(
         }
     }
 
-    private fun hasEmptyUpdateFights() =
-        fighterBetsForAdd.isEmpty() && fighterBetsForRemove.isEmpty()
-
     fun onBackPressed() {
-        if (hasEmptyUpdateFights()) {
-            shouldShowAlertSaveFightBets.update { false }
-        } else {
-            if (totalBets == 0) {
-                onlyDeleteFight()
-                shouldShowAlertSaveFightBets.update { false }
-            } else {
-                shouldShowAlertSaveFightBets.update { true }
-            }
-        }
+//        if (totalBets == 0) {
+//            onlyDeleteFight()
+//            shouldShowAlertSaveFightBets.update { false }
+//        } else {
+//            shouldShowAlertSaveFightBets.update { true }
+//        }
+        shouldShowAlertSaveFightBets.update { false }
     }
 
     private fun onlyDeleteFight() = viewModelScope.launch {
@@ -171,7 +164,8 @@ internal class EventsFightsListViewModel @Inject constructor(
     }
 
     fun resetFighterBet() {
-        fighterBetsLocal.update { emptyList() }
+        shouldShowShare.update { false }
+        job?.cancel()
     }
 
     fun saveNicknameAndCreateFightBet(nickname: String) {
@@ -208,5 +202,6 @@ data class SuccessEvents(
     val fightsBets: List<FightModel> = emptyList(),
     val shouldShowAlertSaveNickname: Boolean,
     val shouldShowAlertSaveFightBets: Boolean?,
-    val shouldShowButtonCreateFightBets: Boolean,
+    val shouldShowButtonCreate: Boolean,
+    val shouldShowShare: Boolean,
 )

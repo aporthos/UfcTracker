@@ -13,7 +13,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flatMapMerge
 import javax.inject.Inject
 
@@ -33,7 +32,7 @@ class GetFightBetsListUseCase @Inject constructor(
             fightBetsRepository.getFightBetsList(it?.eventId ?: 0)
         }
 
-        val getFightsList = getFightLast.flatMapConcat {
+        val getFightsList = getFightLast.flatMapMerge {
             repository.getFightsList(it?.eventId ?: 0)
         }
         return combine(

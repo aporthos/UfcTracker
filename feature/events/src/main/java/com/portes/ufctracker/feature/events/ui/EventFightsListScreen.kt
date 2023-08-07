@@ -117,7 +117,7 @@ internal fun EventScreen(
     when (uiState) {
         EventUiState.Loading -> LoadingComponent()
         is EventUiState.Success -> {
-            showButtonCreateFightBets(uiState.data.shouldShowButtonCreateFightBets)
+            showButtonCreateFightBets(uiState.data.shouldShowButtonCreate)
             EventSuccessScreen(
                 modifier = modifier,
                 data = uiState.data,
@@ -158,7 +158,7 @@ internal fun EventSuccessScreen(
         onFighterClick = onFighterClick,
         lazyListState = lazyListState
     )
-    if (data.fightsBets.isNotEmpty()) {
+    if (data.shouldShowShare) {
         FightsBetShare(
             fighterBets = data.fightsBets,
             isShowedBottomSheet = { modal ->

@@ -4,9 +4,11 @@ import com.portes.ufctracker.core.database.dao.FIGHTER_BET
 import com.portes.ufctracker.core.database.dao.FIGHT_BET
 import com.portes.ufctracker.core.database.dao.FightersDao
 import com.portes.ufctracker.core.database.dao.FightersInfoDao
+import com.portes.ufctracker.core.database.entities.FighterLocalEntity
 import com.portes.ufctracker.core.model.entities.toEntityLocal
 import com.portes.ufctracker.core.model.entities.toFightersModel
 import com.portes.ufctracker.core.model.models.FightBetsModel
+import com.portes.ufctracker.core.model.models.FightModel
 import com.portes.ufctracker.core.model.models.FighterModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -33,23 +35,16 @@ class FightersLocalDataSourceImpl @Inject constructor(
         fightersDao.checkFightStatusBet(eventId = eventId, fightId = fightId)
     }
 
+    override fun countFightersBetByEvent(eventId: Int): Flow<Int> =
+        fightersDao.countFightersBetByEvent(eventId = eventId)
+
     override suspend fun saveFighters(
         eventId: Int,
-        fightId: Int,
-        fights: List<FighterModel>,
+        fights: List<FightModel>,
         fightsBet: List<FightBetsModel>
     ): List<Long> {
-        val result = fights.map { fighter ->
-            fighter.isFighterBet = fightsBet.any { it.fighter?.fighterId == fighter.fighterId }
-            fighter.nickname =
-                fightersInfoDao.getFightersInfoById(fighterId = fighter.fighterId)?.nickname.orEmpty()
-            fighter.fightId = fightId
-            fighter.eventId = eventId
-            fighter.toEntityLocal()
-        }
-        val insert = fightersDao.insertOrIgnoreFighters(result)
-        fightersDao.checkFightStatusBet(eventId = eventId, fightId = fightId)
-        return insert
+        val result = processFighters(eventId, fights, fightsBet)
+        return fightersDao.insertOrIgnoreFighters(result)
     }
 
     override fun getFightsByBet(
@@ -65,6 +60,28 @@ class FightersLocalDataSourceImpl @Inject constructor(
             it.toFightersModel()
         }
     }
+
+    private fun processFighters(
+        eventId: Int,
+        fights: List<FightModel>,
+        fightsBet: List<FightBetsModel>
+    ): List<FighterLocalEntity> {
+        val fighters = mutableListOf<FighterLocalEntity>()
+        fights.map { fight ->
+            fight.fighters.map { fighter ->
+                val isFighterBet = fightsBet.any { it.fighter?.fighterId == fighter.fighterId }
+                fighter.isFighterBet = isFighterBet
+                fighter.isFightBet = fightsBet.any { it.fightId == fight.fightId }
+                fighter.nickname =
+                    fightersInfoDao.getFightersInfoById(fighterId = fighter.fighterId)?.nickname.orEmpty()
+                fighter.fightId = fight.fightId
+                fighter.eventId = eventId
+                fighters.add(fighter.toEntityLocal())
+            }
+        }
+
+        return fighters
+    }
 }
 
 fun Boolean.toFighterBet(): Int =
@@ -76,8 +93,7 @@ fun Boolean.toFightBet(): Int =
 interface FightersLocalDataSource {
     suspend fun saveFighters(
         eventId: Int,
-        fightId: Int,
-        fights: List<FighterModel>,
+        fights: List<FightModel>,
         fightsBet: List<FightBetsModel>
     ): List<Long>
 
@@ -93,4 +109,6 @@ interface FightersLocalDataSource {
         fightId: Int,
         fighterId: Int
     )
+
+    fun countFightersBetByEvent(eventId: Int): Flow<Int>
 }
