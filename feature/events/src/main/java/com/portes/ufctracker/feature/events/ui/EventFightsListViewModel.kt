@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -43,8 +44,8 @@ internal class EventsFightsListViewModel @Inject constructor(
 
     private var shouldShowAlertSaveNickname = MutableStateFlow(false)
     private var shouldShowShare = MutableStateFlow(false)
-    private var shouldShowButtonCreateFightBets =
-        MutableStateFlow<Map<Int, FighterModel>?>(mapOf())
+    private var shouldShowButtonCreateFightBets = MutableStateFlow<Map<Int, FighterModel>?>(mapOf())
+    private var updateFigthBets = HashMap<Int, FighterModel>()
     private var shouldShowAlertSaveFightBets = MutableStateFlow<Boolean?>(null)
 
     private var job: Job? = null
@@ -113,6 +114,7 @@ internal class EventsFightsListViewModel @Inject constructor(
                 when (result) {
                     Result.Loading -> Unit
                     is Result.Success -> {
+                        updateFigthBets.clear()
                         shouldShowShare.update { true }
                     }
                     is Result.Error -> {
@@ -124,13 +126,19 @@ internal class EventsFightsListViewModel @Inject constructor(
     }
 
     fun onBackPressed() {
-//        if (totalBets == 0) {
-//            onlyDeleteFight()
-//            shouldShowAlertSaveFightBets.update { false }
-//        } else {
-//            shouldShowAlertSaveFightBets.update { true }
-//        }
-        shouldShowAlertSaveFightBets.update { false }
+        viewModelScope.launch {
+            val totalFightBets =
+                fightersRepository.countFightersBetByEvent(eventsArgs.eventId).firstOrNull()
+            if (totalFightBets == 0) {
+                onlyDeleteFight()
+            } else {
+                if (updateFigthBets.isNotEmpty()) {
+                    shouldShowAlertSaveFightBets.update { true }
+                } else {
+                    shouldShowAlertSaveFightBets.update { false }
+                }
+            }
+        }
     }
 
     private fun onlyDeleteFight() = viewModelScope.launch {
@@ -147,6 +155,7 @@ internal class EventsFightsListViewModel @Inject constructor(
                 Result.Loading -> Unit
                 is Result.Success -> {
                     Timber.i("Deleted -> ${result.data}")
+                    shouldShowAlertSaveFightBets.update { false }
                 }
                 is Result.Error -> {
                     Timber.e(result.exception)
@@ -175,6 +184,7 @@ internal class EventsFightsListViewModel @Inject constructor(
 
     fun addFighterToBet(isAddFighterBet: Boolean, fighter: FighterModel) =
         viewModelScope.launch {
+            updateFigthBets[fighter.fightId] = fighter
             fightersRepository.updateFight(
                 eventId = eventId,
                 isSelectedBet = isAddFighterBet,

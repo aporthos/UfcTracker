@@ -1,0 +1,213 @@
+{
+    "EventId": 769,
+    "LeagueId": 1,
+    "Name": "Dana White's Contender Series: Season 7, Week 6",
+    "ShortName": "Dana White's Contender Series",
+    "Season": 2023,
+    "Day": "2023-09-12T00:00:00",
+    "DateTime": "2023-09-12T20:00:00",
+    "Status": "Scheduled",
+    "Active": true,
+    "Fights": [
+        {
+            "FightId": 8443,
+            "Order": 1,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 5,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140005081,
+                    "FirstName": "James",
+                    "LastName": "Llontop",
+                    "PreFightWins": 17,
+                    "PreFightLosses": 3,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -246,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001618,
+                    "FirstName": "Malik",
+                    "LastName": "Lewis",
+                    "PreFightWins": 10,
+                    "PreFightLosses": 2,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 195,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8555,
+            "Order": 2,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 5,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001536,
+                    "FirstName": "Eduardo",
+                    "LastName": "Neves",
+                    "PreFightWins": 12,
+                    "PreFightLosses": 2,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -133,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140005083,
+                    "FirstName": "Jhonata",
+                    "LastName": "Diniz",
+                    "PreFightWins": 8,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -159,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8557,
+            "Order": 3,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 5,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140000512,
+                    "FirstName": "Steven",
+                    "LastName": "Nguyen",
+                    "PreFightWins": 10,
+                    "PreFightLosses": 2,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140005086,
+                    "FirstName": "AJ",
+                    "LastName": "Cunningham",
+                    "PreFightWins": 13,
+                    "PreFightLosses": 3,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8554,
+            "Order": 4,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 5,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001188,
+                    "FirstName": "Julia",
+                    "LastName": "Polastri",
+                    "PreFightWins": 14,
+                    "PreFightLosses": 5,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -520,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140005082,
+                    "FirstName": "Patricia",
+                    "LastName": "Alujas",
+                    "PreFightWins": 12,
+                    "PreFightLosses": 3,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 377,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8556,
+            "Order": 5,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 5,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140005084,
+                    "FirstName": "Kasey",
+                    "LastName": "Tanner",
+                    "PreFightWins": 10,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140005085,
+                    "FirstName": "Jean",
+                    "LastName": "Matsumoto",
+                    "PreFightWins": 17,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": true
+                }
+            ]
+        }
+    ]
+}

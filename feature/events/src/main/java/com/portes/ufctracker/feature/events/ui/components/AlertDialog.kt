@@ -26,7 +26,7 @@ import androidx.compose.ui.window.DialogProperties
 internal fun AlertDialogSaveNickname(onDismissDialog: () -> Unit, onSaveClick: (String) -> Unit) {
     var nickname by remember { mutableStateOf("") }
 
-    Dialog(onDismissRequest = { onDismissDialog() }, properties = DialogProperties()) {
+    Dialog(onDismissRequest = { onDismissDialog() }, properties = DialogProperties(dismissOnClickOutside = false)) {
         Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.padding(8.dp),
@@ -79,7 +79,7 @@ internal fun AlertDialogSaveNickname(onDismissDialog: () -> Unit, onSaveClick: (
 @Composable
 internal fun AlertDialogSaveFightBets(onDismissDialog: () -> Unit, onSaveClick: () -> Unit) {
 
-    Dialog(onDismissRequest = { onDismissDialog() }, properties = DialogProperties()) {
+    Dialog(onDismissRequest = { onDismissDialog() }, properties = DialogProperties(dismissOnClickOutside = false)) {
         Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.padding(8.dp),

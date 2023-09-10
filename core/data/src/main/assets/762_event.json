@@ -1,0 +1,788 @@
+{
+    "EventId": 762,
+    "LeagueId": 1,
+    "Name": "Noche UFC: Grasso vs. Shevchenko 2",
+    "ShortName": "Noche UFC",
+    "Season": 2023,
+    "Day": "2023-09-16T00:00:00",
+    "DateTime": "2023-09-16T19:00:00",
+    "Status": "Scheduled",
+    "Active": true,
+    "Fights": [
+        {
+            "FightId": 8416,
+            "Order": 1,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140000402,
+                    "FirstName": "Valentina",
+                    "LastName": "Shevchenko",
+                    "PreFightWins": 12,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -85,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140000397,
+                    "FirstName": "Alexa",
+                    "LastName": "Grasso",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 70,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8415,
+            "Order": 2,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140000265,
+                    "FirstName": "Kelvin",
+                    "LastName": "Gastelum",
+                    "PreFightWins": 5,
+                    "PreFightLosses": 2,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140000893,
+                    "FirstName": "Shavkat",
+                    "LastName": "Rakhmonov",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8491,
+            "Order": 2,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140000870,
+                    "FirstName": "Santiago",
+                    "LastName": "Ponzinibbio",
+                    "PreFightWins": 15,
+                    "PreFightLosses": 2,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140000508,
+                    "FirstName": "Daniel",
+                    "LastName": "Rodriguez",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8539,
+            "Order": 2,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140000229,
+                    "FirstName": "Kevin",
+                    "LastName": "Holland",
+                    "PreFightWins": 13,
+                    "PreFightLosses": 2,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -52,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001190,
+                    "FirstName": "Jack",
+                    "LastName": "Della Maddalena",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -60,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8526,
+            "Order": 3,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001630,
+                    "FirstName": "Raul",
+                    "LastName": "Rosas Jr.",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -284,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140005011,
+                    "FirstName": "Terrence",
+                    "LastName": "Mitchell",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 200,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8473,
+            "Order": 4,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140000094,
+                    "FirstName": "Cynthia",
+                    "LastName": "Calvillo",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 2,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140001131,
+                    "FirstName": "Elise",
+                    "LastName": "Reed",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8490,
+            "Order": 4,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140000384,
+                    "FirstName": "Christos",
+                    "LastName": "Giagos",
+                    "PreFightWins": 10,
+                    "PreFightLosses": 3,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 102,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001213,
+                    "FirstName": "Daniel",
+                    "LastName": "Zellhuber",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -125,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8476,
+            "Order": 5,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140000766,
+                    "FirstName": "Chris",
+                    "LastName": "Curtis",
+                    "PreFightWins": 15,
+                    "PreFightLosses": 3,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140000040,
+                    "FirstName": "Anthony",
+                    "LastName": "Hernandez",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8495,
+            "Order": 5,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001710,
+                    "FirstName": "Fernando",
+                    "LastName": "Padilla",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -136,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140000315,
+                    "FirstName": "Kyle",
+                    "LastName": "Nelson",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 110,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8572,
+            "Order": 6,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001119,
+                    "FirstName": "Loopy",
+                    "LastName": "Godinez",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -223,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001131,
+                    "FirstName": "Elise",
+                    "LastName": "Reed",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 171,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8475,
+            "Order": 7,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140001088,
+                    "FirstName": "Sam",
+                    "LastName": "Hughes",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140001119,
+                    "FirstName": "Loopy",
+                    "LastName": "Godinez",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8568,
+            "Order": 7,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140000645,
+                    "FirstName": "Roman",
+                    "LastName": "Kopylov",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -146,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001408,
+                    "FirstName": "Josh",
+                    "LastName": "Fremd",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 118,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8474,
+            "Order": 8,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001270,
+                    "FirstName": "Daniel",
+                    "LastName": "Lacerda",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 92,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001518,
+                    "FirstName": "Edgar",
+                    "LastName": "Chairez",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -111,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8414,
+            "Order": 9,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140000509,
+                    "FirstName": "Tracy",
+                    "LastName": "Cortez",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -64,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001189,
+                    "FirstName": "Jasmine",
+                    "LastName": "Jasudavicius",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 52,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8567,
+            "Order": 10,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140001698,
+                    "FirstName": "Alex",
+                    "LastName": "Reyes",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 150,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140001085,
+                    "FirstName": "Natan",
+                    "LastName": "Levy",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -194,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8591,
+            "Order": 10,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001620,
+                    "FirstName": "Marnic",
+                    "LastName": "Mann",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 216,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001439,
+                    "FirstName": "Josefine",
+                    "LastName": "Knutsson",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -293,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8594,
+            "Order": 11,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": true,
+            "Fighters": [
+                {
+                    "FighterId": 140001698,
+                    "FirstName": "Alex",
+                    "LastName": "Reyes",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": true
+                },
+                {
+                    "FighterId": 140001455,
+                    "FirstName": "Charlie",
+                    "LastName": "Campbell",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "FightId": 8563,
+            "Order": 12,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140001439,
+                    "FirstName": "Josefine",
+                    "LastName": "Knutsson",
+                    "PreFightWins": 2,
+                    "PreFightLosses": 0,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": 89,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140001523,
+                    "FirstName": "Iasmin",
+                    "LastName": "Lucindo",
+                    "PreFightWins": 4,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": -107,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8525,
+            "Order": null,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": 1,
+            "ResultClock": 0,
+            "ResultRound": 0,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": [
+                {
+                    "FighterId": 140000040,
+                    "FirstName": "Anthony",
+                    "LastName": "Hernandez",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                },
+                {
+                    "FighterId": 140000645,
+                    "FirstName": "Roman",
+                    "LastName": "Kopylov",
+                    "PreFightWins": 3,
+                    "PreFightLosses": 1,
+                    "PreFightDraws": 0,
+                    "PreFightNoContests": 0,
+                    "Winner": false,
+                    "Moneyline": null,
+                    "Active": false
+                }
+            ]
+        },
+        {
+            "FightId": 8573,
+            "Order": null,
+            "Status": "Scrambled",
+            "WeightClass": "Scrambled",
+            "CardSegment": "Scrambled",
+            "Referee": "Scrambled",
+            "Rounds": null,
+            "ResultClock": null,
+            "ResultRound": null,
+            "ResultType": "Scrambled",
+            "WinnerId": null,
+            "Active": false,
+            "Fighters": []
+        }
+    ]
+}
