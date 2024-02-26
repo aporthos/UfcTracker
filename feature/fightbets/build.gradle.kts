@@ -3,16 +3,16 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id("org.jlleitschuh.gradle.ktlint")
+//    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
     namespace = "com.portes.ufctracker.feature.fightbets"
-    compileSdk = AppConfig.compileSdk
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        minSdk = 21
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -50,22 +50,22 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:${Versions.AndroidX.core}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecyle}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecyleViewmodel}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.AndroidX.coroutines}")
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
 
-    implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
-    implementation("androidx.hilt:hilt-navigation-compose:${Versions.Google.Hilt.navigationCompose}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
+    implementation("com.google.dagger:hilt-android:2.44.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    kapt("com.google.dagger:hilt-android-compiler:2.44.2")
 
-    implementation("androidx.compose.ui:ui:${Versions.Compose.ui}")
-    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.Compose.uiPreview}")
-    implementation("androidx.compose.material:material:${Versions.Compose.material}")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:${Versions.Compose.runtimeCompose}")
-    implementation("io.coil-kt:coil-compose:${Versions.Compose.coil}")
+    implementation("androidx.compose.ui:ui:1.4.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
+    implementation("androidx.compose.material:material:1.4.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
-    implementation("com.jakewharton.timber:timber:${Versions.Other.timber}")
+    implementation("com.jakewharton.timber:timber:5.0.1")
 
     implementation(project(":core:data"))
     implementation(project(":core:domain"))

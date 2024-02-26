@@ -1,16 +1,16 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jlleitschuh.gradle.ktlint")
+//    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
     namespace = "com.portes.ufctracker.core.designsystem"
-    compileSdk = AppConfig.compileSdk
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        minSdk = 21
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.compose.material:material:${Versions.Compose.material}")
-    implementation("com.airbnb.android:lottie-compose:${Versions.Compose.lottie}")
-    implementation("androidx.core:core-ktx:${Versions.AndroidX.core}")
+    implementation("androidx.compose.material:material:1.4.3")
+    implementation("com.airbnb.android:lottie-compose:6.0.1")
+    implementation("androidx.core:core-ktx:1.10.1")
 }

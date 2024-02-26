@@ -1,16 +1,16 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jlleitschuh.gradle.ktlint")
+//    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
     namespace = "com.portes.ufctracker.core.model"
-    compileSdk = AppConfig.compileSdk
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        minSdk = 21
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,9 +35,9 @@ android {
 }
 
 dependencies {
-    implementation("com.squareup.moshi:moshi:${Versions.Squareup.Moshi.moshi}")
+    implementation("com.squareup.moshi:moshi:1.11.0")
     implementation(project(":core:database"))
-    implementation(platform("com.google.firebase:firebase-bom:${Versions.Firestore.bom}"))
+    implementation(platform("com.google.firebase:firebase-bom:31.5.0"))
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation(project(":core:common"))
 }

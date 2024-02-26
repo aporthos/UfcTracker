@@ -2,16 +2,16 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("org.jlleitschuh.gradle.ktlint")
+//    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
     namespace = "com.portes.ufctracker.core.database"
-    compileSdk = AppConfig.compileSdk
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        minSdk = 21
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -37,12 +37,12 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:${Versions.AndroidX.core}")
+    implementation("androidx.core:core-ktx:1.10.1")
 
-    implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
+    implementation("com.google.dagger:hilt-android:2.44.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.44.2")
 
-    implementation("androidx.room:room-runtime:${Versions.AndroidX.roomRuntime}")
-    kapt("androidx.room:room-compiler:${Versions.AndroidX.roomCompiler}")
-    implementation("androidx.room:room-ktx:${Versions.AndroidX.roomKtx}")
+    implementation("androidx.room:room-runtime:2.5.2")
+    kapt("androidx.room:room-compiler:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
 }

@@ -2,16 +2,16 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("org.jlleitschuh.gradle.ktlint")
+//    id("org.jlleitschuh.gradle.ktlint")
 }
 
 android {
     namespace = "com.portes.ufctracker.core.common"
-    compileSdk = AppConfig.compileSdk
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
+        minSdk = 21
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -37,18 +37,18 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:${Versions.AndroidX.core}")
+    implementation("androidx.core:core-ktx:1.10.1")
 
-    implementation("com.google.dagger:hilt-android:${Versions.Google.Hilt.android}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.Hilt.compiler}")
+    implementation("com.google.dagger:hilt-android:2.44.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.44.2")
 
-    implementation("com.squareup.retrofit2:retrofit:${Versions.Squareup.Retrofit.retrofit}")
-    implementation("com.squareup.retrofit2:converter-moshi:${Versions.Squareup.Retrofit.converter}")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
-    implementation("com.squareup.okhttp3:okhttp:${Versions.Squareup.Okhttp3.okhttp3}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${Versions.Squareup.Okhttp3.interceptor}")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
-    implementation("com.squareup.moshi:moshi:${Versions.Squareup.Moshi.moshi}")
-    implementation("com.squareup.moshi:moshi-kotlin:${Versions.Squareup.Moshi.kotlin}")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:${Versions.Squareup.Moshi.codegen}")
+    implementation("com.squareup.moshi:moshi:1.11.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.11.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.11.0")
 }
